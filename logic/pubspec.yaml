@@ -1,0 +1,11 @@
+name: solvr_logic
+version: 1.0.8
+description: Business Logic
+dependencies:
+  harvest: '>=1.4.2'
+  solvr_common:
+    path: ../common
+  solvr_kernel:
+    path: ../kernel
+dev_dependencies:
+  unittest: any
