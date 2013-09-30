@@ -1,0 +1,4 @@
+*.dart.js
+pubspec.lock
+packages
+.project
