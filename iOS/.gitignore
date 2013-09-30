@@ -1,0 +1,16 @@
+# dart
+packages
+pubspec.lock
+
+# xcode noise
+*.mode1v3
+*.pbxuser
+*.perspective 
+*.perspectivev3
+*.pyc 
+*~.nib/
+build/*
+
+# osx noise
+.DS_Store
+profile
