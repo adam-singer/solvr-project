@@ -58,7 +58,11 @@ class NumberExpr extends NullaryExpr<String> {
     }
   }
 
+  @override
   Expr get clone => isReal ? asReal(value) : new NumberExpr(numerator, denominator);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitNumberExpr(this);
 
   operator ~() {
     if(isReal) {

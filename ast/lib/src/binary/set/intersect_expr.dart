@@ -8,7 +8,11 @@ part of solvr_ast;
 class IntersectExpr extends SimpleBinaryExpr {
   IntersectExpr(Expr left, Expr right): super(left, right, BinaryOperators.INTERSECT);
 
+  @override
   Expr get clone => intersect(left.clone, right.clone);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitIntersectExpr(this);
 }
 
 IntersectExpr intersect(Expr e1, Expr e2) => new IntersectExpr(e1, e2);

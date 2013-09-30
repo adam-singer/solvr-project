@@ -13,7 +13,11 @@ class DictionaryExpr extends _MapBasedCollection {
 
   DictionaryExpr._internal(List<Expr> operands, _KeyMapper keyMapper): super(operands, keyMapper, ObjectTypes.DICT);
 
+  @override
   Expr get clone => dictionaryOf(_cloneExprList(operands));
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitDictionaryExpr(this);
 }
 
 DictionaryExpr dictionaryOf(List<Expr> elements) {

@@ -8,9 +8,14 @@ part of solvr_ast;
 class VectorExpr extends _ListBasedCollection<Expr> {
   VectorExpr(List<Expr> operands): super(operands, ObjectTypes.VECTOR);
 
+  @override
   asString(StringBuffer buf) => _renderElements(r"[", r"; ", r"]", buf, operands);
 
+  @override
   Expr get clone => vectorOf(_cloneExprList(operands));
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitVectorExpr(this);
 }
 
 VectorExpr vectorOf(List<Expr> elements) => new VectorExpr(elements);

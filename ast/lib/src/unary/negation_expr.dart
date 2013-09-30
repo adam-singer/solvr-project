@@ -8,12 +8,17 @@ part of solvr_ast;
 class NegationExpr extends UnaryExpr {
   NegationExpr(Expr operand): super(operand, UnaryOperators.NEGATION);
 
+  @override
   asString(StringBuffer buf) {
     buf.write(token);
     operand.asString(buf);
   }
 
+  @override
   Expr get clone => negation(operand.clone);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitNegationExpr(this);
 }
 
 NegationExpr negation(var expr) => new NegationExpr(expr);

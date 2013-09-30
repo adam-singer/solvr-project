@@ -8,7 +8,11 @@ part of solvr_ast;
 class LessThanOrEqualExpr extends RelationalExpr {
   LessThanOrEqualExpr(Expr left, Expr right): super(left, right, BinaryOperators.LESS_OR_EQUAL);
 
+  @override
   Expr get clone => lessThanOrEqual(left.clone, right.clone);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitLessThanOrEqualExpr(this);
 }
 
 LessThanOrEqualExpr lessThanOrEqual(Expr e1, Expr e2) => new LessThanOrEqualExpr(e1, e2);

@@ -8,7 +8,11 @@ part of solvr_ast;
 class SubsetExpr extends SimpleBinaryExpr {
   SubsetExpr(Expr left, Expr right): super(left, right, BinaryOperators.SUBSET);
 
+  @override
   Expr get clone => subset(left.clone, right.clone);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitSubsetExpr(this);
 }
 
 SubsetExpr subset(Expr e1, Expr e2) => new SubsetExpr(e1, e2);

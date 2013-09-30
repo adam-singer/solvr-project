@@ -8,7 +8,11 @@ part of solvr_ast;
 class DifferenceExpr extends SimpleBinaryExpr {
   DifferenceExpr(Expr left, Expr right): super(left, right, BinaryOperators.DIFFERENCE);
 
+  @override
   Expr get clone => left.clone - right.clone;
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitDifferenceExpr(this);
 }
 
 

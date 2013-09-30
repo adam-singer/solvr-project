@@ -8,7 +8,11 @@ part of solvr_ast;
 class GuardExpr extends SimpleBinaryExpr {
   GuardExpr(Expr left, Expr right): super(left, right, BinaryOperators.GUARD);
 
+  @override
   Expr get clone => guard(left.clone, right.clone);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitGuardExpr(this);
 }
 
 GuardExpr guard(Expr e1, Expr e2) => new GuardExpr(e1, e2);

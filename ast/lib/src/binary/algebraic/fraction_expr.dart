@@ -8,13 +8,18 @@ part of solvr_ast;
 class FractionExpr extends BinaryExpr {
   FractionExpr(Expr left, Expr right): super(left, right, BinaryOperators.FRACTION);
 
+  @override
   asString(StringBuffer buf) {
     left.asString(buf);
     buf.write("$token");
     right.asString(buf);
   }
 
+  @override
   Expr get clone => (left.clone)/(right.clone);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitFractionExpr(this);
 }
 
 

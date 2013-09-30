@@ -53,7 +53,11 @@ class SetExpr extends _MapBasedCollection {
     return setOf(inThisOnly);
   }
 
+  @override
   Expr get clone => setOf(_cloneExprList(operands));
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitSetExpr(this);
 }
 
 SetExpr setOf(List<Expr> elements) => new SetExpr(elements);

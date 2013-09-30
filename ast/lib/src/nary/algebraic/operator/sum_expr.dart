@@ -10,8 +10,13 @@ class SumExpr extends NaryOperatorExpr {
     assert(operands.length > 1);
   }
 
+  @override
   asString(StringBuffer buf) => _renderElements("", r" + ", "", buf, operands);
 
+  @override
   Expr get clone => new SumExpr(_cloneExprList(operands));
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitSumExpr(this);
 }
 

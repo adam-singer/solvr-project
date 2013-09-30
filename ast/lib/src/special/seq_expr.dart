@@ -11,6 +11,7 @@ class SeqExpr extends Expr {
     body.parent = this;
   }
 
+  @override
   asString(StringBuffer buf) {
     buf.write(r"{");
     _renderElements("", r", ", "", buf, args);
@@ -19,16 +20,24 @@ class SeqExpr extends Expr {
     buf.write(r"}");
   }
 
+  @override
   Expr map(ExprConverter converter) {
     _mapElements(converter, operands, this);
     return this;
   }
 
+  @override
   List<Expr> get operands => [ args, body ];
 
+  @override
   Expr get clone => asSeq(_cloneExprList(args), body.clone);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitSeqExpr(this);
 
+  @override
   final IType type = LanguageTypes.SEQUENCE;
+  
   List<Expr> args;
   Expr body;
 }

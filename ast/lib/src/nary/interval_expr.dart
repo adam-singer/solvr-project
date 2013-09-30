@@ -8,6 +8,7 @@ part of solvr_ast;
 class IntervalExpr extends Expr {
   IntervalExpr(this.start, this.step, this.end);
 
+  @override
   asString(StringBuffer buf) {
     start.asString(buf);
     buf.write("..");
@@ -18,18 +19,25 @@ class IntervalExpr extends Expr {
     end.asString(buf);
   }
 
+  @override
   Expr map(ExprConverter converter) {
     _mapElements(converter, operands, this);
     return this;
   }
   
+  @override
   List<Expr> get operands => _isNothing(step) ? [start, end] : [start, step, end];
 
+  @override
   Expr get clone => intervalOf(start.clone, step.clone, end.clone);
-
-  bool _isNothing(Expr expr) => expr is NothingExpr;
   
+  @override
+  visit(ExprVisitor visitor) => visitor.visitIntervalExpr(this);
+
+  @override
   final IType type = LanguageTypes.INTERVAL;
+  
+  bool _isNothing(Expr expr) => expr is NothingExpr;
   Expr start, step, end;
 }
 

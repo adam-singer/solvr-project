@@ -8,22 +8,31 @@ part of solvr_ast;
 class ReturnExpr extends Expr {
   ReturnExpr(this.value);
 
+  @override
   asString(StringBuffer buf) {
     buf.write("return ");
     value.asString(buf);
   }
 
+  @override
   Expr map(ExprConverter converter) {
     converter(value);
     value.parent = this;
     return this;
   }
 
+  @override
   List<Expr> get operands => [ value ];
 
+  @override
   Expr get clone => asReturn(value.clone);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitReturnExpr(this);
 
+  @override
   final IType type = LanguageTypes.RETURN;
+  
   Expr value;
 }
 

@@ -52,6 +52,9 @@ abstract class Expr {
 
   /** Map a function over the expressions operands, this modifies the tree in place! */
   Expr map(ExprConverter morpher);
+  
+  /** Visit expression */
+  visit(ExprVisitor visitor);
 
   /** Get the operands for this expression */
   List<Expr> get operands;
@@ -106,12 +109,6 @@ abstract class Expr {
       expr = expr.parent;
     });
     return matched;
-  }
-
-  /** Visit the expressions operands, returns the visited node after each visit */
-  Expr visit(ExprVisitor visitor) {
-    operands.forEach((Expr operand) => visitor(operand));
-    return this;
   }
 
   // Binary expressions 
@@ -341,17 +338,8 @@ abstract class Expr {
   }
 }
 
-/**
- * Visit and alter a expression operand into a new form
- */
+/** Visit and alter a expression operand into a new form */
 typedef Expr ExprConverter(Expr expr);
 
-/**
- * Visit a expression operand without altering it
- */
-typedef ExprVisitor(Expr expr);
-
-/**
- * Return true if a expr is matched by the function
- */
+/** Return true if a expr is matched by the function */
 typedef bool ExprMatcher(Expr expr);

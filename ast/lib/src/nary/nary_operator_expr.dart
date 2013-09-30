@@ -4,7 +4,7 @@
 
 part of solvr_ast;
 
-/** Operator expression with n operands */
+/** N-ary expressions that represents a operator */
 abstract class NaryOperatorExpr extends Expr {
   NaryOperatorExpr(this.operands, this.type) {
     operands.forEach((Expr elm) => elm.parent = this);

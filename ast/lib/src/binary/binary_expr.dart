@@ -28,15 +28,19 @@ abstract class BinaryExpr extends Expr {
     _right.parent = this;
   }
 
+  @override
   Expr map(ExprConverter converter) {
     left = converter(left);
     right = converter(right);
     return this;
   }
 
+  @override
   List<Expr> get operands => [ left, right ];
 
+  @override
   final IType type;
+  
   final String token;
   Expr _left, _right;
 }
@@ -44,6 +48,7 @@ abstract class BinaryExpr extends Expr {
 abstract class SimpleBinaryExpr extends BinaryExpr {
   SimpleBinaryExpr(Expr leftExpr, Expr rightExpr, IType type, [this.padding = " "]): super(leftExpr, rightExpr, type);
 
+  @override
   asString(StringBuffer buf) {
     left.asString(buf);
     buf.write("${padding}${token}${padding}");

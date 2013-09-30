@@ -8,7 +8,11 @@ part of solvr_ast;
 class SubstitutionExpr extends SimpleBinaryExpr {
   SubstitutionExpr(Expr left, Expr right): super(left, right, BinaryOperators.SUBSTITUTION);
 
+  @override
   Expr get clone => substitution(left.clone, right.clone);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitSubsitutionExpr(this);
 }
 
 SubstitutionExpr substitution(Expr e1, Expr e2) => new SubstitutionExpr(e1, e2);

@@ -8,7 +8,11 @@ part of solvr_ast;
 class SymbolExpr extends NullaryExpr<String> {
   SymbolExpr(String value): super(value, ObjectTypes.SYMBOL);
 
+  @override
   Expr get clone => asSymbol(value);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitSymbolExpr(this);
 }
 
 SymbolExpr asSymbol(String value) => new SymbolExpr(value);

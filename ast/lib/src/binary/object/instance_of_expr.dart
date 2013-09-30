@@ -8,7 +8,11 @@ part of solvr_ast;
 class InstanceOfExpr extends SimpleBinaryExpr {
   InstanceOfExpr(Expr left, Expr right): super(left, right, BinaryOperators.INSTANCE);
 
+  @override
   Expr get clone => instanceOf(left.clone, right.clone);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitInstanceOfExpr(this);
 }
 
 InstanceOfExpr instanceOf(Expr e1, Expr e2) => new InstanceOfExpr(e1, e2);

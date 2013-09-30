@@ -10,7 +10,11 @@ class StringExpr extends NullaryExpr<String> {
 
   StringExpr._internal(String value): super(value, ObjectTypes.STRING);
 
+  @override
   Expr get clone => new StringExpr._internal(value);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitStringExpr(this);
 }
 
 StringExpr stringOf(String value) => new StringExpr(value);

@@ -8,7 +8,11 @@ part of solvr_ast;
 class AndExpr extends SimpleBinaryExpr {
   AndExpr(Expr left, Expr right): super(left, right, BinaryOperators.AND);
 
+  @override
   Expr get clone => and(left.clone, right.clone);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitAndExpr(this);
 }
 
 AndExpr and(Expr e1, Expr e2) => new AndExpr(e1, e2);

@@ -8,7 +8,11 @@ part of solvr_ast;
 class ComplexNumberExpr extends SimpleBinaryExpr {
   ComplexNumberExpr(Expr left, Expr right): super(left, right, BinaryOperators.COMPLEX);
 
+  @override
   Expr get clone => complexNumber(left.clone, right.clone);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitComplexNumberExpr(this);
 }
 
 ComplexNumberExpr complexNumber(Expr e1, Expr e2) => new ComplexNumberExpr(e1, e2);

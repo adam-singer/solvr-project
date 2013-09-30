@@ -8,16 +8,20 @@ part of solvr_ast;
 class NothingExpr extends ObjectExpr {
   NothingExpr(): super(LanguageTypes.NOTHING);
 
+  @override
   Expr map(ExprConverter converter) => this;
 
+  @override
   asString(StringBuffer buf) {
   }
 
-  asMathString(StringBuffer buf) {
-  }
-
+  @override
   Expr get clone => asNothing();
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitNothingExpr(this);
 
+  @override
   List<Expr> get operands => [];
 }
 

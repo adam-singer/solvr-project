@@ -8,9 +8,14 @@ part of solvr_ast;
 class TupleExpr extends _ListBasedCollection<Expr> {
   TupleExpr(List<Expr> operands): super(operands, ObjectTypes.TUPLE);
 
+  @override
   asString(StringBuffer buf) => _renderElements(r"(", r",", r")", buf, operands);
 
+  @override
   Expr get clone => tupleOf(_cloneExprList(operands));
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitTupleExpr(this);
 }
 
 TupleExpr tupleOf(var expr) => (expr is List) ? new TupleExpr(expr) : new TupleExpr([expr]);

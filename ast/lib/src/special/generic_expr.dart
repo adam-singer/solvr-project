@@ -10,11 +10,13 @@ part of solvr_ast;
 class GenericExpr extends Expr {
   GenericExpr(this.template, this.operands);
 
+  @override
   asString(StringBuffer buf) {
     template.asString(buf);
     _renderElements("<", r"|", ">", buf, operands);
   }
 
+  @override
   Expr map(ExprConverter converter) {
     converter(template);
     template.parent = this;
@@ -22,9 +24,15 @@ class GenericExpr extends Expr {
     return this;
   }
 
+  @override
   Expr get clone => asGeneric(template.clone, _cloneExprList(operands));
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitGenericExpr(this);
 
+  @override
   final IType type = LanguageTypes.GENERIC;
+  
   SymbolExpr template;
   List<Expr> operands;
 }

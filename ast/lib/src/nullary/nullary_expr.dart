@@ -8,14 +8,17 @@ part of solvr_ast;
 abstract class NullaryExpr<T> extends ObjectExpr {
   NullaryExpr(this.value, IType type): super(type);
 
+  @override
   Expr map(ExprConverter converter) {
     throw new UnsupportedError("nullary expressions has no operands");
   }
 
+  @override
   asString(StringBuffer buf) {
     buf.write(value);
   }
 
+  @override
   List<Expr> get operands {
     throw new UnsupportedError("nullary expressions has no operands");
   }

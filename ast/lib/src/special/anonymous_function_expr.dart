@@ -11,12 +11,14 @@ class AnonymousFunctionExpr extends Expr {
     body.parent = this;
   }
 
+  @override
   asString(StringBuffer buf) {
     args.asString(buf);
     buf.write(r" => ") ;
     body.asString(buf);
   }
 
+  @override
   Expr map(ExprConverter converter) {
     args = converter(args);
     args.parent = this;
@@ -25,9 +27,14 @@ class AnonymousFunctionExpr extends Expr {
     return this;
   }
 
+  @override
   List<Expr> get operands => [ args, body ];
 
+  @override
   Expr get clone => asAnonymousFunction(args.clone, body.clone);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitAnonymousFunctionExpr(this);
 
   final IType type = LanguageTypes.ANONYMOUS_FUNCTION;
   TupleExpr args;

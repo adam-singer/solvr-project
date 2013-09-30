@@ -8,9 +8,14 @@ part of solvr_ast;
 class EntryExpr extends SimpleBinaryExpr {
   EntryExpr(Expr left, Expr right): super(left, right, BinaryOperators.ENTRY, "");
 
+  @override
   int get hashCode => left.toString().hashCode;
 
+  @override
   Expr get clone => entry(left.clone, right.clone);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitEntryExpr(this);
 }
 
 EntryExpr entry(Expr e1, Expr e2) => new EntryExpr(e1, e2);

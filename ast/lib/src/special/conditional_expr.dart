@@ -14,6 +14,7 @@ part of solvr_ast;
 class ConditionalExpr extends Expr {
   ConditionalExpr(this.condition, this.ifBody, this.elsePart);
 
+  @override
   asString(StringBuffer buf) {
     buf.write("if");
     condition.asString(buf);
@@ -24,16 +25,24 @@ class ConditionalExpr extends Expr {
     }
   }
 
+  @override
   Expr map(ExprConverter converter) {
     _mapElements(converter, operands, this);
     return this;
   }
 
+  @override
   List<Expr> get operands => [ condition, ifBody, elsePart ];
 
+  @override
   Expr get clone => asConditional(condition.clone, ifBody.clone, elsePart.clone);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitConditionalExpr(this);
 
+  @override
   final IType type = LanguageTypes.CONDITIONAL;
+  
   Expr condition, ifBody, elsePart;
 }
 

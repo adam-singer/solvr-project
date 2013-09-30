@@ -14,18 +14,27 @@ part of solvr_ast;
 class BlockExpr extends Expr {
   BlockExpr(this.operands);
 
+  @override
   asString(StringBuffer buf) {
     _renderElements("{\n  ", "\n  ", "\n}", buf, operands);
   }
 
+  @override
   Expr map(ExprConverter converter) {
     _mapElements(converter, operands, this);
     return this;
   }
 
+  @override
   Expr get clone => asBlock(_cloneExprList(operands));
-
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitBlockExpr(this);
+  
+  @override
   final IType type = LanguageTypes.BLOCK;
+  
+  @override
   List<Expr> operands;
 }
 

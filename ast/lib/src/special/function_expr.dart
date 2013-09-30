@@ -14,6 +14,7 @@ class FunctionExpr extends Expr {
     }
   }
 
+  @override
   asString(StringBuffer buf) {
     if(hasReturnType()) {
       returnType.asString(buf);
@@ -26,6 +27,7 @@ class FunctionExpr extends Expr {
     body.asString(buf);
   }
 
+  @override
   Expr map(ExprConverter converter) {
     if(hasReturnType()) {
       args = converter(returnType);
@@ -40,11 +42,18 @@ class FunctionExpr extends Expr {
 
   bool hasReturnType() => returnType != null;
 
+  @override
   List<Expr> get operands => [ args, body ];
 
+  @override
   Expr get clone => asFunction(name, args.clone, body.clone);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitFunctionExpr(this);
 
+  @override
   final IType type = LanguageTypes.FUNCTION;
+  
   final String name;
   TupleExpr args;
   Expr body, returnType;

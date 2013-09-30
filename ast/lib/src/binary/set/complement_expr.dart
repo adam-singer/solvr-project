@@ -15,7 +15,11 @@ part of solvr_ast;
 class ComplementExpr extends SimpleBinaryExpr {
   ComplementExpr(Expr left, Expr right): super(left, right, BinaryOperators.COMPLEMENT);
 
+  @override
   Expr get clone => complement(left.clone, right.clone);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitComplementExpr(this);
 }
 
 ComplementExpr complement(Expr e1, Expr e2) => new ComplementExpr(e1, e2);

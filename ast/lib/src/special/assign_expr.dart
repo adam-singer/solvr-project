@@ -11,12 +11,14 @@ class AssignExpr extends Expr {
     value.parent = this;
   }
 
+  @override
   asString(StringBuffer buf) {
     variable.asString(buf);
     buf.write(r" = ");
     value.asString(buf);
   }
 
+  @override
   Expr map(ExprConverter converter) {
     // Note: the left hand side variable is not visited by the converter as
     // it can/must not be simplified (fx. looked up and replaced)
@@ -25,11 +27,18 @@ class AssignExpr extends Expr {
     return this;
   }
 
+  @override
   List<Expr> get operands => [ value ];
 
+  @override
   Expr get clone => asAssign(variable.clone, value.clone);
-
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitAssignExpr(this);
+  
+  @override
   final IType type = LanguageTypes.ASSIGN;
+  
   SymbolExpr variable;
   Expr value;
 }

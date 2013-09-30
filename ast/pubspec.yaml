@@ -7,4 +7,6 @@ dependencies:
     path: ../common
   solvr_types:
     path: ../types
+dev_dependencies:
+  unittest: any
   

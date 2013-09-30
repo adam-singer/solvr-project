@@ -8,9 +8,14 @@ part of solvr_ast;
 class ListExpr extends _ListBasedCollection<Expr> {
   ListExpr(List<Expr> operands): super(operands, ObjectTypes.LIST);
 
+  @override
   asString(StringBuffer buf) => _renderElements(r"[", r",", r"]", buf, operands);
 
+  @override
   Expr get clone => listOf(_cloneExprList(operands));
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitListExpr(this);
 }
 
 ListExpr listOf(List<Expr> elements) => new ListExpr(elements);

@@ -8,12 +8,17 @@ part of solvr_ast;
 class FactorialExpr extends UnaryExpr {
   FactorialExpr(Expr operand): super(operand, UnaryOperators.FACTORIAL);
 
+  @override
   asString(StringBuffer buf) {
     operand.asString(buf);
     buf.write(token);
   }
 
+  @override
   Expr get clone => factorial(operand.clone);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitFactorialExpr(this);
 }
 
 FactorialExpr factorial(var expr) => new FactorialExpr(expr);

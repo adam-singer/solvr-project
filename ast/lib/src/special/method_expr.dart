@@ -8,12 +8,14 @@ part of solvr_ast;
 class MethodExpr extends Expr {
   MethodExpr(this.target, this.name, this.args);
 
+  @override
   asString(StringBuffer buf) {
     target.asString(buf);
     buf.write(".$name");
     args.asString(buf);
   }
 
+  @override
   Expr map(ExprConverter converter) {
     converter(target);
     target.parent = this;
@@ -22,11 +24,18 @@ class MethodExpr extends Expr {
     return this;
   }
 
+  @override
   List<Expr> get operands => [ target, args ];
 
+  @override
   Expr get clone => asMethod(target.clone, name, args.clone);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitMethodExpr(this);
 
+  @override
   final IType type = LanguageTypes.METHOD;
+  
   final String name;
   ObjectExpr target;
   TupleExpr args;

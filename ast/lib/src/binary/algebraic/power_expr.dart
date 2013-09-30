@@ -8,13 +8,18 @@ part of solvr_ast;
 class PowerExpr extends BinaryExpr {
   PowerExpr(Expr left, Expr right): super(left, right, BinaryOperators.POWER);
 
+  @override
   asString(StringBuffer buf) {
     left.asString(buf);
     buf.write("$token");
     right.asString(buf);
   }
 
+  @override
   Expr get clone => power(left.clone, right.clone);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitPowerExpr(this);
 }
 
 PowerExpr power(var b, var e) => new PowerExpr(b, e);

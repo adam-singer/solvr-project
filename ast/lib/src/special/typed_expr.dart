@@ -8,12 +8,14 @@ part of solvr_ast;
 class TypedExpr extends Expr {
   TypedExpr(this.key, this.value);
 
+  @override
   asString(StringBuffer buf) {
     key.asString(buf);
     buf.write(r" ");
     value.asString(buf);
   }
 
+  @override
   Expr map(ExprConverter converter) {
     converter(key);
     key.parent = this;
@@ -22,11 +24,18 @@ class TypedExpr extends Expr {
     return this;
   }
 
+  @override
   List<Expr> get operands => [ key, value ];
 
+  @override
   Expr get clone => asTyped(key.clone, value.clone);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitTypedExpr(this);
 
+  @override
   final IType type = LanguageTypes.TYPED;
+  
   Expr key, value;
 }
 

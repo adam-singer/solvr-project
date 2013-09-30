@@ -8,7 +8,11 @@ part of solvr_ast;
 class NotInstanceOfExpr extends SimpleBinaryExpr {
   NotInstanceOfExpr(Expr left, Expr right): super(left, right, BinaryOperators.NOT_INSTANCE);
 
+  @override
   Expr get clone => notInstanceOf(left.clone, right.clone);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitNotInstanceOfExpr(this);
 }
 
 NotInstanceOfExpr notInstanceOf(Expr e1, Expr e2) => new NotInstanceOfExpr(e1, e2);

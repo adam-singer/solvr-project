@@ -8,7 +8,11 @@ part of solvr_ast;
 class BoolExpr extends NullaryExpr<bool> {
   BoolExpr(bool value): super(value, ObjectTypes.BOOL);
 
+  @override
   Expr get clone => asBool(value);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitBoolExpr(this);
 }
 
 BoolExpr asBool(bool boolean) => new BoolExpr(boolean);

@@ -4,11 +4,13 @@
 
 part of solvr_ast;
 
-/** Represents a object declaration like class MyName {} */
-abstract class ObjectExpr extends Expr {
-  ObjectExpr(this.type);
-
-  @override
-  final IType type;
+/** Base class for visitors that knows how to visit every known expression type */
+abstract class ExprVisitor implements 
+  BinaryExprVisitor, 
+  NaryExprVisitor, 
+  NullaryExprVisitor, 
+  SpecialExprVisitor, 
+  UnaryExprVisitor { 
+  
 }
 

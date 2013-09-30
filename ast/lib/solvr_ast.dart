@@ -10,7 +10,6 @@ import 'dart:collection';
 
 import 'package:solvr_common/solvr_common.dart';
 import 'package:solvr_types/solvr_types.dart';
-//import 'package:unittest/matcher.dart';
 
 part 'src/binary/algebraic/complex_number_expr.dart';
 part 'src/binary/algebraic/difference_expr.dart';
@@ -54,7 +53,7 @@ part 'src/nary/algebraic/vector_expr.dart';
 
 part 'src/nary/dictionary_expr.dart';
 part 'src/nary/interval_expr.dart';
-part 'src/nary/nary_object_expr.dart';
+part 'src/nary/nary_collection_expr.dart';
 part 'src/nary/nary_operator_expr.dart';
 
 part 'src/nullary/bool_expr.dart';
@@ -82,13 +81,19 @@ part 'src/unary/negative_expr.dart';
 part 'src/unary/negation_expr.dart';
 part 'src/unary/unary_expr.dart';
 
+part 'src/visitor/binary_expr_visitor.dart';
+part 'src/visitor/nary_expr_visitor.dart';
+part 'src/visitor/nullary_expr_visitor.dart';
+part 'src/visitor/special_expr_visitor.dart';
+part 'src/visitor/unary_expr_visitor.dart';
+
 part 'src/expr.dart';
 part 'src/position.dart';
 part 'src/expr_errors.dart';
+part 'src/expr_visitor.dart';
+part 'src/StringBufferVisitor.dart';
 
-/**
- * TODO describe
- */
+/** Renders collection of [elements] inside [start] and [end] with elements delimited by [delimiter] */
 _renderElements(String start, String delimiter, String end, StringBuffer buf, Iterable<Expr> elements) {
   buf.write(start);
   mapI(elements, (Expr elm, int i) {
@@ -109,7 +114,9 @@ _mapElements(ExprConverter converter, List<Expr> elements, Expr parent) {
 }
 
 /**
- * TODO desribe
+ * Clone list of expr into a new list of deep clones. 
+ * 
+ * TODO do we ever use the builder function ?, if not remove the optional argument
  */
 List<Expr> _cloneExprList(List<Expr> list, [var builder = null]) {
   if(builder == null) {

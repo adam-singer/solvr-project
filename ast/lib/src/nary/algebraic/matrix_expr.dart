@@ -8,6 +8,7 @@ part of solvr_ast;
 class MatrixExpr extends _ListBasedCollection<VectorExpr> {
   MatrixExpr(List<VectorExpr> operands): super(operands, ObjectTypes.MATRIX);
 
+  @override
   asString(StringBuffer buf) {
     buf.write(r"[");
     mapI(operands, (Expr row, int i) {
@@ -17,11 +18,13 @@ class MatrixExpr extends _ListBasedCollection<VectorExpr> {
     buf.write(r"]");
   }
 
+  @override
   Expr map(ExprConverter converter) {
     _mapElements(converter, operands, this);
     return this;
   }
 
+  @override
   Expr mapThisI(f(Expr element, int index)) {
     var aClone = this.clone;
     int i = 0;
@@ -53,7 +56,11 @@ class MatrixExpr extends _ListBasedCollection<VectorExpr> {
 
   int get columns => operands[0].length;
 
+  @override
   Expr get clone => matrixOf(_cloneExprList(operands, () => new List<VectorExpr>()));
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitMatrixExpr(this);
 }
 
 MatrixExpr matrixOf(List<VectorExpr> elements) => new MatrixExpr(elements);

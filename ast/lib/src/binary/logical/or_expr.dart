@@ -8,7 +8,11 @@ part of solvr_ast;
 class OrExpr extends SimpleBinaryExpr {
   OrExpr(Expr left, Expr right): super(left, right, BinaryOperators.OR);
 
+  @override
   Expr get clone => or(left.clone, right.clone);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitOrExpr(this);
 }
 
 OrExpr or(Expr e1, Expr e2) => new OrExpr(e1, e2);

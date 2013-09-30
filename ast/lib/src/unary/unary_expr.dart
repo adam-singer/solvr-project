@@ -20,17 +20,22 @@ abstract class UnaryExpr extends Expr {
     operand.parent = this;
   }
 
+  @override
   Expr map(ExprConverter converter) {
     operand = converter(operand);
     return this;
   }
 
+  @override
   List<Expr> get operands => [ operand ];
+
+  @override
+  final IType type;
   
   final String token;
-  final IType type;
   Expr _operand;
 }
+
 
 
 

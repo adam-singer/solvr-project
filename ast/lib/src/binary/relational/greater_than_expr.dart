@@ -8,7 +8,11 @@ part of solvr_ast;
 class GreaterThanExpr extends RelationalExpr {
   GreaterThanExpr(Expr left, Expr right): super(left, right, BinaryOperators.GREATER);
 
+  @override
   Expr get clone => greaterThan(left.clone, right.clone);
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitGreaterThanExpr(this);
 }
 
 GreaterThanExpr greaterThan(Expr e1, Expr e2) => new GreaterThanExpr(e1, e2);

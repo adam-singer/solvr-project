@@ -4,11 +4,10 @@
 
 part of solvr_ast;
 
-/** Represents a object declaration like class MyName {} */
-abstract class ObjectExpr extends Expr {
-  ObjectExpr(this.type);
-
-  @override
-  final IType type;
+abstract class UnaryExprVisitor {
+  visitFactorialExpr(FactorialExpr expr);
+  
+  visitNegationExpr(NegationExpr expr);
+  
+  visitNegativeExpr(NegativeExpr expr);
 }
-

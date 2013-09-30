@@ -10,6 +10,7 @@ class ProductExpr extends NaryOperatorExpr {
     assert(operands.length > 1);
   }
 
+  @override
   asString(StringBuffer buf) {
     if(operands[0].toString() == "-1") {
       // -1 * x * y * .. = -x * y * ...
@@ -20,7 +21,11 @@ class ProductExpr extends NaryOperatorExpr {
     }
   }
 
+  @override
   Expr get clone => new ProductExpr(_cloneExprList(operands));
+  
+  @override
+  visit(ExprVisitor visitor) => visitor.visitProductExpr(this);
 }
 
 
