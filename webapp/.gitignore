@@ -1,0 +1,7 @@
+out.js*
+ui
+public/javascript/mathjax
+packages
+pubspec.lock
+out
+.buildlog

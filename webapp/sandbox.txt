@@ -1,0 +1,26 @@
+TODO
+KeyBoard shortcuts http://stackoverflow.com/questions/11731126/human-readable-key-names-for-characters
+
+TODO show notification if people are closing window without save 
+function showNotifications(pic, title, text) {
+  if (window.webkitNotifications.checkPermission() == 0) {
+    var notificationWindow = 
+      window.webkitNotifications.createNotification(pic, title, text);
+    notificationWindow.show();
+    
+    // close notification automatically after a timeout    
+    setTimeout(function(popup) { 
+      popup.cancel();
+    }, 6000, notificationWindow);
+  }
+}
+
+TODO custom events
+bind event
+someElement.on['yourEventName'].add((Event e) { 
+  window.console.log("Your event listener here..."); 
+
+}); 
+
+To dispatch a custom event: 
+someElement.on['yourEventName'].dispatch(new Event("yourEventName")); 

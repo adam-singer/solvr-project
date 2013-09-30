@@ -1,0 +1,9 @@
+name: solvr_webapp
+description: Solvr web app
+dependencies:
+  solvr_ui:
+    path: ../ui
+  solvr_logic:
+    path: ../logic
+dev_dependencies:
+  unittest: any

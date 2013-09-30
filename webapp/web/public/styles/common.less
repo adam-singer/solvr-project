@@ -1,0 +1,84 @@
+@import "packages/solvr_ui/less/ui.less";
+
+// elements
+button { 
+  background: transparent;
+  
+  &.tooltip {
+    position: relative;
+    &::before {
+      background: @gray;
+      bottom: -2px; 
+      content: attr(data-tooltip);
+      color: white;
+      display: none;
+      left: 30px; 
+      opacity: 0.95;
+      padding: 2px 6px;
+      position:absolute;
+      .rounded;
+      white-space:nowrap;
+    }
+    &:hover::before {
+      display: block;
+    }
+  }
+}
+
+// gradients
+.gray-gradient {
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#D4D5D6));
+  border-bottom: 1px solid @gray; 
+}
+
+// mixins/classes
+.align-center { display: block; text-align: center; }
+
+.button-icon {
+  font-family: 'modern_pictogramspro';
+  font-size: 2em;
+}
+
+.horizontal-flex-list {
+   display: -webkit-flex;
+   -webkit-flex-flow: column;
+   ul {
+    -webkit-flex: 1;
+    
+    display: -webkit-flex;
+    -webkit-flex-flow: row;   
+    -webkit-align-items: center;
+    li {
+       -webkit-flex: 1;
+       &:first-child {
+          padding-left: 5px;
+       }
+       &:last-child {
+          text-align: right;
+          padding-right: 5px;
+       }
+    }
+  }  
+}
+
+.rounded {
+  .rounded-top;
+  .rounded-bottom;
+}
+
+.rounded-top {
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+
+.rounded-bottom {
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+
+.search-box {
+  text-indent: 3px;
+  border-radius: 20px; 
+  margin-left: 10px;
+}
+
