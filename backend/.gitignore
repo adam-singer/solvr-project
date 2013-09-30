@@ -2,3 +2,7 @@ node_modules
 .idea
 packages
 pubspec.lock
+
+# don't commit AWS keys
+aws
+server
