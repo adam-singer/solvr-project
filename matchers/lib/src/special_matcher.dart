@@ -3,7 +3,7 @@
 // This is commercial software. Use or redistribution of this code in full
 // or in part without the express written consent of Solvr is prohibited.
 
-part of solvr_kernel_matcher;
+part of solvr_matchers;
 
 /// Special expression matchers
 bool isAnonymousFunction(var expr) => expr is AnonymousFunctionExpr;

@@ -1,5 +1,6 @@
 name: solvr_kernel
 version: 1.0.3
+author: Lars Tackmann <lars@solvr.io>
 description: Math kernel
 dependencies:
   solvr_common:

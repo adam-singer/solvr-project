@@ -1,5 +1,6 @@
 name: solvr_graphics
 version: 1.0.1
+author: Lars Tackmann <lars@solvr.io>
 description: Graphics library
 dependencies:
   solvr_common:

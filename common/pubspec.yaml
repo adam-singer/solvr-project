@@ -1,5 +1,6 @@
 name: solvr_common
 version: 1.1.3
+author: Lars Tackmann <lars@solvr.io>
 description: Common utility classes
 dependencies:
   dice: '>=1.2.0'

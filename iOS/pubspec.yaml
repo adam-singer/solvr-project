@@ -1,5 +1,6 @@
 name: solvr_ios
 version: 1.0.2
+author: Lars Tackmann <lars@solvr.io>
 description: Solvr iOS apps
 dependencies:
   solvr_ui:
