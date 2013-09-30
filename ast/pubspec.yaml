@@ -1,0 +1,10 @@
+name: solvr_ast
+version: 1.0.0
+author: Lars Tackmann <lars@solvr.io>
+description: Abstract syntax tree 
+dependencies:
+  solvr_common:
+    path: ../common
+  solvr_types:
+    path: ../types
+  
