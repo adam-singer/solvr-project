@@ -11,9 +11,9 @@ To get started go over the list of modules below. We recommen you start out in t
 self contained unit. For an easy entry into contributing check out some of the issues listed in the milestones 
 below.
 
- 1. (Janitor features and bugs)[https://github.com/Solvr/solvr-project/issues?milestone=3&state=open]
+ 1. [Janitor features and bugs](https://github.com/Solvr/solvr-project/issues?milestone=3&state=open)
    * The janitor list contains the features and bugs best suited for new comers 
- 2. (Web features and bugs)[https://github.com/Solvr/solvr-project/issues?milestone=2&state=open] 
+ 2. [Web features and bugs](https://github.com/Solvr/solvr-project/issues?milestone=2&state=open) 
 
 ### Modules
 Solvr consist of the following modules
@@ -24,11 +24,13 @@ Solvr consist of the following modules
  * **doc** Documentation for Solvr.
  * **graphics** Renders AST expressions into LaTeX or SVG, also contains plotting code.
  * **iOS** *(non-working) Placeholder project for the Solvr PhoneGap iPad port*.
- * **kernel** Math kernel, simplifies expressions and contains all the numeric and symbolic algorithms. Also a REPL.
+ * **kernel** Contains mathematical algorithms for simplifying and computing expressions. Also contains REPL
  * **logic** Business logic shared between **webapp** and **iOS** app goes here.
+ * **matchers** Matchers for detecting and acting on various types of expressions
  * **parser** Parser for Solvr's algebraic language
- * **site** The http://solvr.io web site
- * **ui** UI constructs shared between **site** and **webapp**.
+ * **site** The Solvr web site
+ * **types** Types of operators and expressions supported by Solvr 
+ * **ui** Shared HTML5 constructs
  * **webapp** The Solvr web application
 
 ## License

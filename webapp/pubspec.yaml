@@ -1,5 +1,5 @@
 name: solvr_webapp
-description: Solvr web app
+description: The Solvr web application
 author: Lars Tackmann <lars@solvr.io>
 dependencies:
   solvr_ui:

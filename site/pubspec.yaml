@@ -1,6 +1,6 @@
 name: solvr_site
 author: Lars Tackmann <lars@solvr.io>
-description: Web site
+description: The Solvr web site
 dependencies:
   solvr_ui:
     path: ../ui 

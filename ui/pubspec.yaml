@@ -1,7 +1,7 @@
 name: solvr_ui
 version: 1.2.0
 author: Lars Tackmann <lars@solvr.io>
-description: Shared UI constructs 
+description: Shared HTML5 constructs
 dependencies:
   polymer: any
   route: any
