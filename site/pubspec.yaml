@@ -1,0 +1,6 @@
+name: solvr_site
+version: 1.0.0
+description: Web site
+dependencies:
+  solvr_ui:
+    path: ../ui 
