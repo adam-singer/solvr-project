@@ -1,18 +1,16 @@
-// Copyright (c) 2013 Solvr, Inc. All rights reserved.
-//
-// This is commercial software. Use or redistribution of this code in full 
-// or in part without the express written consent of Solvr is prohibited.
+// Copyright (c) 2013, the Solvr project authors. Please see the AUTHORS 
+// file for details. All rights reserved. Use of this source code is 
+// governed by a Apache license that can be found in the LICENSE file.
 
 library solvr_common_test;
 
-import 'package:meta/meta.dart';
 import 'package:unittest/unittest.dart';
 import '../lib/solvr_common.dart';
 
 part 'src/helpers_test.dart';
 part 'src/integer_test.dart';
 
-void main() {
+main() {
   new HelpersTest();
   new IntegerTest();
 }

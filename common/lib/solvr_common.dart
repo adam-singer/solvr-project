@@ -1,17 +1,15 @@
-// Copyright (c) 2013 Solvr, Inc. All rights reserved.
-//
-// This is commercial software. Use or redistribution of this code in full
-// or in part without the express written consent of Solvr is prohibited.
+// Copyright (c) 2013, the Solvr project authors. Please see the AUTHORS 
+// file for details. All rights reserved. Use of this source code is 
+// governed by a Apache license that can be found in the LICENSE file.
 
 /** Common utility classes */
 library solvr_common;
 
 import 'dart:math' as Math;
 
-import 'package:dice/dice.dart';
 export 'package:dice/dice.dart';
-import 'package:log4dart/log4dart.dart';
 export 'package:log4dart/log4dart.dart';
+export 'package:meta/meta.dart';
 
 part 'src/errors.dart';
 part 'src/helpers.dart';

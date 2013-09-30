@@ -5,6 +5,6 @@ description: Common utility classes
 dependencies:
   dice: '>=1.2.0'
   log4dart: '>=1.4.8'
-  meta: '>=0.6.9'
+  meta: '>=0.7.5'
 dev_dependencies:
   unittest: any
