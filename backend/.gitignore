@@ -1,0 +1,4 @@
+node_modules
+.idea
+packages
+pubspec.lock

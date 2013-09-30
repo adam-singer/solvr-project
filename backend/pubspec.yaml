@@ -1,0 +1,8 @@
+name: solvr_backend
+version: 1.0.1
+description: Backend services
+dependencies:
+  solvr_common:
+    path: ../common
+dev_dependencies:
+  unittest: any
