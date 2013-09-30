@@ -1,0 +1,8 @@
+name: solvr_matchers
+version: 1.0.0
+author: Lars Tackmann <lars@solvr.io>
+description: Expression matchers 
+dependencies:
+  solvr_ast:
+    path: ../ast
+  
