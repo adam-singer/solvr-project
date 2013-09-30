@@ -1,25 +1,27 @@
-// Copyright (c) 2013 Solvr, Inc. All rights reserved.
-//
-// This is commercial software. Use or redistribution of this code in full 
-// or in part without the express written consent of Solvr is prohibited.
+// Copyright (c) 2013, the Solvr project authors. Please see the AUTHORS 
+// file for details. All rights reserved. Use of this source code is 
+// governed by a Apache license that can be found in the LICENSE file.
 
 part of solvr_graphics_render_svg;
 
 class _SvgUnaryRender extends _AbstractSvgRender implements UnaryRender {
-  _SvgUnaryRender(Element element, Element glyphs): super(element, glyphs);
+  _SvgUnaryRender(Element element, FontManager fontManager, ExprRender render): super(element, fontManager, render);
   
+  @override
   renderFactorial(FactorialExpr expr) {
-    mathRender.render(expr.operand);
+    renderExpr(expr.operand);
     addText("&#x021;");
   }
   
+  @override
   renderNegation(NegationExpr expr) {
     addText("&#x021;");
-    mathRender.render(expr.operand);
+    renderExpr(expr.operand);
   }
   
+  @override
   renderNegative(NegativeExpr expr) {
     addText("&#x02d;");
-    mathRender.render(expr.operand);
+    renderExpr(expr.operand);
   }
 }

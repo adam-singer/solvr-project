@@ -1,12 +1,11 @@
-// Copyright (c) 2013 Solvr, Inc. All rights reserved.
-//
-// This is commercial software. Use or redistribution of this code in full 
-// or in part without the express written consent of Solvr is prohibited.
+// Copyright (c) 2013, the Solvr project authors. Please see the AUTHORS 
+// file for details. All rights reserved. Use of this source code is 
+// governed by a Apache license that can be found in the LICENSE file.
 
 part of solvr_graphics_render_svg;
 
-class _SvgNullaryRender extends _AbstractSvgRender implements NullaryRender {
-  _SvgNullaryRender(Element element, Element glyphs): super(element, glyphs);
+class _SvgNullaryRender extends _AbstractSvgRender implements NullaryExorVisitor {
+  _SvgNullaryRender(Element element, FontManager fontManager, ExprRender render): super(element, fontManager, render);
   
   renderBool(BoolExpr expr) {
     addText(_svgTokenize("${expr.value}"));
@@ -38,16 +37,14 @@ class _SvgNullaryRender extends _AbstractSvgRender implements NullaryRender {
   List<String> _svgTokenize(String value) {
     // TODO cache
     var glyphs = new List<String>();
-    value.charCodes().forEach((int charCode) {
+    value.codeUnits.forEach((int charCode) {
       var glyphId = _charToGlyph(charCode);
       glyphs.add(glyphId);
     });
     return tokens.toString();
   }
   
- 
-  
-  static final _greekLowerLetters = const {
+  static final Map<String, String> _greekLowerLetters = const {
     "alpha": r"&#x3b1;",
     "beta": r"&#x3b2;",
     "gamma": r"&#x3b3;",
@@ -74,7 +71,7 @@ class _SvgNullaryRender extends _AbstractSvgRender implements NullaryRender {
     "omega": r"&#x3c9;"
   };
   
-  static final _greekUpperLetters = const {
+  static final Map<String, String> _greekUpperLetters = const {
     "Alpha": r"&#x391;",
     "Beta": r"&#x392;",
     "Gamma": r"&#x393;",

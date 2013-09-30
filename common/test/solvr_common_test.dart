@@ -5,7 +5,7 @@
 library solvr_common_test;
 
 import 'package:unittest/unittest.dart';
-import '../lib/solvr_common.dart';
+import 'package:solvr_common/solvr_common.dart';
 
 part 'src/helpers_test.dart';
 part 'src/integer_test.dart';

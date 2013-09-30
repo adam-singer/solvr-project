@@ -1,23 +1,21 @@
-// Copyright (c) 2013 Solvr, Inc. All rights reserved.
-//
-// This is commercial software. Use or redistribution of this code in full 
-// or in part without the express written consent of Solvr is prohibited
+// Copyright (c) 2013, the Solvr project authors. Please see the AUTHORS 
+// file for details. All rights reserved. Use of this source code is 
+// governed by a Apache license that can be found in the LICENSE file.
 
 library solvr_graphics_render;
 
-export 'package:solvr_common/solvr_common.dart';
-import 'package:solvr_kernel/solvr_kernel.dart';
-export 'package:solvr_kernel/solvr_kernel.dart';
+import 'package:solvr_ast/solvr_ast.dart';
 
-part 'api/binary_render.dart';
-part 'api/nary_render.dart';
-part 'api/nullary_render.dart';
-part 'api/special_render.dart';
-part 'api/unary_render.dart';
+export 'package:solvr_ast/solvr_ast.dart';
+export 'package:solvr_common/solvr_common.dart';
+
+part 'api/binary_expr_render.dart';
+part 'api/nary_expr_render.dart';
+part 'api/nullary_expr_render.dart';
+part 'api/special_expr_render.dart';
+part 'api/unary_expr_render.dart';
 
 abstract class ExprRender<T,R> {
-  attachTo(T target);
-  
   R render(Expr expr);
   
   renderAndAttach(Expr expr, T target);

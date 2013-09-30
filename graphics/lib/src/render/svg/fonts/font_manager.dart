@@ -1,7 +1,6 @@
-// Copyright (c) 2013 Solvr, Inc. All rights reserved.
-//
-// This is commercial software. Use or redistribution of this code in full 
-// or in part without the express written consent of Solvr is prohibited.
+// Copyright (c) 2013, the Solvr project authors. Please see the AUTHORS 
+// file for details. All rights reserved. Use of this source code is 
+// governed by a Apache license that can be found in the LICENSE file.
 
 part of solvr_graphics_render_svg;
 
@@ -36,7 +35,7 @@ class FontManager {
     container.glyphs.forEach((int charCode, List fontData) {
       var glyphId = "${container.fontname}-${charCode}";
       if(_fonts.containsKey(glyphId)) {
-        throw new IllegalArgumentException("duplicated glyph $glyphId");
+        throw new ArgumentError("duplicated glyph $glyphId");
       }
       _fonts[glyphId] = fontData;
     });
@@ -48,7 +47,7 @@ class FontManager {
       _loadGlyph(glyphId);
     }
     // TODO x/y coordinates
-    var glyph = new SVGElement.svg("<use href='#${glyphId}'></use>");
+    var glyph = new SvgElement.svg("<use href='#${glyphId}'></use>");
     container.nodes.add(glyph);
   }
   
@@ -62,16 +61,16 @@ class FontManager {
   
   _loadGlyph(String glyphId) {
     if(!_fonts.containsKey(glyphId)) {
-      throw new IllegalArgumentException("glyph ${glyphId} is not loaded");
+      throw new ArgumentError("glyph ${glyphId} is not loaded");
     }
     var glyphData = _fonts[glyphId];
     var glyphPath = glyphData[4];
-    var glyph = new SVGElement.svg("""<path id="${glyphId}" stroke-width='10' d='M${glyphPath}'></path>"""); 
+    var glyph = new SvgElement.svg("""<path id="${glyphId}" stroke-width='10' d='M${glyphPath}'></path>"""); 
     _glyphs.nodes.add(glyph);
     _loaded.add(glyphId);
   }
   
-  final loaded = new Set<String>();
+  final _loaded = new Set<String>();
   final _fonts = new Map<String, List>();
   Element _glyphs;
 }
