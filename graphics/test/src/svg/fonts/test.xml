@@ -1,0 +1,195 @@
+<?xml version="1.0" standalone="yes"?>
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs>
+	  <font-face font-family="solvr">
+	    <font-face-src>
+	      <font-face-uri xlink:href="symbols.xml#solvr"/>
+	    </font-face-src>
+	  </font-face>
+	</defs>
+	
+	<!-- Greek letters -->
+	<g>
+	  	<text x="20" y="20" font-family="solvr" font-size="24">
+	  		<!-- Lowercase -->
+	  	 	&#x3b1;
+		 	&#x3b2;
+		 	&#x3b3;
+		 	&#x3b4;
+		 	&#x3b5;
+		 	&#x3b6;
+		 	&#x3b7;
+		 	&#x3b8;
+		 	&#x3b9;
+		 	&#x3ba;
+		 	&#x3bb;
+		 	&#x3bc;
+		 	&#x3bd;
+		 	&#x3be;
+		 	&#x3bf;
+		 	&#x3c0;
+		 	&#x3c1;
+		 	&#x3c2;
+		 	&#x3c3;
+		 	&#x3c4;
+		 	&#x3c5;
+		 	&#x3c6;
+		 	&#x3c7;
+		 	&#x3c8;
+		 	&#x3c9;
+	  </text> 
+	</g>
+	<g> 
+	  <text x="20" y="50" font-family="solvr" font-size="24">
+	  		<!-- Uppercase -->
+		 	&#x391;
+		 	&#x392;
+		 	&#x393;
+		 	&#x394;
+		 	&#x395;
+		 	&#x396;
+		 	&#x397;
+		 	&#x398;
+		 	&#x399;
+		 	&#x39a;
+		 	&#x39b;
+		 	&#x39c;
+		 	&#x39d;
+		 	&#x39e;
+		 	&#x39f;
+		 	&#x3a0;
+		 	&#x3a1;
+		 	&#x3a2;
+		 	&#x3a3;
+		 	&#x3a4;
+		 	&#x3a5;
+		 	&#x3a6;
+		 	&#x3a7;
+		 	&#x3a8;
+	  </text> 
+	</g>
+	
+	
+	<!-- Numbers -->
+	<g> 
+	  	<text x="20" y="80" font-family="solvr" font-size="24">
+			
+			&#x030;
+			&#x031;
+			&#x032;
+			&#x033;
+			&#x034;
+			&#x035;
+			&#x036;
+			&#x037;
+			&#x038;
+			&#x039;
+		</text> 
+	</g>
+	<!-- Latin alphabet -->
+	<g> 
+	  	<text x="20" y="110" font-family="solvr" font-size="24">	
+			<!-- Lowercase -->
+			&#x061;
+			&#x062;
+			&#x063;
+			&#x064;
+			&#x065;
+			&#x066;
+			&#x067;
+			&#x068;
+			&#x069;
+			&#x06a;
+			&#x06b;
+			&#x06c;
+			&#x06d;
+			&#x06e;
+			&#x06f;
+			&#x070;
+			&#x071;
+			&#x072;
+			&#x073;
+			&#x074;
+			&#x075;
+			&#x076;
+			&#x077;
+			&#x078;
+			&#x079;
+			&#x07a;
+		</text> 
+	</g>
+	<g> 
+	  	<text x="20" y="140" font-family="solvr" font-size="24">	
+			<!-- Uppercase -->
+			&#x041;
+			&#x042;
+			&#x043;
+			&#x044;
+			&#x045;
+			&#x046;
+			&#x047;
+			&#x048;
+			&#x049;
+			&#x04a;
+			&#x04b;
+			&#x04c;
+			&#x04d;
+			&#x04e;
+			&#x04f;
+			&#x050;
+			&#x051;
+			&#x052;
+			&#x053;
+			&#x054;
+			&#x055;
+			&#x056;
+			&#x057;
+			&#x058;
+			&#x059;
+			&#x05a;
+		</text> 
+	</g>
+	
+	<!-- symbols -->
+	<g> 
+	  	<text x="20" y="170" font-family="solvr" font-size="24">	
+			&#x021;
+			&#x022;
+			&#x023;
+			&#x024;
+			&#x025;
+			&#x026;
+			&#x027;
+			&#x028;
+			&#x029;
+			&#x02a;
+			&#x02b;
+			&#x02c;
+			&#x02d;
+			&#x02e;
+			&#x02f;
+			
+			&#x03a;
+			&#x03b;
+			&#x03c;
+			&#x03d;
+			&#x03e;
+			&#x03f;
+			&#x040;
+			
+			&#x05b;
+			&#x05c;
+			&#x05d;
+			&#x05e;
+			&#x05f;
+			&#x060;
+			
+			&#x07b;
+			&#x07c;
+			&#x07d;
+			&#x07e;
+			
+			&#x0b7;
+		</text> 
+	</g>
+</svg>

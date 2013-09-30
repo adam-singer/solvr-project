@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>Tex Render Test</title>
+    <script type="text/javascript">
+    	window.addEventListener("message", receiveMessage, false);
+
+		function receiveMessage(event) {
+		  var msg = JSON.parse(event.data);
+		  document.getElementById(msg.target).innerHTML = "$" + msg.mathString + "$";
+		  MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+		}
+    </script>
+    
+    <script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+		    extensions: ["tex2jax.js"],
+		    jax: ["input/TeX", "output/HTML-CSS"],
+		    tex2jax: {
+		      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+		      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		      processEscapes: true
+		    },
+		    "HTML-CSS": { availableFonts: ["TeX"] }
+		  });
+	</script>
+	<script type="text/javascript" src="../../../../webapp/public/javascript/mathjax/MathJax.js"></script>
+  </head>
+  <body>
+    <div id="container"></div>
+    
+	<script type="application/dart">
+	  
+	</script>
+  </body>
+</html>

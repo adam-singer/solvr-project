@@ -1,0 +1,10 @@
+name: solvr_graphics
+version: 1.0.1
+description: Graphics library
+dependencies:
+  solvr_common:
+    path: ../common
+  solvr_kernel:
+    path: ../kernel
+dev_dependencies:
+  unittest: any

@@ -1,0 +1,4 @@
+*.dart.js
+test/mathjax
+packages
+pubspec.lock
