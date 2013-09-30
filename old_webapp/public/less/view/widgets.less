@@ -1,0 +1,61 @@
+#widgets {
+	-webkit-box-flex: 1;
+	-webkit-box-orient: vertical;
+	display: -webkit-box;
+	margin: 0 30px;
+	width: 0;
+	
+	.widget-tabbed {
+		-webkit-box-sizing: border-box;
+		-webkit-box-flex: 2;
+		width: 100%;
+		
+		.widget-tabbed-header {
+			button {
+				&[name="activity-widget"] { .icon("checkmark_24.png") }
+				&[name="help-widget"] { .icon("help_24.png") }	
+			}
+		}
+		
+		.widget-tabbed-content {
+			background-color: rgba(236,242,223, 0.3);
+			.rounded;
+			.shadow;
+			min-height: 350px;
+			max-height: 350px;
+			overflow: auto;
+			
+			ul {
+				li {
+					padding-bottom: 10px;
+					position: relative;
+					span {
+						position: absolute;
+						top: 22%;
+						left: 60px;
+					}
+					img {
+						width: 48px;		
+					}
+				}
+			}
+		}
+	}
+	
+	.widget-help {
+		ol li {
+			padding: 8px 0;
+			border: 1px solid @gray;
+			a {
+				padding-left: 8px;
+			}
+		}
+	}
+	
+	.hidden {
+		min-height: @widgetHiddenHeight;
+		-webkit-box-sizing: border-box;
+		-webkit-box-flex: 1;
+		width: 100%;
+	}
+}

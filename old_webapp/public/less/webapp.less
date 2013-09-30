@@ -1,0 +1,40 @@
+@import "common.less";
+
+// logo
+.logo { a { color: white } } 
+
+// layout
+body {
+	min-width: 1280px;
+	display: -webkit-box;
+    -webkit-box-orient: horizontal;
+}
+
+#container {
+    -webkit-box-flex: 5;
+	display: -webkit-box;
+    -webkit-box-orient: vertical;
+    
+	#content {
+		-webkit-box-flex: 1;
+		display: -webkit-box;
+	   	-webkit-box-orient: horizontal;
+	    background: url(../images/tile.png);
+		padding: 22px 0 30px; 
+    }
+}
+
+// TODO fix retina icon URLS
+// TODO make icons into SVG
+// TODO - IMPORTANT - figure out how to get min-width working with flexbox
+
+@import "view/menu.less";
+@import "view/notebook.less";
+@import "view/toolbar.less";
+@import "view/widgets.less";
+
+@import "widget/button.less";
+@import "widget/callout.less";
+@import "widget/input.less";
+@import "widget/modal.less";
+@import "widget/tabbed.less";

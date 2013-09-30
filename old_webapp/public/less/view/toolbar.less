@@ -1,0 +1,47 @@
+@import "../common.less";
+
+@fontColor: rgb(81,81,81);
+.linkIcon(@icon, @marginLeft: 5px) {
+	.icon(@icon);
+	width: auto;
+	height: 40px;
+	margin-left: @marginLeft;
+	a,span { 
+		position: relative;
+		bottom: -23px;
+	}	
+}
+
+#toolbar {
+    -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 12px 0px;
+   	display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    height: @toolbarHeight;
+    .gray-gradient;
+
+  	nav {
+  	    -webkit-box-flex: 1;
+  		
+        button { 
+        	margin-top: 6px;
+        	&[name="new"] { .linkIcon("plus_24.png", 30px); }
+        	&[name="save"] { .linkIcon("save_24.png", 10px); }
+  
+        	&[name="share"] { .linkIcon("arrow_up_24.png", 30px); }
+        	&[name="discover"] { .linkIcon("globe_24.png", 10px); }
+        	
+        	&[name="calculate"] { .linkIcon("sum_24.png", 30px); }
+        	&[name="widgets"] { .linkIcon("spanner_24.png"); }
+            &[name="settings"] { .linkIcon("gear_24.png"); }
+       	}
+       	#searchBox {
+       		text-indent: 3px;
+       		border-radius: 20px; 
+       		width: 200px; 
+       		position: relative;
+       		top: 7px;
+       		left: 30px;
+       		height: 24px; 
+       	}
+	}
+}

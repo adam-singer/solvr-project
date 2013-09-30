@@ -1,0 +1,32 @@
+@import "../common.less";
+
+.widget-callout {
+	float: left;
+    position: absolute;
+    margin-top: 18px;
+    -webkit-box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    .rounded;
+    background: url("../../images/tile5.jpg");
+    z-index: 1;
+    
+    .notch {
+	    position: absolute;
+	    top: -10px;
+	    margin: 0;
+	    border-top: 0;
+	    border-left: 10px solid transparent;
+	    border-right: 10px solid transparent;
+	    border-bottom: 10px solid rgb(234,235,240);
+	    padding: 0;
+	    width: 0;
+	    height: 0;
+	}
+	
+	.widget-content {
+    	position: relative;
+    	p { text-align: left; }
+	}
+}
+
+.border-callout { padding: 8px 15px; }
+.border-callout .border-notch { top: -11px; }

@@ -1,0 +1,148 @@
+@import "../common.less";
+
+#menu {
+	-webkit-box-flex: 1;
+	display: -webkit-box;
+   	-webkit-box-orient: vertical;
+   	resize: both;
+   	
+   	h1 {
+   		@offset: 5px;
+   		 
+   		width: 100%;
+   		height: @toolbarHeight - @offset;
+   		border-bottom: 1px solid rgb(42,47,54);	
+   		text-align: center; 
+   		padding-top: @offset;
+   		//.gray-gradient;
+   		.blue-gradient;
+   	}
+   	
+   	#logo {
+   		top: 10px;
+   		position: relative;
+   		//background: url("../../../ui/images/Qalqo_WhiteBg.svg") no-repeat;
+   		background: url("../../../ui/images/Qalqo_BlackBg.svg") no-repeat;
+   		-webkit-background-size: 90% 90%;
+   	}
+   	
+   	section {
+   		background: url("../../images/tile4.png");
+   		h2 {
+   			.blue-tile;
+   			text-align: center;
+   			font-weight: normal;
+   			color: white;
+   			width: 100%;
+   		}
+   	}
+
+    #notebooks {
+    	-webkit-box-flex: 1;
+        
+        // these four lines makes the list behave correctly when overflowing
+        @topOffset: 45px;
+       	position: relative;
+        .dynamic-list { z-index: 0; }
+        .fixed { z-index: 1; height: @topOffset; }
+
+        #item-list {
+        	padding-top: @topOffset;
+            li {
+                -webkit-box-sizing: border-box;
+                border: 2px solid transparent;
+                position: relative;
+                background: none;
+               	p { 
+               		margin: 0 12px;
+               		display: inline-block;
+               		line-height: 32px;
+               		text-indent: 36px;
+               		width: 90%;
+               		&:hover { 
+               			* { color: white; } 
+               			background: url("../../images/tile3.png");
+               			.rounded;
+               		} 
+               		img {
+               			position: absolute;
+               			top: 4px;
+               			left: 18px;
+               		}
+               	}
+               	&.active {
+               		.menu-pointer {
+	                	position: absolute;
+	                	right: -12px;
+	                	top: 6px;
+	            		display: inline-block;
+						border-top: 10px solid transparent;
+						border-bottom: 10px solid transparent;
+						border-left: 10px solid rgb(42,42,42);
+						z-index: 3;
+                	}
+                }
+            }
+        }
+    }
+    
+    #resources {
+        -webkit-box-flex: 0;
+        .blue-tile;
+         button {
+         	height: 24px;
+         	width: 24px;
+        	&[name="new-folder"] { .icon("plus_24.png"); }
+        	&[name="delete"] { .icon("minus_24.png"); }
+        	&[name="trash"] { .icon("trash_mac_24.png"); }
+            &[name="grid"] { .icon("resize_24.png"); }
+            -webkit-transform: scale(0.7);
+       	}
+    }
+    
+    // widget styling
+    .widget-modal {
+    	.widget-content {
+    		background: url("../../images/tile5.jpg");
+    		width: 100%;
+    		height: 100%;
+    		.rounded;
+    		.widget-grid {
+		    	nav {
+		    		.rounded-top;
+		 			.gray-gradient; 
+		 			min-height: @widgetNavHeight;
+		 			
+		 			.widget-grid-navcontent {
+		 				float: left;
+		 			}
+		 			.widget-close {
+		 				.icon("delete_24.png");
+		 				position: relative;
+		 				float: right;
+		 				height: 24px;
+		 				width: 24px;
+		 				top: 4px;
+		 				right: 5px;
+		 				.link;
+		 			}
+		    	}
+		    	.widget-content {
+		    		.item {
+		    			display: inline-block;
+		    			margin: 20px;
+		    			min-height: 150px;
+		    			min-width: 130px;
+		    			background-color: white;
+		    			padding-top: 10px;
+		    			text-align: center;
+		    			.rounded;
+		    			.shadow;
+		    			.link;
+		    			color: @blue;
+		    		}
+		    	}
+	    	}
+	    }
+    }
+}

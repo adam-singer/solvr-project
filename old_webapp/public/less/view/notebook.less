@@ -1,0 +1,136 @@
+@import "../common.less";
+ 
+#notebook {
+	-webkit-box-flex: 2;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	margin: 0 30px;
+	width: 0;
+	position: relative;
+	
+	.widget-callout {
+		font-size: @fontsize;
+		font-weight: normal;
+		input {
+			border-radius: 8px;
+			margin: 6px 0; 
+			padding: 3px;
+		}
+		
+		.widget-button {
+    		&:hover { color: @blue; }
+    		margin-left: 20px;
+    		margin-top: 3px;
+    		&:last-child { margin-left: 25px; }
+		}
+	}
+		
+	.widget-notebook-details {
+		tr td { padding-bottom: 5px; }
+		tr td:first-child { padding-right: 10px; }
+		min-width: 300px;
+		//box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.25);
+		box-shadow: inset 0 1px 3px rgba(0, 0, 0, .25), 0 1px 0 rgba(255, 255, 255, 0.25);
+		padding: 6px;
+		//border: rgb(177,178,179) solid 1px;
+		.rounded;
+	}
+	
+	.widget-tabbed-header {
+		#notebook-name {
+			position: relative;
+			&:hover { color: @blue; }
+		}
+    	
+    	button {
+    		&[name="notebook-input"] { .icon("calculator_24.png") }
+			&[name="notebook-info"] { .icon("info_24.png") }
+		}
+	}
+	
+	#notebook-content {
+		-webkit-box-flex: 1;
+		-webkit-box-sizing: border-box;
+        background: white;
+        .rounded;
+        .shadow;
+        width: 100%;
+        height: 100%;
+		
+		.entry {
+			position: relative; 
+			width: 100%;
+			margin-bottom: 20px;
+			li { 
+				width: 100%;
+				margin-bottom: 5px;
+				p { 
+					line-height: 1.8em;
+					text-indent: 5px;
+				}
+			}
+			.entry-value {
+				border-radius: 6px;
+				border: 1px @gray dashed;
+				&:hover, &:focus { .yellow-gradient;  }
+			}
+			.entry-result {
+				margin: 10px auto;
+				width: 95%;
+				padding: 10px;
+				border-radius: 6px;
+				background-color: rgb(236,242,223);
+			}
+		}
+	}
+	
+	#notebook-input {
+		background-color: rgb(234,235,236 );
+		-webkit-box-sizing: border-box;
+		position: absolute;
+		padding: @widgetContentPadding;
+		border: 1px solid @gray;
+		margin: 0 auto;
+		width: 0;
+		height: 0;
+		opacity: 0;
+		.rounded;
+		top: 65%;
+		left: 25%;
+		z-index: 1000;
+		
+		button { 
+			background: transparent; 
+			&:hover { color: @blue; }
+		}
+		
+		ul {
+			margin-bottom: 12px;
+			li {
+				padding: 10px;
+				.rounded;
+				margin-right: 5px; 
+			}
+		}
+		
+		nav {
+			min-height: @widgetNavHeight;
+			li { 
+				.blue-gradient;
+				button { color: white;}
+			}
+		}
+		
+		.widget-content {
+			min-height: @widgetHiddenHeight;
+			width: 100%;
+			height: 100%;
+			
+			li {
+				padding: 7px 15px;
+				.rounded;
+				.gray-button;
+			}
+		}
+	}
+}

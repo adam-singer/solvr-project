@@ -1,0 +1,86 @@
+// reset and defaults
+@import "../../ui/less/ui.less";
+
+// constants
+@toolbarHeight: 60px;
+@widgetNavHeight: 30px;
+@widgetHiddenHeight: 300px;
+@widgetContentPadding: 12px;
+
+// classes and mixins
+.fixed {
+	position: absolute;
+  	bottom: 0;
+  	left: 0;
+  	right: 0;
+  	top: 0;
+}
+
+.error-message {
+	// TODO add error icon
+	color: pink;
+	background-color: red;
+}
+
+.dynamic-list {
+	.fixed;
+  	overflow: auto;
+}
+
+.blue-gradient {
+	background-image: -webkit-linear-gradient(bottom, rgb(48,53,62) 15%, rgb(78,85,99) 90%);
+}
+
+.yellow-gradient {
+	background-image: -webkit-linear-gradient(bottom, rgb(255,247,217), rgb(255,255,217));
+}
+
+.gray-gradient {
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#D4D5D6));
+    border-bottom: 1px solid @gray;	
+}
+
+.gray-button {
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(237,237,239)), to(rgb(191,191,196)));
+	border-color: 1px solid @gray;	
+}
+
+.blue-tile {
+	background: url("../images/tile2.png");
+}
+
+.shadow {
+	box-shadow: rgba(0, 0, 0, 0.49) 0px 0px 15px 0px;
+}
+
+.link {
+	&:hover { 
+		// cursor: pointer;
+	}
+	
+}
+
+.rounded {
+  .rounded-top;
+  .rounded-bottom;
+}
+
+.rounded-top {
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+
+.rounded-bottom {
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+
+.icon(@icon) {
+	background: transparent url("../icons/@{icon}") no-repeat;
+	background-position:center; 
+	height: 24px;
+	width: 24px;
+}
+
+// good effects
+//background-color: rgb(236,242,223);
