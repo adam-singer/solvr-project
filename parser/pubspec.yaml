@@ -1,0 +1,13 @@
+name: solvr_parser
+version: 1.0.0
+author: Lars Tackmann <lars@solvr.io>
+description: Parser for the Solvr language
+dependencies:
+  solvr_ast:
+    path: ../ast
+  solvr_common:
+    path: ../common
+  solvr_matchers:
+    path: ../matchers
+dev_dependencies:
+  unittest: any
