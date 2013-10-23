@@ -10,8 +10,8 @@ import 'package:solvr_common/solvr_common.dart';
 import 'package:unittest/unittest.dart';
 
 import 'package:solvr_kernel/solvr_kernel.dart';
-import 'package:solvr_kernel/src/matcher_lib.dart' as Matchers;
 import 'package:solvr_kernel/src/math_lib.dart' as Internal;
+import 'package:solvr_matchers/solvr_matchers.dart' as Matchers;
 
 part 'src/internals/failure_test.dart';
 part 'src/internals/order_test.dart';

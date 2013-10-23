@@ -4,15 +4,14 @@
 
 part of solvr_parser;
 
+/** [Grammar] for the Solvr language  */
 class InputGrammar implements Grammar {
-  // TODO use type keys here instead of duplicating the TokenTypes
-  // TODO add ability to lookup precedense based on typekey (useful in tuple simplifier)
+  // TODO rename to SolvrGrammer
 
   InputGrammar()
     : _infixParselets = new Map<TokenType, InfixParselet>(),
       _prefixParselets = new Map<TokenType, PrefixParselet>()
     {
-
     // prefix tokens that need special parselets.
     _prefixParselet(TokenType.BOOL, new NullaryParselet());
     _prefixParselet(TokenType.LEFT_PAREN, new TupleParselet());
@@ -70,32 +69,32 @@ class InputGrammar implements Grammar {
   }
 
    // registers a postfix unary operator parselet for the given token and precedence
-   void _postfixOperator(TokenType token, int precedence) {
+   _postfixOperator(TokenType token, int precedence) {
      _infixParselets[token] = new PostfixUnaryParselet(precedence);
    }
 
    // registers a prefix unary operator parselet for the given token and precedence
-   void _prefixOperator(TokenType token, int precedence) {
+   _prefixOperator(TokenType token, int precedence) {
      _prefixParselet(token,  new PrefixUnaryParselet(precedence));
    }
 
    // registers a prefix parselet
-   void _prefixParselet(TokenType token, PrefixParselet parselet) {
+   _prefixParselet(TokenType token, PrefixParselet parselet) {
      _prefixParselets[token] = parselet;
    }
 
    // registers a infix parselet
-   void _infixParselet(TokenType token, InfixParselet parselet) {
+   _infixParselet(TokenType token, InfixParselet parselet) {
      _infixParselets[token] = parselet;
    }
 
    // registers a left-associative binary operator parselet
-   void _infixOperatorLeft(TokenType token, int precedence) {
+   _infixOperatorLeft(TokenType token, int precedence) {
      _infixParselet(token, new BinaryParselet(precedence, false));
    }
 
    // registers a right-associative binary operator parselet
-   void _infixOperatorRight(TokenType token, int precedence) {
+   _infixOperatorRight(TokenType token, int precedence) {
      _infixParselets[token] = new BinaryParselet(precedence, true);
    }
 

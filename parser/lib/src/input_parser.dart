@@ -4,8 +4,10 @@
 
 part of solvr_parser;
 
-/** Parse user input */
+/** [Parser] for the Solvr language */
 class InputParser extends Parser {
+  // TODO rename to SolvrParser
+  
   InputParser(String sourceString)
     : super(new Lexer(new StringReader(sourceString)), new InputGrammar());
 
@@ -69,7 +71,7 @@ class InputParser extends Parser {
     return left;
   }
 
-  /** Analyse expression for missing multipication signs in expressions such as 2(x+3), 3!(3+2), (2+3)(3+4). */
+  /** Handle missing "multipication" in expressions such as 2(x+3), 3!(3+2), (2+3)(3+4). */
   Expr checkForProduct(Expr expr) {
     if(immediateMatch(TokenType.LEFT_PAREN) || immediateMatch(TokenType.NAME)) {
       _logger.debug("product balancing $expr");
@@ -80,7 +82,7 @@ class InputParser extends Parser {
     return expr;
   }
 
-  /** Analyse expression for missing logical and in expressions such as x > 5 > y, 1 < t < 5. */
+  /** Handle missing logical "and" in expressions such as x > 5 > y (parse as: x > 5 && 5 > y) */
   Expr checkForAnd(RelationalExpr expr) {
     if(isRelational(expr.left)) {
       _logger.debug("and balancing $expr");

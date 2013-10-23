@@ -1,10 +1,12 @@
 name: solvr_common
-version: 1.1.3
+version: 1.2.0
 author: Lars Tackmann <lars@solvr.io>
 description: Common utility classes
+environment:
+  sdk: '>=0.8.5'
 dependencies:
-  dice: '>=1.2.0'
-  log4dart: '>=1.4.8'
-  meta: '>=0.7.5'
+  dice: '>=1.4.1'
+  log4dart: '>=1.4.10'
+  meta: '>=0.8.5'
 dev_dependencies:
   unittest: any
