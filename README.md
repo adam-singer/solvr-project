@@ -1,3 +1,5 @@
+[![Build Status](https://drone.io/github.com/Solvr/solvr-project/status.png)](https://drone.io/github.com/Solvr/solvr-project/latest)
+
 # Solvr.io
 
 Solvr is an open web and mobile platform for creating and sharing interactive mathematical 
