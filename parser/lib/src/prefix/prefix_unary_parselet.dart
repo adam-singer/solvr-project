@@ -8,7 +8,7 @@ part of solvr_parser;
 class PrefixUnaryParselet implements PrefixParselet {
   PrefixUnaryParselet(this.precedence); 
 
-  Expr parse(InputParser parser, Token token) {
+  Expr parse(SolvrParser parser, Token token) {
     _logger.debug("parsing: ${token.value}");
 
     var left = parser.parseExpression(precedence);
@@ -23,7 +23,6 @@ class PrefixUnaryParselet implements PrefixParselet {
         var str = "0.${left.toString()}";
         return Expr.realExpr(token.position, str);
       }
-      // TODO figure out how to fall through
       throw new ParserError("prefix expression error for operator ${token.toString()}");
 
     case TokenType.MINUS:

@@ -6,7 +6,7 @@ part of solvr_parser;
 
 /** parses braces such as those used on sets {1,2,3} and dictionaries {x:1,y:2,z:3} */
 class BraceParselet implements PrefixParselet {
-  Expr parse(InputParser parser, Token token) {
+  Expr parse(SolvrParser parser, Token token) {
     _logger.debug("parsing: ${token.value}");
 
     var span = parser.span();

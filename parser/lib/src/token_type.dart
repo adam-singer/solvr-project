@@ -4,6 +4,7 @@
 
 part of solvr_parser;
 
+/** The [Token] types defined for the Solvr language */
 class TokenType {
   const TokenType(this.name);
 
@@ -73,17 +74,6 @@ class TokenType {
   static const RETURN = const TokenType("return");
   static const STRING = const TokenType("string");
   static const SUBSTITUTION = const TokenType("substitution");
-
-  /*
-  int get hashCode => name.hashCode;
-  
-  operator ==(TokenType other){
-    if(other == null) {
-      return false;
-    }
-    return (other.name == name);
-  }
-  */
 
   String toString() => name;
 

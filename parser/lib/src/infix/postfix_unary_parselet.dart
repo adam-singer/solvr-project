@@ -8,7 +8,7 @@ part of solvr_parser;
 class PostfixUnaryParselet implements InfixParselet {
   PostfixUnaryParselet(this.precedence);
 
-  Expr parse(InputParser parser, Expr left, Token token) {
+  Expr parse(SolvrParser parser, Expr left, Token token) {
     _logger.debug("parsing: ${token.value}");
 
     switch(token.type) {

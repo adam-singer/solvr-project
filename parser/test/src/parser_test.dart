@@ -298,7 +298,7 @@ class ParserTest {
   } 
 
   assertExpression(String expression, ExprMatcher matcher, [ String compareTo = null ]) {
-    var parser = new InputParser(expression);
+    var parser = new SolvrParser(expression);
     parser.registerObjectTypes(["List", "String", "Set", "Number", "Bool", "Symbol"]);
     var expr = parser.parse();
     var expectedOutput = (compareTo == null) ? expression : compareTo;
@@ -321,7 +321,7 @@ class ParserTest {
   }
   
   assertStatement(String expression, ExprMatcher matcher) {
-    var parser = new InputParser(expression);
+    var parser = new SolvrParser(expression);
     parser.registerObjectTypes(["List", "String", "Set", "Number", "Bool", "Symbol"]);
     var expr = parser.parse();
     

@@ -4,7 +4,9 @@
 
 part of solvr_parser;
 
-/** A [PrefixParselet] parses tokens that appears at the beginning of an expression. */
-abstract class PrefixParselet {
-  Expr parse(SolvrParser parser, Token token);
+/** Abstract away source reading so [Lexer] stays the same when reading from files or REPL */
+abstract class SourceReader {
+  advance();
+
+  String peek(int distance);
 }

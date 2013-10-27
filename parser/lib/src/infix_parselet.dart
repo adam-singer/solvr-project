@@ -5,12 +5,14 @@
 part of solvr_parser;
 
 /**
- * An InfixParselet is associated with a token that appears in the middle of the
- * expression it parses. It's also used for postfix expressions, in
- * which case it simply doesn't consume any more tokens in its parse
+ * An [InfixParselet]'s parses tokens that appears in the middle of expressions 
+ * 
+ * It's also used for postfix expressions, since these can be viewed as a infix 
+ * expression with nothing on the left, followed by the postfix operator and its 
+ * operand.
  */
 abstract class InfixParselet {
-  Expr parse(InputParser parser, Expr left, Token token);
+  Expr parse(SolvrParser parser, Expr left, Token token);
 
   int get precedence;
 }

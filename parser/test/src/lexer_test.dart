@@ -58,7 +58,7 @@ class LexerTest {
   
   assertToken(String text, List<TokenType> expectedTokens) {
     SourceReader reader = new StringReader(text);
-    TokenReader lexer = new Lexer(reader);
+    Lexer lexer = new SolvrLexer(reader);
     expectedTokens.forEach((t) {
       Token token = lexer.readToken();
       expect(token.type == t, isTrue, reason:"expected [${t}] got [${token.type.name}] at position ${token.position.toString()} for [$text]");

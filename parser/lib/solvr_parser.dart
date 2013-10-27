@@ -22,19 +22,21 @@ part 'src/prefix/nullary_parselet.dart';
 part 'src/prefix/tuple_parselet.dart';
 part 'src/prefix/prefix_unary_parselet.dart';
 
-part 'src/grammar.dart';
+part 'src/api/grammar.dart';
+part 'src/api/lexer.dart';
+part 'src/api/parser.dart';
+part 'src/api/position_span.dart';
+part 'src/api/source_reader.dart';
+part 'src/api/string_reader.dart';
+part 'src/api/token.dart';
+
+
 part 'src/infix_parselet.dart';
-part 'src/input_grammar.dart';
-part 'src/input_parser.dart';
-part 'src/lexer.dart';
-part 'src/parser.dart';
-part 'src/position_span.dart';
 part 'src/precedence.dart';
 part 'src/prefix_parselet.dart';
-part 'src/source_reader.dart';
-part 'src/string_reader.dart';
-part 'src/token.dart';
-part 'src/token_reader.dart';
+part 'src/solvr_grammar.dart';
+part 'src/solvr_lexer.dart';
+part 'src/solvr_parser.dart';
 part 'src/token_type.dart';
 
 class ParserError extends SolvrError {

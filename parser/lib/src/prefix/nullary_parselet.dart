@@ -6,7 +6,7 @@ part of solvr_parser;
 
 /** parses token literal's such as 1, 2, 3, TRUE, ... */
 class NullaryParselet implements PrefixParselet {
-  Expr parse(InputParser parser, Token token) {
+  Expr parse(SolvrParser parser, Token token) {
     _logger.debug("parsing: ${token.value}");
 
     switch(token.type) {
@@ -18,7 +18,7 @@ class NullaryParselet implements PrefixParselet {
       if(token.value.contains(r".")) {
         number = Expr.realExpr(token.position, token.value);
       } else {
-        number = Expr.numberExpr(token.position, token.value);
+        number = Expr.integerExpr(token.position, token.value);
       }
       // check for cases such as 2(x+3)
       return parser.checkForProduct(number);
@@ -27,7 +27,7 @@ class NullaryParselet implements PrefixParselet {
       return Expr.stringExpr(token.position, token.value);
 
     default:
-      throw new ParserError("literal expression error for ${token.toString()}");
+      throw new ParserError("nullary expression error for ${token.toString()}");
     }
   }
   

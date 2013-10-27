@@ -4,7 +4,11 @@
 
 part of solvr_parser;
 
-/** A [PrefixParselet] parses tokens that appears at the beginning of an expression. */
-abstract class PrefixParselet {
-  Expr parse(SolvrParser parser, Token token);
+abstract class Grammar {
+   PrefixParselet getPrefixParselet(TokenType type);
+
+   InfixParselet getInfixParselet(TokenType type);
+
+   /** Get precedence of token. */
+   int getPrecedence(Token token);
 }

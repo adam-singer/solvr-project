@@ -6,7 +6,7 @@ part of solvr_parser;
 
 /** Parses names, such as symbols, generics and method invocations */
 class NameParselet implements PrefixParselet {
-  Expr parse(InputParser parser, Token token) {
+  Expr parse(SolvrParser parser, Token token) {
     _logger.debug('parsing: ${token.value}');
     final String name = token.value;
 
@@ -54,11 +54,12 @@ class NameParselet implements PrefixParselet {
    * - Set<String>
    * - List<Set<Symbol>>
    */
-  GenericExpr _parseGeneric(InputParser parser, SymbolExpr template) {
+  GenericExpr _parseGeneric(SolvrParser parser, SymbolExpr template) {
     var span = parser.span();
     // Generics such as 'a<b> c' can be recognized from ordinary logical expressions like 'a<b && b>c' by
+    // - has the form: "typeName<typeBoundary>" where typeName and typeBoundary must be known types
     // - must be terminated by >
-    // - lack of any other tokens than <, ?, > and names
+    // - lack of any other tokens than <, ?, > and known object names
     // - all symbols involved are known object types
     var boundaries = new List<Expr>();
 

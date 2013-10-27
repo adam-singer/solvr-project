@@ -8,7 +8,7 @@ part of solvr_parser;
 class BinaryParselet implements InfixParselet {
   BinaryParselet(this.precedence, this.isRight);
 
-  Expr parse(InputParser parser, Expr left, Token token) {
+  Expr parse(SolvrParser parser, Expr left, Token token) {
     _logger.debug('parsing: ${token.value}');
 
     // To handle right-associative operators like '^', we allow a slightly

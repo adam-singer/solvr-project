@@ -6,7 +6,7 @@ part of solvr_parser;
 
 /** Parses touples such as (a), (a + b) and (a+b)(c+d). */
 class TupleParselet implements PrefixParselet {
-  Expr parse(InputParser parser, Token token) {
+  Expr parse(SolvrParser parser, Token token) {
     _logger.debug("parsing: ${token.value}");
     return parser.checkForProduct(parser.parseTuple());
   }

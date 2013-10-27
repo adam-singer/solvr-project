@@ -6,7 +6,7 @@ part of solvr_parser;
 
 /** Parses the assignment operator = */
 class AssignParselet implements InfixParselet {
-  Expr parse(InputParser parser, var left, Token token) {
+  Expr parse(SolvrParser parser, var left, Token token) {
     _logger.debug('parsing: ${token.value}');
 
     switch(token.type) {

@@ -6,7 +6,7 @@ part of solvr_parser;
 
 /** parses brackets in lists such as [1, 2] and vectors such as [1 2] and matrices as [[1 2];[3 4]] */
 class BracketParselet implements PrefixParselet {
-  Expr parse(InputParser parser, Token token) {
+  Expr parse(SolvrParser parser, Token token) {
     _logger.debug("parsing: ${token.value}");
 
     var span = parser.span();
