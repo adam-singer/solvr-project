@@ -5,12 +5,10 @@
 part of solvr_ast;
 
 abstract class NaryExprVisitor {
-  // algebraic nary operator expr
   visitProductExpr(ProductExpr expr);
   
   visitSumExpr(SumExpr expr);
   
-  // algebraic nary expr
   visitListExpr(ListExpr expr);
   
   visitMatrixExpr(MatrixExpr expr);
@@ -21,7 +19,6 @@ abstract class NaryExprVisitor {
   
   visitVectorExpr(VectorExpr expr);
   
-  // non-algebraic nary expr
   visitDictionaryExpr(DictionaryExpr expr);
   
   visitIntervalExpr(IntervalExpr expr);

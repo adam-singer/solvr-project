@@ -4,7 +4,7 @@
 
 part of solvr_ast;
 
-/** Represents a matrix fx. {{1,2,3}, {4,5,6}} */
+/** Represents a matrix fx. [[1;2;3]; [4;5;6]] */
 class MatrixExpr extends _ListBasedCollection<VectorExpr> {
   MatrixExpr(List<VectorExpr> operands): super(operands, ObjectTypes.MATRIX);
 

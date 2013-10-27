@@ -5,7 +5,6 @@
 part of solvr_ast;
 
 abstract class BinaryExprVisitor {
-  // Algebraic expr
   visitComplexNumberExpr(ComplexNumberExpr expr);
   
   visitDifferenceExpr(DifferenceExpr expr);
@@ -16,12 +15,10 @@ abstract class BinaryExprVisitor {
   
   visitPowerExpr(PowerExpr expr);
   
-  // Logical expr   
   visitAndExpr(AndExpr expr);
   
   visitOrExpr(OrExpr expr);
   
-  // Object expr
   visitBindExpr(BindExpr expr);
   
   visitGuardExpr(GuardExpr expr);
@@ -32,7 +29,6 @@ abstract class BinaryExprVisitor {
   
   visitSubsitutionExpr(SubstitutionExpr expr);
   
-  // Relational expressions 
   visitEqualExpr(EqualExpr expr);
   
   visitGreaterThanExpr(GreaterThanExpr expr);
@@ -45,7 +41,6 @@ abstract class BinaryExprVisitor {
   
   visitNotEqualExpr(NotEqualExpr expr);
   
-  // Set expressions 
   visitComplementExpr(ComplementExpr expr);
   
   visitEntryExpr(EntryExpr expr);

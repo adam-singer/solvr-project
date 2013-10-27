@@ -8,7 +8,11 @@ part of solvr_ast;
  * Represents a node in the abstract syntax tree
  *
  * Precedences flows down in the tree so the root node in each
- * parentheses group has the lowest priority
+ * parentheses group has the lowest priority.
+ * 
+ * Note that expressions are weakly typed in the AST as only very few type 
+ * checks are done by the parser. The type checker will run after the parser
+ * to analyze that the types used in the AST are corret.
  */
 abstract class Expr {
   static final String languageVersion = "0.1";
@@ -79,11 +83,11 @@ abstract class Expr {
 
   operator +(Expr other) => asSum([this, other]);
 
-  operator -(Expr other) => new DifferenceExpr(this, other);
+  operator -(Expr other) => asDifference(this, other);
 
   operator *(Expr other) => asProduct([this, other]);
 
-  operator /(Expr other) => new FractionExpr(this, other);
+  operator /(Expr other) => asFraction(this, other);
 
   /** True if this expression matches any of the applied matchers */
   bool anyOf(List<ExprMatcher> matchers) {
@@ -111,13 +115,13 @@ abstract class Expr {
     return matched;
   }
 
-  // algebraic expressions
+  // Binary algebraic expressions
   static Expr differenceExpr(Position position, Expr left, Expr right) {
     return _createExpr((left - right), position);
   }
 
   static Expr dotExpr(Position position, Expr left, Expr right) {
-    return _createExpr(new DotExpr(left, right), position);
+    return _createExpr(asDot(left, right), position);
   }
 
   static Expr fractionExpr(Position position, Expr left, Expr right) {
@@ -125,7 +129,7 @@ abstract class Expr {
   }
 
   static Expr powerExpr(Position position, Expr left, Expr right) {
-    return _createExpr(power(left, right), position);
+    return _createExpr(asPower(left, right), position);
   }
 
   static Expr productExpr(Position position, Expr left, Expr right) {
@@ -136,37 +140,37 @@ abstract class Expr {
     return _createExpr((left + right), position);
   }
 
-  // Logical expressions
+  // Binary logical expressions
   static Expr andExpr(Position position, Expr left, Expr right) {
-    return _createExpr(and(left, right), position);
+    return _createExpr(asAnd(left, right), position);
   }
 
   static Expr orExpr(Position position, Expr left, Expr right) {
-    return _createExpr(or(left, right), position);
+    return _createExpr(asOr(left, right), position);
   }
 
-  // Object expressions
+  // Binary object expressions
   static Expr bindExpr(Position position, Expr left, Expr right) {
-    return _createExpr(bind(left, right), position);
+    return _createExpr(asBind(left, right), position);
   }
 
   static Expr guardExpr(Position position, Expr left, Expr right) {
-    return _createExpr(guard(left, right), position);
+    return _createExpr(asGuard(left, right), position);
   }
 
   static Expr instanceOfExpr(Position position, Expr left, Expr right) {
-    return _createExpr(instanceOf(left, right), position);
+    return _createExpr(asInstanceOf(left, right), position);
   }
 
   static Expr notInstanceOfExpr(Position position, Expr left, Expr right) {
-    return _createExpr(notInstanceOf(left, right), position);
+    return _createExpr(asNotInstanceOf(left, right), position);
   }
 
   static Expr substitutionExpr(Position position, Expr left, Expr right) {
-    return _createExpr(substitution(left, right), position);
+    return _createExpr(asSubstitution(left, right), position);
   }
 
-  // Relational expressions
+  // Binary relational expressions
   static Expr equalExpr(Position position, Expr left, Expr right) {
     return _createExpr(equal(left, right), position);
   }
@@ -191,7 +195,7 @@ abstract class Expr {
     return _createExpr(lessThanOrEqual(left, right), position);
   }
 
-  // Set expressions
+  // Binary set expressions
   static Expr complementExpr(Position position, Expr left, Expr right) {
     return _createExpr(complement(left, right), position);
   }

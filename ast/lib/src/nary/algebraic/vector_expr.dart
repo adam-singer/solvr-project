@@ -4,7 +4,7 @@
 
 part of solvr_ast;
 
-/** Represents a list fx. {1,2,3} */
+/** Represents a vector fx. [1;2;3] */
 class VectorExpr extends _ListBasedCollection<Expr> {
   VectorExpr(List<Expr> operands): super(operands, ObjectTypes.VECTOR);
 

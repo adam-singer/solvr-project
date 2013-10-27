@@ -9,10 +9,10 @@ class BindExpr extends SimpleBinaryExpr {
   BindExpr(Expr left, Expr right): super(left, right, BinaryOperators.BIND);
 
   @override
-  Expr get clone => bind(left.clone, right.clone);
+  Expr get clone => asBind(left.clone, right.clone);
   
   @override
   visit(ExprVisitor visitor) => visitor.visitBindExpr(this);
 }
 
-BindExpr bind(Expr e1, Expr e2) => new BindExpr(e1, e2);
+BindExpr asBind(Expr e1, Expr e2) => new BindExpr(e1, e2);

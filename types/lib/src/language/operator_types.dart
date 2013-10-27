@@ -4,6 +4,8 @@
 
 part of solvr_types;
 
+// TODO somehow merge this with the token types in the parser if possible
+
 class OperatorTypes {
   static const ALGEBRAIC = const AreaType("Algebraic operator", AREA);
   static const LOGICAL = const AreaType("Logical operator", AREA);

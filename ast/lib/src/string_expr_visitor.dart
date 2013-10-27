@@ -22,11 +22,70 @@ class StringExprVisitor extends Object with
 }
 
 abstract class StringBinaryExprVisitor implements BinaryExprVisitor {
+  visitComplexNumberExpr(ComplexNumberExpr expr) {
+    expr.left.visit(visitor);
+    buf.write(" ${expr.token} i");
+    expr.right.visit(visitor);
+  }
   
+  visitDifferenceExpr(DifferenceExpr expr) => _visitSimpleBinaryExpr(expr);
+  
+  visitDotExpr(DotExpr expr) => _visitSimpleBinaryExpr(expr);
+  
+  visitFractionExpr(FractionExpr expr) => _visitSimpleBinaryExpr(expr, padding:"");
+  
+  visitPowerExpr(PowerExpr expr) => _visitSimpleBinaryExpr(expr, padding:"");
+  
+  visitAndExpr(AndExpr expr) => _visitSimpleBinaryExpr(expr);
+  
+  visitOrExpr(OrExpr expr) => _visitSimpleBinaryExpr(expr);
+  
+  visitBindExpr(BindExpr expr) => _visitSimpleBinaryExpr(expr);
+  
+  visitGuardExpr(GuardExpr expr) => _visitSimpleBinaryExpr(expr);
+  
+  visitInstanceOfExpr(InstanceOfExpr expr) => _visitSimpleBinaryExpr(expr);
+  
+  visitNotInstanceOfExpr(NotInstanceOfExpr expr) => _visitSimpleBinaryExpr(expr);
+  
+  visitSubsitutionExpr(SubstitutionExpr expr) => _visitSimpleBinaryExpr(expr);
+  
+  visitEqualExpr(EqualExpr expr);
+  
+  visitGreaterThanExpr(GreaterThanExpr expr);
+  
+  visitGreaterThanOrEqualExpr(GreaterThanOrEqualExpr expr);
+  
+  visitLessThanExpr(LessThanExpr expr);
+  
+  visitLessThanOrEqualExpr(LessThanOrEqualExpr expr);
+  
+  visitNotEqualExpr(NotEqualExpr expr);
+  
+  visitComplementExpr(ComplementExpr expr);
+  
+  visitEntryExpr(EntryExpr expr);
+  
+  visitIntersectExpr(IntersectExpr expr);
+  
+  visitNotSubsetExpr(NotSubsetExpr expr);
+  
+  visitSubsetExpr(SubsetExpr expr);
+  
+  visitUnionExpr(UnionExpr expr);
+  
+  _visitSimpleBinaryExpr(BinaryExpr expr, {String padding:" "}) {
+    expr.left.visit(visitor);
+    buf.write("${padding}${expr.token}${padding}");
+    expr.right.visit(visitor);
+  }
+  
+  StringBuffer get buf;
+  
+  ExprVisitor get visitor;
 }
 
 abstract class StringNaryExprVisitor implements NaryExprVisitor {
-  // algebraic nary operator expr
   visitProductExpr(ProductExpr expr) {
     if(expr.operands[0].toString() == "-1") {
       // -1 * x * y * .. = -x * y * ...
@@ -39,7 +98,6 @@ abstract class StringNaryExprVisitor implements NaryExprVisitor {
   
   visitSumExpr(SumExpr expr) => _renderElements("", r" + ", "", buf, expr.operands);
   
-  // algebraic nary expr
   visitListExpr(ListExpr expr) {
     _renderElements(r"[", r",", r"]", buf, expr.operands);
   }
@@ -47,7 +105,7 @@ abstract class StringNaryExprVisitor implements NaryExprVisitor {
   visitMatrixExpr(MatrixExpr expr) {
     buf.write(r"[");
     mapI(expr.operands, (Expr row, int i) {
-      row.asString(buf);
+      row.visit(visitor);
       if(i < expr.operands.length - 1) buf.write(r";");
     });
     buf.write(r"]");
@@ -65,22 +123,23 @@ abstract class StringNaryExprVisitor implements NaryExprVisitor {
     _renderElements(r"[", r";", r"]", buf, expr.operands);
   }
   
-  // non-algebraic nary expr
   visitDictionaryExpr(DictionaryExpr expr) {
     _renderElements(r"{", r",", r"}", buf, expr.operands);
   }
   
   visitIntervalExpr(IntervalExpr expr) {
-    expr.start.asString(buf);
+    expr.start.visit(visitor);
     buf.write("..");
     if(expr.step is! NothingExpr) {
-      expr.step.asString(buf);
+      expr.step.visit(visitor);
       buf.write("..");
     }
-    expr.end.asString(buf);
+    expr.end.visit(visitor);
   }
   
   StringBuffer get buf;
+  
+  ExprVisitor get visitor;
 }
 
 abstract class StringNullaryExprVisitor implements NullaryExprVisitor {
@@ -98,7 +157,86 @@ abstract class StringNullaryExprVisitor implements NullaryExprVisitor {
 }
 
 abstract class StringSpecialExprVisitor implements SpecialExprVisitor {
+  visitAnonymousFunctionExpr(AnonymousFunctionExpr expr) {
+    expr.args.visit(visitor);
+    buf.write(r" => ") ;
+    expr.body.visit(visitor);
+  }
   
+  visitAssignExpr(AssignExpr expr) {
+    expr.variable.visit(visitor);
+    buf.write(r" = ");
+    expr.value.visit(visitor);
+  }
+  
+  visitBlockExpr(BlockExpr expr) {
+    _renderElements("{\n  ", "\n  ", "\n}", buf, expr.operands);
+  }
+  
+  visitConditionalExpr(ConditionalExpr expr) {
+    buf.write("if");
+    expr.condition.visit(visitor);
+    expr.ifBody.visit(visitor);
+    if(expr.elsePart is! NothingExpr) {
+      buf.write("else");
+      expr.elsePart.visit(visitor);
+    }
+  }
+  
+  visitFunctionExpr(FunctionExpr expr) {
+    if(expr.hasReturnType()) {
+      expr.returnType.visit(visitor);
+    }
+    buf.write(expr.name);
+    expr.args.visit(visitor);
+    if(expr.body is! BlockExpr) {
+      buf.write(r" = ");
+    }
+    expr.body.visit(visitor);
+  }
+  
+  visitGenericExpr(GenericExpr expr) {
+    expr.template.visit(visitor);
+    _renderElements("<", r"|", ">", buf, expr.operands);
+  }
+  
+  visitInvokeExpr(InvokeExpr expr) {
+    buf.write(expr.name);
+    expr.args.visit(visitor);
+  }
+  
+  visitMethodExpr(MethodExpr expr) {
+    expr.target.visit(visitor);
+    buf.write(".${expr.name}");
+    expr.args.visit(visitor);
+  }
+  
+  visitNothingExpr(NothingExpr expr) {
+    // nothing
+  }
+  
+  visitReturnExpr(ReturnExpr expr) {
+    buf.write("return ");
+    expr.value.visit(visitor);
+  }
+  
+  visitSeqExpr(SeqExpr expr) {
+    buf.write(r"{");
+    _renderElements("", r", ", "", buf, expr.args);
+    buf.write(r" | ");
+    expr.body.visit(visitor);
+    buf.write(r"}");
+  }
+  
+  visitTypedExpr(TypedExpr expr) {
+    expr.key.visit(visitor);
+    buf.write(r" ");
+    expr.value.visit(visitor);
+  }
+  
+  StringBuffer get buf;
+  
+  ExprVisitor get visitor;
 }
 
 abstract class StringUnaryExprVisitor implements UnaryExprVisitor {
@@ -121,3 +259,4 @@ abstract class StringUnaryExprVisitor implements UnaryExprVisitor {
   
   ExprVisitor get visitor;
 }
+

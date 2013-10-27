@@ -5,22 +5,15 @@
 part of solvr_ast;
 
 /** Power fx. 3^2 */
-class PowerExpr extends BinaryExpr {
+class PowerExpr extends SimpleBinaryExpr {
   PowerExpr(Expr left, Expr right): super(left, right, BinaryOperators.POWER);
 
   @override
-  asString(StringBuffer buf) {
-    left.asString(buf);
-    buf.write("$token");
-    right.asString(buf);
-  }
-
-  @override
-  Expr get clone => power(left.clone, right.clone);
+  Expr get clone => asPower(left.clone, right.clone);
   
   @override
   visit(ExprVisitor visitor) => visitor.visitPowerExpr(this);
 }
 
-PowerExpr power(var b, var e) => new PowerExpr(b, e);
+PowerExpr asPower(Expr left, Expr right) => new PowerExpr(left, right);
 

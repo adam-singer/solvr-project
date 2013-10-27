@@ -9,10 +9,10 @@ class NotInstanceOfExpr extends SimpleBinaryExpr {
   NotInstanceOfExpr(Expr left, Expr right): super(left, right, BinaryOperators.NOT_INSTANCE);
 
   @override
-  Expr get clone => notInstanceOf(left.clone, right.clone);
+  Expr get clone => asNotInstanceOf(left.clone, right.clone);
   
   @override
   visit(ExprVisitor visitor) => visitor.visitNotInstanceOfExpr(this);
 }
 
-NotInstanceOfExpr notInstanceOf(Expr e1, Expr e2) => new NotInstanceOfExpr(e1, e2);
+NotInstanceOfExpr asNotInstanceOf(Expr e1, Expr e2) => new NotInstanceOfExpr(e1, e2);

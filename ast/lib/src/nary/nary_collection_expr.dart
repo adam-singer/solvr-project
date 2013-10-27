@@ -81,6 +81,7 @@ abstract class CollectionExpr extends ObjectExpr {
     return result;
   }
 
+  /** The number of ellements in this [CollectionExpr] */
   int get length => operands.length;
 
   bool hasSameDimension(var other) => other.length == length;

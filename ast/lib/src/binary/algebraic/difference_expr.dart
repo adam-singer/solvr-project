@@ -15,5 +15,6 @@ class DifferenceExpr extends SimpleBinaryExpr {
   visit(ExprVisitor visitor) => visitor.visitDifferenceExpr(this);
 }
 
+DifferenceExpr asDifference(Expr left, Expr right) => new DifferenceExpr(left, right);
 
 

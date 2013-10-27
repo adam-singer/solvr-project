@@ -6,18 +6,58 @@ part of solvr_ast_test;
 
 class VisitorTest {
   VisitorTest() {
-    /*
-    group("binary expressions -", () {
-      test("sum", () {
-        var number1 = Expr.number(null,"1");
-        var number2 = Expr.number(null,"2");
-        var sumExpr = Expr.sum(null,number1, number2);
-        
-        sumExpr.visit(visitor);
-        expect(visitor.asString, equals("1 + 2"));  
+    solo_group("binary expressions -", () {
+      test("complex number", () {
+        assertExpression(asComplexNumber(asInteger(3), asInteger(4)), "3 + i4");
+      });
+      
+      test("difference", () {
+        assertExpression(asDifference(asInteger(3), asInteger(2)), "3 - 2");
+      });
+      
+      test("dot product", () {
+        var vec1 = asVector([asInteger(1), asInteger(2)]);
+        var vec2 = asVector([asInteger(3), asInteger(4)]);
+        assertExpression(asDot(vec1, vec2), "[1;2] . [3;4]");
+      });
+      
+      test("fraction",() {
+        assertExpression(asFraction(asSymbol("a"), asSymbol("b")), "a/b");
+      });
+      
+      test("power",() {
+        assertExpression(asPower(asSymbol("a"), asInteger(3)), "a^3");
+      });
+      
+      test("and",() {
+        assertExpression(asAnd(asBool(true), asBool(false)), "true && false");
+      });
+      
+      test("or",() {
+        assertExpression(asOr(asBool(true), asBool(false)), "true || false");
+      });
+      
+      test("bind", (){
+        var interval = asInterval(asInteger(1), asNothing(), asInteger(10));
+        assertExpression(asBind(asSymbol("x"), interval), "x in 1..10");
+      });
+      
+      test("guard", (){
+        assertExpression(asGuard(asSymbol("a"), asSymbol("b")), "a | b");
+      });
+      
+      test("instance of", (){
+        assertExpression(asInstanceOf(asSymbol("a"), asSymbol("Vector")), "a is Vector");
+      });
+      
+      test("not instance of", (){
+        assertExpression(asNotInstanceOf(asSymbol("a"), asSymbol("Vector")), "a is! Vector");
+      });
+      
+      test("substitution", (){
+        assertExpression(asSubstitution(asSymbol("x"), asSymbol("y") + asInteger(2)), "x := y + 2");
       });
     });
-    */
     
     group("nary expressions -", () {
       test("product", () {
@@ -39,7 +79,7 @@ class VisitorTest {
       test("matrix", () {
         var vec1 = asVector([asInteger(1), asInteger(2)]);  
         var vec2 = asVector([asInteger(3), asInteger(4)]);  
-        assertExpression(asMatrix([vec1, vec2]), "[[1; 2];[3; 4]]");
+        assertExpression(asMatrix([vec1, vec2]), "[[1;2];[3;4]]");
       });
       
       test("set", () {
@@ -97,6 +137,27 @@ class VisitorTest {
       });
     });
     
+    group("special expressions -", () {
+      test("anonymous function", (){
+        var anon1 = asAnonymousFunction(asTuple([]), asSymbol("a") * asSymbol("b"));
+        assertExpression(anon1, "() => a * b");
+        
+        var anon2 = asAnonymousFunction(asTuple(asSymbol("a")), asSymbol("2") * asSymbol("a"));
+        assertExpression(anon2, "(a) => 2 * a");
+        
+        var anon3 = asAnonymousFunction(asTuple([asSymbol("a"),asSymbol("b")]), asProduct([asSymbol("2"),asSymbol("a"),asSymbol("b")]));
+        assertExpression(anon3, "(a,b) => 2 * a * b");
+      });
+      
+      test("assign", () {
+        var assign1 = asAssign(asSymbol("x"), asInteger(2));
+        assertExpression(assign1, "x = 2");
+        
+        var assign2 = asAssign(asSymbol("x"), asSymbol("y") + asInteger(3));
+        assertExpression(assign2, "x = y + 3");
+      });
+    });
+    
     group("unary expressions -", () {
       test("factorial", () {
         assertExpression(factorial(asInteger(3)), "3!");
@@ -115,7 +176,7 @@ class VisitorTest {
   assertExpression(Expr expr, String expected) {
     visitor.clear();
     expr.visit(visitor);
-    //print(visitor.asString());
+    print(visitor.asString());
     expect(visitor.asString(), equals(expected));
   }
   
