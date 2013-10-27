@@ -78,7 +78,7 @@ class NumberExpr extends NullaryExpr<String> {
   final bool isReal;
 }
 
-NumberExpr asNumber(var value) {
+NumberExpr asInteger(var value) {
   if(value is String) {
     return new NumberExpr.integer(new Integer(value));
   } else if(value is Integer) {
@@ -88,7 +88,7 @@ NumberExpr asNumber(var value) {
   } else if(value is NumberExpr) {
     return value;
   }
-  throw new ArgumentError("cannot convert $value to Number");
+  throw new ArgumentError("cannot convert $value to integer");
 }
 
 NumberExpr asReal(String value) => new NumberExpr.real(value);

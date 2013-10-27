@@ -111,8 +111,6 @@ abstract class Expr {
     return matched;
   }
 
-  // Binary expressions 
-
   // algebraic expressions
   static Expr differenceExpr(Position position, Expr left, Expr right) {
     return _createExpr((left - right), position);
@@ -253,8 +251,8 @@ abstract class Expr {
     return _createExpr(asBool(value == "true"), position);
   }
 
-  static Expr numberExpr(Position position, String value) {
-    return _createExpr(asNumber(value), position);
+  static Expr integerExpr(Position position, String value) {
+    return _createExpr(asInteger(value), position);
   }
 
   static Expr realExpr(Position position, String value) {

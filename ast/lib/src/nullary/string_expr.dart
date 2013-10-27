@@ -17,5 +17,6 @@ class StringExpr extends NullaryExpr<String> {
   visit(ExprVisitor visitor) => visitor.visitStringExpr(this);
 }
 
+// TODO rename to asString when visitor is fully implemented
 StringExpr stringOf(String value) => new StringExpr(value);
 

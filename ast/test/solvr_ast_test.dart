@@ -6,27 +6,12 @@ library solvr_ast_test;
 
 import 'package:unittest/unittest.dart';
 import 'package:solvr_ast/solvr_ast.dart';
+import 'package:solvr_common/solvr_common.dart';
+
+part 'src/visitor_test.dart';
 
 main() {
-  
+  new VisitorTest(); 
 }
 
-class VisitorTest {
-  VisitorTest() {
-    final visitor = new StringBufferVisitor();
-    
-    before() {
-      visitor.clear();
-    }
-    
-    test("visit binary expr", () {
-      var number1 = Expr.number(null,"1");
-      var number2 = Expr.number(null,"2");
-      var sumExpr = Expr.sum(null,number1, number2);
-     
-      sumExpr.visit(visitor);
-      expect(visitor.asString, equals("1 + 2"));  
-    });
-  }
-}
 
