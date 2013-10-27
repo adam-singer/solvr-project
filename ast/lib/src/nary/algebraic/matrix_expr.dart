@@ -57,10 +57,10 @@ class MatrixExpr extends _ListBasedCollection<VectorExpr> {
   int get columns => operands[0].length;
 
   @override
-  Expr get clone => matrixOf(_cloneExprList(operands, () => new List<VectorExpr>()));
+  Expr get clone => asMatrix(_cloneExprList(operands, () => new List<VectorExpr>()));
   
   @override
   visit(ExprVisitor visitor) => visitor.visitMatrixExpr(this);
 }
 
-MatrixExpr matrixOf(List<VectorExpr> elements) => new MatrixExpr(elements);
+MatrixExpr asMatrix(List<VectorExpr> elements) => new MatrixExpr(elements);

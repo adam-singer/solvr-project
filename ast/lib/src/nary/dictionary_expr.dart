@@ -14,13 +14,13 @@ class DictionaryExpr extends _MapBasedCollection {
   DictionaryExpr._internal(List<Expr> operands, _KeyMapper keyMapper): super(operands, keyMapper, ObjectTypes.DICT);
 
   @override
-  Expr get clone => dictionaryOf(_cloneExprList(operands));
+  Expr get clone => asDictionary(_cloneExprList(operands));
   
   @override
   visit(ExprVisitor visitor) => visitor.visitDictionaryExpr(this);
 }
 
-DictionaryExpr dictionaryOf(List<Expr> elements) {
+DictionaryExpr asDictionary(List<Expr> elements) {
   if(!elements.every((e) => e is EntryExpr)) {
     throw new ArgumentError("all entries in a map must be of the form key:value");
   }

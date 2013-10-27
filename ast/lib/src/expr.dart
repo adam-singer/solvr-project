@@ -77,11 +77,11 @@ abstract class Expr {
   /** Determine if two expressions are syntactically equal */
   operator ==(Expr other) => this.toString() == other.toString();
 
-  operator +(Expr other) => new SumExpr([this, other]);
+  operator +(Expr other) => asSum([this, other]);
 
   operator -(Expr other) => new DifferenceExpr(this, other);
 
-  operator *(Expr other) => new ProductExpr([this, other]);
+  operator *(Expr other) => asProduct([this, other]);
 
   operator /(Expr other) => new FractionExpr(this, other);
 
@@ -219,31 +219,31 @@ abstract class Expr {
   // Nary expressions
   static Expr dictionaryExpr(Position position, List<Expr> elements) {
 
-    return _createExpr(dictionaryOf(elements), position);
+    return _createExpr(asDictionary(elements), position);
   }
 
   static Expr intervalExpr(Position position, Expr start, Expr step, Expr end) {
-    return _createExpr(intervalOf(start, step, end), position);
+    return _createExpr(asInterval(start, step, end), position);
   }
 
   static Expr listExpr(Position position, List<Expr> elements) {
-    return _createExpr(listOf(elements), position);
+    return _createExpr(asList(elements), position);
   }
 
   static Expr matrixExpr(Position position, List<VectorExpr> elements) {
-    return _createExpr(matrixOf(elements), position);
+    return _createExpr(asMatrix(elements), position);
   }
 
   static Expr setExpr(Position position, List<Expr> elements) {
-    return _createExpr(setOf(elements), position);
+    return _createExpr(asSet(elements), position);
   }
 
   static Expr tupleExpr(Position position, List<Expr> elements) {
-    return _createExpr(tupleOf(elements), position);
+    return _createExpr(asTuple(elements), position);
   }
 
   static Expr vectorExpr(Position position, List<Expr> elements) {
-    return _createExpr(vectorOf(elements), position);
+    return _createExpr(asVector(elements), position);
   }
 
   // Nullary expressions 

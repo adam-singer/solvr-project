@@ -28,6 +28,8 @@ class ProductExpr extends NaryOperatorExpr {
   visit(ExprVisitor visitor) => visitor.visitProductExpr(this);
 }
 
+ProductExpr asProduct(List<Expr> operands) => new ProductExpr(operands);
+
 
 
 

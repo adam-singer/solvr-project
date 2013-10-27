@@ -39,7 +39,7 @@ class InvokeExpr extends Expr {
 
 InvokeExpr asInvoke(String name, var args) {
   if(args is! TupleExpr) {
-    args = tupleOf(args);
+    args = asTuple(args);
   }
   return new InvokeExpr(name, args);
 }

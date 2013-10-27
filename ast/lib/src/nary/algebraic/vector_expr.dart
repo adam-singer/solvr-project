@@ -12,10 +12,10 @@ class VectorExpr extends _ListBasedCollection<Expr> {
   asString(StringBuffer buf) => _renderElements(r"[", r"; ", r"]", buf, operands);
 
   @override
-  Expr get clone => vectorOf(_cloneExprList(operands));
+  Expr get clone => asVector(_cloneExprList(operands));
   
   @override
   visit(ExprVisitor visitor) => visitor.visitVectorExpr(this);
 }
 
-VectorExpr vectorOf(List<Expr> elements) => new VectorExpr(elements);
+VectorExpr asVector(List<Expr> elements) => new VectorExpr(elements);

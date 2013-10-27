@@ -20,3 +20,5 @@ class SumExpr extends NaryOperatorExpr {
   visit(ExprVisitor visitor) => visitor.visitSumExpr(this);
 }
 
+SumExpr asSum(List<Expr> operands) => new SumExpr(operands);
+

@@ -12,10 +12,10 @@ class ListExpr extends _ListBasedCollection<Expr> {
   asString(StringBuffer buf) => _renderElements(r"[", r",", r"]", buf, operands);
 
   @override
-  Expr get clone => listOf(_cloneExprList(operands));
+  Expr get clone => asList(_cloneExprList(operands));
   
   @override
   visit(ExprVisitor visitor) => visitor.visitListExpr(this);
 }
 
-ListExpr listOf(List<Expr> elements) => new ListExpr(elements);
+ListExpr asList(List<Expr> elements) => new ListExpr(elements);

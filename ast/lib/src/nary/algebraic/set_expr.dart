@@ -4,6 +4,8 @@
 
 part of solvr_ast;
 
+// TODO expose subset, union, ... as methods via some annotation
+
 /** Represents a set fx. {x, y, z} */
 class SetExpr extends _MapBasedCollection {
   factory SetExpr(List<Expr> operands) {
@@ -28,7 +30,7 @@ class SetExpr extends _MapBasedCollection {
   SetExpr union(SetExpr other) {
     List<Expr> all = operands;
     all.addAll(other.operands);
-    return setOf(all);
+    return asSet(all);
   }
 
   /** Get the intersection of this set with [other] */
@@ -39,7 +41,7 @@ class SetExpr extends _MapBasedCollection {
         same.add(elm);
       }
     });
-    return setOf(same);
+    return asSet(same);
   }
 
   /** Get the complement of this set with [other] */
@@ -50,14 +52,14 @@ class SetExpr extends _MapBasedCollection {
         inThisOnly.add(elm);
       }
     });
-    return setOf(inThisOnly);
+    return asSet(inThisOnly);
   }
 
   @override
-  Expr get clone => setOf(_cloneExprList(operands));
+  Expr get clone => asSet(_cloneExprList(operands));
   
   @override
   visit(ExprVisitor visitor) => visitor.visitSetExpr(this);
 }
 
-SetExpr setOf(List<Expr> elements) => new SetExpr(elements);
+SetExpr asSet(List<Expr> elements) => new SetExpr(elements);

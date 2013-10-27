@@ -29,7 +29,7 @@ class IntervalExpr extends Expr {
   List<Expr> get operands => _isNothing(step) ? [start, end] : [start, step, end];
 
   @override
-  Expr get clone => intervalOf(start.clone, step.clone, end.clone);
+  Expr get clone => asInterval(start.clone, step.clone, end.clone);
   
   @override
   visit(ExprVisitor visitor) => visitor.visitIntervalExpr(this);
@@ -41,4 +41,4 @@ class IntervalExpr extends Expr {
   Expr start, step, end;
 }
 
-IntervalExpr intervalOf(Expr start, Expr step, Expr end) => new IntervalExpr(start, step, end);
+IntervalExpr asInterval(Expr start, Expr step, Expr end) => new IntervalExpr(start, step, end);

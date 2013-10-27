@@ -19,6 +19,60 @@ class VisitorTest {
     });
     */
     
+    group("nary expressions -", () {
+      test("product", () {
+        assertExpression(asInteger(2) * asInteger(2), "2 * 2");
+        assertExpression(asProduct([negative(asInteger(2)), asInteger(3)]) , "-2 * 3");
+      });
+      
+      test("sum", (){
+        assertExpression(asInteger(2) + asInteger(2), "2 + 2");
+        assertExpression(asSum([asInteger(2), asInteger(3)]) , "2 + 3");
+      });
+      
+      test("list", () {
+        assertExpression(asList([]), "[]"); 
+        assertExpression(asList([asInteger(1)]), "[1]"); 
+        assertExpression(asList([asInteger(1), asInteger(2)]), "[1,2]"); 
+      });
+      
+      test("matrix", () {
+        var vec1 = asVector([asInteger(1), asInteger(2)]);  
+        var vec2 = asVector([asInteger(3), asInteger(4)]);  
+        assertExpression(asMatrix([vec1, vec2]), "[[1; 2];[3; 4]]");
+      });
+      
+      test("set", () {
+        assertExpression(asSet([]), "{}"); 
+        assertExpression(asSet([asInteger(1)]), "{1}"); 
+        assertExpression(asSet([asInteger(1), asInteger(2)]), "{1,2}"); 
+      });
+      
+      test("tuple", () {
+        assertExpression(asTuple([]), "()"); 
+        assertExpression(asTuple(asInteger(1)), "(1)"); 
+        assertExpression(asTuple([asInteger(1), asInteger(2)]), "(1,2)"); 
+      });
+      
+      test("vector", () {
+        assertExpression(asVector([]), "[]"); 
+        assertExpression(asVector([asInteger(1)]), "[1]"); 
+        assertExpression(asVector([asInteger(1), asInteger(2)]), "[1;2]"); 
+      });
+      
+      test("dictionary", () {
+        assertExpression(asDictionary([]), "{}"); 
+        assertExpression(asDictionary([entry(stringOf("key1"), stringOf("val1"))]), '{\"key1\":\"val1\"}'); 
+        assertExpression(asDictionary([entry(stringOf("key1"), stringOf("val1")),
+                                       entry(stringOf("key2"), stringOf("val2"))]), '{\"key1\":\"val1\",\"key2\":\"val2\"}');
+      });
+      
+      test("interval", () {
+        assertExpression(asInterval(asInteger(1), asNothing(), asInteger(10)), "1..10");  
+        assertExpression(asInterval(asInteger(1), asInteger(10), asInteger(100)), "1..10..100");  
+      });
+    });
+    
     group("nullary expressions -", () {
       test("bool", () {
         assertExpression(asBool(true), "true");
@@ -42,6 +96,20 @@ class VisitorTest {
         assertExpression(asSymbol("x"), "x");
       });
     });
+    
+    group("unary expressions -", () {
+      test("factorial", () {
+        assertExpression(factorial(asInteger(3)), "3!");
+      });
+      
+      test("negation", () {
+        assertExpression(negation(asBool(true)), "!true");
+      });
+      
+      test("negative", () {
+        assertExpression(negative(asInteger(3)), "-3");
+      });
+    });
   }
   
   assertExpression(Expr expr, String expected) {
@@ -51,5 +119,5 @@ class VisitorTest {
     expect(visitor.asString(), equals(expected));
   }
   
-  final visitor = new StringBufferVisitor();
+  final visitor = new StringExprVisitor();
 }

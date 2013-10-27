@@ -12,11 +12,11 @@ class TupleExpr extends _ListBasedCollection<Expr> {
   asString(StringBuffer buf) => _renderElements(r"(", r",", r")", buf, operands);
 
   @override
-  Expr get clone => tupleOf(_cloneExprList(operands));
+  Expr get clone => asTuple(_cloneExprList(operands));
   
   @override
   visit(ExprVisitor visitor) => visitor.visitTupleExpr(this);
 }
 
-TupleExpr tupleOf(var expr) => (expr is List) ? new TupleExpr(expr) : new TupleExpr([expr]);
+TupleExpr asTuple(var expr) => (expr is List) ? new TupleExpr(expr) : new TupleExpr([expr]);
 
