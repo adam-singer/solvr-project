@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** Lambda calculus style substitution of free variable in expression fx: x := y+2 */
-class SubstitutionExpr extends SimpleBinaryExpr {
+class SubstitutionExpr extends BinaryExpr {
   SubstitutionExpr(Expr left, Expr right): super(left, right, BinaryOperators.SUBSTITUTION);
 
   @override

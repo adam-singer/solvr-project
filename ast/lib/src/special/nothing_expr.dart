@@ -12,10 +12,6 @@ class NothingExpr extends ObjectExpr {
   Expr map(ExprConverter converter) => this;
 
   @override
-  asString(StringBuffer buf) {
-  }
-
-  @override
   Expr get clone => asNothing();
   
   @override

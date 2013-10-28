@@ -11,12 +11,6 @@ class GenericExpr extends Expr {
   GenericExpr(this.template, this.operands);
 
   @override
-  asString(StringBuffer buf) {
-    template.asString(buf);
-    _renderElements("<", r"|", ">", buf, operands);
-  }
-
-  @override
   Expr map(ExprConverter converter) {
     converter(template);
     template.parent = this;

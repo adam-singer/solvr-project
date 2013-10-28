@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** Test that type is a instance of another type fx: (x is Symbol) = true */
-class InstanceOfExpr extends SimpleBinaryExpr {
+class InstanceOfExpr extends BinaryExpr {
   InstanceOfExpr(Expr left, Expr right): super(left, right, BinaryOperators.INSTANCE);
 
   @override

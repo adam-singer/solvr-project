@@ -9,12 +9,6 @@ class ReturnExpr extends Expr {
   ReturnExpr(this.value);
 
   @override
-  asString(StringBuffer buf) {
-    buf.write("return ");
-    value.asString(buf);
-  }
-
-  @override
   Expr map(ExprConverter converter) {
     converter(value);
     value.parent = this;

@@ -12,13 +12,6 @@ class AssignExpr extends Expr {
   }
 
   @override
-  asString(StringBuffer buf) {
-    variable.asString(buf);
-    buf.write(r" = ");
-    value.asString(buf);
-  }
-
-  @override
   Expr map(ExprConverter converter) {
     // Note: the left hand side variable is not visited by the converter as
     // it can/must not be simplified (fx. looked up and replaced)

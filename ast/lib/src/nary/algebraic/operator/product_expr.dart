@@ -11,17 +11,6 @@ class ProductExpr extends NaryOperatorExpr {
   }
 
   @override
-  asString(StringBuffer buf) {
-    if(operands[0].toString() == "-1") {
-      // -1 * x * y * .. = -x * y * ...
-      buf.write(r"-");
-      _renderElements("", r" * ", "", buf, tail(operands));
-    } else {
-      _renderElements("", r" * ", "", buf, operands);
-    }
-  }
-
-  @override
   Expr get clone => new ProductExpr(_cloneExprList(operands));
   
   @override

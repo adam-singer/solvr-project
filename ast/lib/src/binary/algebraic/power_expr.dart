@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** Power fx. 3^2 */
-class PowerExpr extends SimpleBinaryExpr {
+class PowerExpr extends BinaryExpr {
   PowerExpr(Expr left, Expr right): super(left, right, BinaryOperators.POWER);
 
   @override

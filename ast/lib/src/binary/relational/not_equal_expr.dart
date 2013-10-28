@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** Not equals fx. 3 != 4 */
-class NotEqualExpr extends SimpleBinaryExpr {
+class NotEqualExpr extends BinaryExpr {
   NotEqualExpr(Expr left, Expr right): super(left, right, BinaryOperators.NOT_EQUAL);
 
   @override

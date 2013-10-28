@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** Not subset operator {3} !subset {1,2,3} = false */
-class NotSubsetExpr extends SimpleBinaryExpr {
+class NotSubsetExpr extends BinaryExpr {
   NotSubsetExpr(Expr left, Expr right): super(left, right, BinaryOperators.NOT_SUBSET);
 
   @override

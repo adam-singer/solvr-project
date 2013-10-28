@@ -14,7 +14,7 @@ class StringExprVisitor extends Object with
   
   ExprVisitor get visitor => this;
   
-  String asString() => buf.toString();
+  String toString() => buf.toString();
   
   clear() => buf.clear();
   
@@ -90,16 +90,16 @@ abstract class StringNaryExprVisitor implements NaryExprVisitor {
     if(expr.operands[0].toString() == "-1") {
       // -1 * x * y * .. = -x * y * ...
       buf.write(r"-");
-      _renderElements("", r" * ", "", buf, tail(expr.operands));
+      _visitElements("", r" * ", "", buf, visitor, tail(expr.operands));
     } else {
-      _renderElements("", r" * ", "", buf, expr.operands);
+      _visitElements("", r" * ", "", buf, visitor, expr.operands);
     }
   }
   
-  visitSumExpr(SumExpr expr) => _renderElements("", r" + ", "", buf, expr.operands);
+  visitSumExpr(SumExpr expr) => _visitElements("", r" + ", "", buf, visitor, expr.operands);
   
   visitListExpr(ListExpr expr) {
-    _renderElements(r"[", r",", r"]", buf, expr.operands);
+    _visitElements(r"[", r",", r"]", buf, visitor, expr.operands);
   }
   
   visitMatrixExpr(MatrixExpr expr) {
@@ -112,19 +112,19 @@ abstract class StringNaryExprVisitor implements NaryExprVisitor {
   }
   
   visitSetExpr(SetExpr expr) {
-    _renderElements(r"{", r",", r"}", buf, expr.operands);
+    _visitElements(r"{", r",", r"}", buf, visitor, expr.operands);
   }
   
   visitTupleExpr(TupleExpr expr) {
-    _renderElements(r"(", r",", r")", buf, expr.operands);
+    _visitElements(r"(", r",", r")", buf, visitor, expr.operands);
   }
   
   visitVectorExpr(VectorExpr expr) {
-    _renderElements(r"[", r";", r"]", buf, expr.operands);
+    _visitElements(r"[", r";", r"]", buf, visitor, expr.operands);
   }
   
   visitDictionaryExpr(DictionaryExpr expr) {
-    _renderElements(r"{", r",", r"}", buf, expr.operands);
+    _visitElements(r"{", r",", r"}", buf, visitor, expr.operands);
   }
   
   visitIntervalExpr(IntervalExpr expr) {
@@ -170,7 +170,7 @@ abstract class StringSpecialExprVisitor implements SpecialExprVisitor {
   }
   
   visitBlockExpr(BlockExpr expr) {
-    _renderElements("{\n  ", "\n  ", "\n}", buf, expr.operands);
+    _visitElements("{\n  ", "\n  ", "\n}", buf, visitor, expr.operands);
   }
   
   visitConditionalExpr(ConditionalExpr expr) {
@@ -197,7 +197,7 @@ abstract class StringSpecialExprVisitor implements SpecialExprVisitor {
   
   visitGenericExpr(GenericExpr expr) {
     expr.template.visit(visitor);
-    _renderElements("<", r"|", ">", buf, expr.operands);
+    _visitElements("<", r"|", ">", buf, visitor, expr.operands);
   }
   
   visitInvokeExpr(InvokeExpr expr) {
@@ -222,7 +222,7 @@ abstract class StringSpecialExprVisitor implements SpecialExprVisitor {
   
   visitSeqExpr(SeqExpr expr) {
     buf.write(r"{");
-    _renderElements("", r", ", "", buf, expr.args);
+    _visitElements("", r", ", "", buf, visitor, expr.args);
     buf.write(r" | ");
     expr.body.visit(visitor);
     buf.write(r"}");
@@ -258,5 +258,15 @@ abstract class StringUnaryExprVisitor implements UnaryExprVisitor {
   StringBuffer get buf;
   
   ExprVisitor get visitor;
+}
+
+/** Renders collection of [elements] inside [start] and [end] with elements delimited by [delimiter] */
+_visitElements(String start, String delimiter, String end, StringBuffer buf, ExprVisitor visitor, Iterable<Expr> elements) {
+  buf.write(start);
+  mapI(elements, (Expr elm, int i) {
+    elm.visit(visitor);
+    if(i < elements.length - 1) buf.write(delimiter);
+  });
+  buf.write(end);
 }
 

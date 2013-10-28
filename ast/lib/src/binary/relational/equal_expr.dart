@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** equals fx. 2 == 2 */
-class EqualExpr extends SimpleBinaryExpr {
+class EqualExpr extends BinaryExpr {
   EqualExpr(Expr left, Expr right): super(left, right, BinaryOperators.EQUAL);
 
   @override

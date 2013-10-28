@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** Fractions fx. (x+1)/5 or 1/2 */
-class FractionExpr extends SimpleBinaryExpr {
+class FractionExpr extends BinaryExpr {
   FractionExpr(Expr left, Expr right): super(left, right, BinaryOperators.FRACTION);
 
   @override

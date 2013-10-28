@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** Intersection of two sets fx: {1,2,3} intersect {3,4,5} = {1,2,3,4,5} */
-class IntersectExpr extends SimpleBinaryExpr {
+class IntersectExpr extends BinaryExpr {
   IntersectExpr(Expr left, Expr right): super(left, right, BinaryOperators.INTERSECT);
 
   @override

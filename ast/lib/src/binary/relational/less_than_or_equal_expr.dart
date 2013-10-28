@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** less than or equal 2 <= 2 */
-class LessThanOrEqualExpr extends RelationalExpr {
+class LessThanOrEqualExpr extends BinaryExpr {
   LessThanOrEqualExpr(Expr left, Expr right): super(left, right, BinaryOperators.LESS_OR_EQUAL);
 
   @override

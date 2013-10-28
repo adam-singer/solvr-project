@@ -14,11 +14,6 @@ abstract class NullaryExpr<T> extends ObjectExpr {
   }
 
   @override
-  asString(StringBuffer buf) {
-    buf.write(value);
-  }
-
-  @override
   List<Expr> get operands {
     throw new UnsupportedError("nullary expressions has no operands");
   }

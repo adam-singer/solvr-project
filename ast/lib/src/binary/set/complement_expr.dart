@@ -12,7 +12,7 @@ part of solvr_ast;
  * - B = {b,c,d}
  * - A \ B = { x | x in A && x notIn B } = {a}
  */
-class ComplementExpr extends SimpleBinaryExpr {
+class ComplementExpr extends BinaryExpr {
   ComplementExpr(Expr left, Expr right): super(left, right, BinaryOperators.COMPLEMENT);
 
   @override

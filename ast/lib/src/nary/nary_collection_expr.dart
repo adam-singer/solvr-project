@@ -29,9 +29,6 @@ abstract class _MapBasedCollection extends CollectionExpr {
   }
 
   @override
-  asString(StringBuffer buf) => _renderElements(r"{", r",", r"}", buf, operands);
-
-  @override
   Expr map(ExprConverter converter) {
     var values = operands;
     _mapElements(converter, values, this);

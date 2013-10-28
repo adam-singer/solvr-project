@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** Logical disjunction (\/) fx: a or b */
-class OrExpr extends SimpleBinaryExpr {
+class OrExpr extends BinaryExpr {
   OrExpr(Expr left, Expr right): super(left, right, BinaryOperators.OR);
 
   @override

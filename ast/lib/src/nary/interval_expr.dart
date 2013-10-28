@@ -9,17 +9,6 @@ class IntervalExpr extends Expr {
   IntervalExpr(this.start, this.step, this.end);
 
   @override
-  asString(StringBuffer buf) {
-    start.asString(buf);
-    buf.write("..");
-    if(!_isNothing(step)) {
-      step.asString(buf);
-      buf.write("..");
-    }
-    end.asString(buf);
-  }
-
-  @override
   Expr map(ExprConverter converter) {
     _mapElements(converter, operands, this);
     return this;

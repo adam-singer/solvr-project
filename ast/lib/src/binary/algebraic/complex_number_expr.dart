@@ -9,13 +9,6 @@ class ComplexNumberExpr extends BinaryExpr {
   ComplexNumberExpr(Expr left, Expr right): super(left, right, BinaryOperators.COMPLEX);
   
   @override
-  asString(StringBuffer buf) {
-    left.asString(buf);
-    buf.write("${token}i");
-    right.asString(buf);
-  }
-
-  @override
   Expr get clone => asComplexNumber(left.clone, right.clone);
   
   @override

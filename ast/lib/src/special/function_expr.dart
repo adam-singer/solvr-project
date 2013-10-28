@@ -15,19 +15,6 @@ class FunctionExpr extends Expr {
   }
 
   @override
-  asString(StringBuffer buf) {
-    if(hasReturnType()) {
-      returnType.asString(buf);
-    }
-    buf.write(name);
-    args.asString(buf);
-    if(body is! BlockExpr) {
-      buf.write(r" = ");
-    }
-    body.asString(buf);
-  }
-
-  @override
   Expr map(ExprConverter converter) {
     if(hasReturnType()) {
       args = converter(returnType);

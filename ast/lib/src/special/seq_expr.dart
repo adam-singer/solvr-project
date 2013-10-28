@@ -12,15 +12,6 @@ class SeqExpr extends Expr {
   }
 
   @override
-  asString(StringBuffer buf) {
-    buf.write(r"{");
-    _renderElements("", r", ", "", buf, args);
-    buf.write(r" | ");
-    body.asString(buf);
-    buf.write(r"}");
-  }
-
-  @override
   Expr map(ExprConverter converter) {
     _mapElements(converter, operands, this);
     return this;

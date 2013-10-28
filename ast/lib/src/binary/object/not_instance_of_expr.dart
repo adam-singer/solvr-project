@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** Test that type is not a instance of another type fx: x is! Number = true */
-class NotInstanceOfExpr extends SimpleBinaryExpr {
+class NotInstanceOfExpr extends BinaryExpr {
   NotInstanceOfExpr(Expr left, Expr right): super(left, right, BinaryOperators.NOT_INSTANCE);
 
   @override

@@ -12,13 +12,6 @@ class AnonymousFunctionExpr extends Expr {
   }
 
   @override
-  asString(StringBuffer buf) {
-    args.asString(buf);
-    buf.write(r" => ") ;
-    body.asString(buf);
-  }
-
-  @override
   Expr map(ExprConverter converter) {
     args = converter(args);
     args.parent = this;

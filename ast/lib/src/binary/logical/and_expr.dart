@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** Logical conjunction (/\) fx: a and b */
-class AndExpr extends SimpleBinaryExpr {
+class AndExpr extends BinaryExpr {
   AndExpr(Expr left, Expr right): super(left, right, BinaryOperators.AND);
 
   @override

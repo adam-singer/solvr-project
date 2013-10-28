@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** Union of two sets fx: {1,2,3} union {3,4,5} = {1,2,3,4,5} */
-class UnionExpr extends SimpleBinaryExpr {
+class UnionExpr extends BinaryExpr {
   UnionExpr(Expr left, Expr right): super(left, right, BinaryOperators.UNION);
 
   @override

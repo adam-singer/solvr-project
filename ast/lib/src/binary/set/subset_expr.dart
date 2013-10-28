@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** subset operator {3} subset {1,2,3} = true */
-class SubsetExpr extends SimpleBinaryExpr {
+class SubsetExpr extends BinaryExpr {
   SubsetExpr(Expr left, Expr right): super(left, right, BinaryOperators.SUBSET);
 
   @override

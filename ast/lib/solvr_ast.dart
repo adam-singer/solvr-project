@@ -93,16 +93,6 @@ part 'src/expr_errors.dart';
 part 'src/expr_visitor.dart';
 part 'src/string_expr_visitor.dart';
 
-/** Renders collection of [elements] inside [start] and [end] with elements delimited by [delimiter] */
-_renderElements(String start, String delimiter, String end, StringBuffer buf, Iterable<Expr> elements) {
-  buf.write(start);
-  mapI(elements, (Expr elm, int i) {
-    elm.asString(buf);
-    if(i < elements.length - 1) buf.write(delimiter);
-  });
-  buf.write(end);
-}
-
 /**
  * TODO describe
  */

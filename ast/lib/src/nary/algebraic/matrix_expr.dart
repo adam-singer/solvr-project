@@ -9,16 +9,6 @@ class MatrixExpr extends _ListBasedCollection<VectorExpr> {
   MatrixExpr(List<VectorExpr> operands): super(operands, ObjectTypes.MATRIX);
 
   @override
-  asString(StringBuffer buf) {
-    buf.write(r"[");
-    mapI(operands, (Expr row, int i) {
-      row.asString(buf);
-      if(i < operands.length - 1) buf.write(r";");
-    });
-    buf.write(r"]");
-  }
-
-  @override
   Expr map(ExprConverter converter) {
     _mapElements(converter, operands, this);
     return this;

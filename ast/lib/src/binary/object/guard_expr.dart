@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** Guard (case) expression fx: a | b */
-class GuardExpr extends SimpleBinaryExpr {
+class GuardExpr extends BinaryExpr {
   GuardExpr(Expr left, Expr right): super(left, right, BinaryOperators.GUARD);
 
   @override

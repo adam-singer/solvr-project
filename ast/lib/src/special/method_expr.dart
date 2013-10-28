@@ -9,13 +9,6 @@ class MethodExpr extends Expr {
   MethodExpr(this.target, this.name, this.args);
 
   @override
-  asString(StringBuffer buf) {
-    target.asString(buf);
-    buf.write(".$name");
-    args.asString(buf);
-  }
-
-  @override
   Expr map(ExprConverter converter) {
     converter(target);
     target.parent = this;

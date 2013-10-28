@@ -5,8 +5,8 @@
 part of solvr_ast;
 
 /** Represents a key value pair fx: product:solvr */
-class EntryExpr extends SimpleBinaryExpr {
-  EntryExpr(Expr left, Expr right): super(left, right, BinaryOperators.ENTRY, "");
+class EntryExpr extends BinaryExpr {
+  EntryExpr(Expr left, Expr right): super(left, right, BinaryOperators.ENTRY);
 
   @override
   int get hashCode => left.toString().hashCode;

@@ -36,23 +36,20 @@ abstract class Expr {
 
   /** Get the entire expression as a string starting from the root */
   String fullString() {
-    StringBuffer buf = new StringBuffer();
-    root.asString(buf);
-    return buf.toString();
+    ExprVisitor visitor = new StringExprVisitor();
+    root.visit(visitor);
+    return visitor.toString();
   }
 
   /** Get current expression as a string */
   String toString() {
-    StringBuffer buf = new StringBuffer();
-    this.asString(buf);
-    return buf.toString();
+    ExprVisitor visitor = new StringExprVisitor();
+    this.visit(visitor);
+    return visitor.toString();
   }
 
   /** True when other expression is of the same type as this */
   bool hasSameType(Expr other) => other.runtimeType == this.runtimeType;
-
-  /** Render current expression as a string */
-  asString(StringBuffer buf);
 
   /** Map a function over the expressions operands, this modifies the tree in place! */
   Expr map(ExprConverter morpher);
@@ -268,7 +265,7 @@ abstract class Expr {
   }
 
   static Expr stringExpr(Position position, String value) {
-    return _createExpr(stringOf(value), position);
+    return _createExpr(asString(value), position);
   }
 
   // Special expressions 

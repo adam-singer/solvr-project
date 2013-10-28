@@ -45,21 +45,4 @@ abstract class BinaryExpr extends Expr {
   Expr _left, _right;
 }
 
-abstract class SimpleBinaryExpr extends BinaryExpr {
-  SimpleBinaryExpr(Expr leftExpr, Expr rightExpr, IType type, [this.padding = " "]): super(leftExpr, rightExpr, type);
-
-  @override
-  asString(StringBuffer buf) {
-    left.asString(buf);
-    buf.write("${padding}${token}${padding}");
-    right.asString(buf);
-  }
-
-  final String padding;
-}
-
-abstract class RelationalExpr extends SimpleBinaryExpr { 
-  RelationalExpr(Expr leftExpr, Expr rightExpr, IType type): super(leftExpr, rightExpr, type);
-}
-
 

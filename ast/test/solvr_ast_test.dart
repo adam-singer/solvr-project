@@ -8,10 +8,10 @@ import 'package:unittest/unittest.dart';
 import 'package:solvr_ast/solvr_ast.dart';
 import 'package:solvr_common/solvr_common.dart';
 
-part 'src/visitor_test.dart';
+part 'src/string_expr_visitor_test.dart';
 
 main() {
-  new VisitorTest(); 
+  new StringExprVisitorTest(); 
 }
 
 

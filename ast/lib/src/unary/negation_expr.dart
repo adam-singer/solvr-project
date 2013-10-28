@@ -9,12 +9,6 @@ class NegationExpr extends UnaryExpr {
   NegationExpr(Expr operand): super(operand, UnaryOperators.NEGATION);
 
   @override
-  asString(StringBuffer buf) {
-    buf.write(token);
-    operand.asString(buf);
-  }
-
-  @override
   Expr get clone => negation(operand.clone);
   
   @override

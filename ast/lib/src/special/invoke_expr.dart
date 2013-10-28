@@ -9,12 +9,6 @@ class InvokeExpr extends Expr {
   InvokeExpr(this.name, this.args);
 
   @override
-  asString(StringBuffer buf) {
-    buf.write(name);
-    args.asString(buf);
-  }
-
-  @override
   Expr map(ExprConverter converter) {
     converter(args);
     args.parent = this;

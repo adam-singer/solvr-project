@@ -9,9 +9,6 @@ class ListExpr extends _ListBasedCollection<Expr> {
   ListExpr(List<Expr> operands): super(operands, ObjectTypes.LIST);
 
   @override
-  asString(StringBuffer buf) => _renderElements(r"[", r",", r"]", buf, operands);
-
-  @override
   Expr get clone => asList(_cloneExprList(operands));
   
   @override

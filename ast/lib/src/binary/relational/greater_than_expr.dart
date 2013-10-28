@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** Greater than fx. 3 > 2 */
-class GreaterThanExpr extends RelationalExpr {
+class GreaterThanExpr extends BinaryExpr {
   GreaterThanExpr(Expr left, Expr right): super(left, right, BinaryOperators.GREATER);
 
   @override

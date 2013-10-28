@@ -9,12 +9,6 @@ class NegativeExpr extends UnaryExpr {
   NegativeExpr(Expr operand): super(operand, UnaryOperators.NEGATIVE);
 
   @override
-  asString(StringBuffer buf) {
-    buf.write(token);
-    operand.asString(buf);
-  }
-
-  @override
   Expr get clone => negative(operand.clone);
   
   @override

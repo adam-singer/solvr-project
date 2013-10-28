@@ -7,8 +7,8 @@ part of solvr_ast;
 // TODO rename to DotProduct
 
 /** Dot product such as  {1;2;3} . {2;4;6} */
-class DotExpr extends SimpleBinaryExpr {
-  DotExpr(Expr left, Expr right): super(left, right, BinaryOperators.DOT, "");
+class DotExpr extends BinaryExpr {
+  DotExpr(Expr left, Expr right): super(left, right, BinaryOperators.DOT);
 
   @override
   Expr get clone => asDot(left.clone, right.clone);

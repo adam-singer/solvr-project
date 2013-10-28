@@ -4,8 +4,8 @@
 
 part of solvr_ast_test;
 
-class VisitorTest {
-  VisitorTest() {
+class StringExprVisitorTest {
+  StringExprVisitorTest() {
     group("binary expressions -", () {
       test("complex number", () {
         assertExpression(asComplexNumber(asInteger(3), asInteger(4)), "3 + i4");
@@ -153,9 +153,9 @@ class VisitorTest {
       
       test("dictionary", () {
         assertExpression(asDictionary([]), "{}"); 
-        assertExpression(asDictionary([asEntry(stringOf("key1"), stringOf("val1"))]), '{\"key1\":\"val1\"}'); 
-        assertExpression(asDictionary([asEntry(stringOf("key1"), stringOf("val1")),
-                                       asEntry(stringOf("key2"), stringOf("val2"))]), '{\"key1\":\"val1\",\"key2\":\"val2\"}');
+        assertExpression(asDictionary([asEntry(asString("key1"), asString("val1"))]), '{\"key1\":\"val1\"}'); 
+        assertExpression(asDictionary([asEntry(asString("key1"), asString("val1")),
+                                       asEntry(asString("key2"), asString("val2"))]), '{\"key1\":\"val1\",\"key2\":\"val2\"}');
       });
       
       test("interval", () {
@@ -178,9 +178,9 @@ class VisitorTest {
       });
       
       test("string", () {
-        assertExpression(stringOf(""), '\"\"');
-        assertExpression(stringOf("hello"), '\"hello\"');
-        assertExpression(stringOf("hello world"), '\"hello world\"');
+        assertExpression(asString(""), '\"\"');
+        assertExpression(asString("hello"), '\"hello\"');
+        assertExpression(asString("hello world"), '\"hello world\"');
       });
       
       test("symbol", () {
@@ -227,8 +227,8 @@ class VisitorTest {
   assertExpression(Expr expr, String expected) {
     visitor.clear();
     expr.visit(visitor);
-    print(visitor.asString());
-    expect(visitor.asString(), equals(expected));
+    //print(visitor.toString());
+    expect(visitor.toString(), equals(expected));
   }
   
   final visitor = new StringExprVisitor();

@@ -11,9 +11,6 @@ class SumExpr extends NaryOperatorExpr {
   }
 
   @override
-  asString(StringBuffer buf) => _renderElements("", r" + ", "", buf, operands);
-
-  @override
   Expr get clone => new SumExpr(_cloneExprList(operands));
   
   @override

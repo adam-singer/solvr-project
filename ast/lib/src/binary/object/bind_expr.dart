@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** Binding fx: x in 1..10 */
-class BindExpr extends SimpleBinaryExpr {
+class BindExpr extends BinaryExpr {
   BindExpr(Expr left, Expr right): super(left, right, BinaryOperators.BIND);
 
   @override

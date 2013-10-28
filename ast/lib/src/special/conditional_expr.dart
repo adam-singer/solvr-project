@@ -15,17 +15,6 @@ class ConditionalExpr extends Expr {
   ConditionalExpr(this.condition, this.ifBody, this.elsePart);
 
   @override
-  asString(StringBuffer buf) {
-    buf.write("if");
-    condition.asString(buf);
-    ifBody.asString(buf);
-    if(elsePart is! NothingExpr) {
-      buf.write("else");
-      elsePart.asString(buf);
-    }
-  }
-
-  @override
   Expr map(ExprConverter converter) {
     _mapElements(converter, operands, this);
     return this;

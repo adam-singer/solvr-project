@@ -9,13 +9,6 @@ class TypedExpr extends Expr {
   TypedExpr(this.key, this.value);
 
   @override
-  asString(StringBuffer buf) {
-    key.asString(buf);
-    buf.write(r" ");
-    value.asString(buf);
-  }
-
-  @override
   Expr map(ExprConverter converter) {
     converter(key);
     key.parent = this;

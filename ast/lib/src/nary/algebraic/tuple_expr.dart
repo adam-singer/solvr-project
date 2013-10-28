@@ -9,9 +9,6 @@ class TupleExpr extends _ListBasedCollection<Expr> {
   TupleExpr(List<Expr> operands): super(operands, ObjectTypes.TUPLE);
 
   @override
-  asString(StringBuffer buf) => _renderElements(r"(", r",", r")", buf, operands);
-
-  @override
   Expr get clone => asTuple(_cloneExprList(operands));
   
   @override

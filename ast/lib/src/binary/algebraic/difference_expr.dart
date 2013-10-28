@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** Difference fx. 3-2 */
-class DifferenceExpr extends SimpleBinaryExpr {
+class DifferenceExpr extends BinaryExpr {
   DifferenceExpr(Expr left, Expr right): super(left, right, BinaryOperators.DIFFERENCE);
 
   @override

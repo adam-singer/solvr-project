@@ -9,9 +9,6 @@ class VectorExpr extends _ListBasedCollection<Expr> {
   VectorExpr(List<Expr> operands): super(operands, ObjectTypes.VECTOR);
 
   @override
-  asString(StringBuffer buf) => _renderElements(r"[", r"; ", r"]", buf, operands);
-
-  @override
   Expr get clone => asVector(_cloneExprList(operands));
   
   @override
