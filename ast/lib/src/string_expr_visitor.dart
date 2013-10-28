@@ -30,7 +30,7 @@ abstract class StringBinaryExprVisitor implements BinaryExprVisitor {
   
   visitDifferenceExpr(DifferenceExpr expr) => _visitSimpleBinaryExpr(expr);
   
-  visitDotExpr(DotExpr expr) => _visitSimpleBinaryExpr(expr);
+  visitDotExpr(DotExpr expr) => _visitSimpleBinaryExpr(expr, padding:"");
   
   visitFractionExpr(FractionExpr expr) => _visitSimpleBinaryExpr(expr, padding:"");
   

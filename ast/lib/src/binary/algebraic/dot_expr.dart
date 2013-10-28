@@ -4,9 +4,10 @@
 
 part of solvr_ast;
 
-// TODO rename to DotProduct
-
-/** Dot product such as  {1;2;3} . {2;4;6} */
+/** Expressions involving dot operator such as the 
+ * - dot product [1;2;3] . [2;4;6] 
+ * - method invocations [1,2,3].length() 
+ **/
 class DotExpr extends BinaryExpr {
   DotExpr(Expr left, Expr right): super(left, right, BinaryOperators.DOT);
 

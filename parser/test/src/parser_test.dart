@@ -130,13 +130,13 @@ class ParserTest {
         assertExpression("[[]]", Matchers.isList);
         assertExpression("[1]", Matchers.isList);
         assertExpression("[1,2]", Matchers.isList);
-        assertExpression("[[1; 2]]", Matchers.isList);
-        assertExpression("[[1; 2],[3; 4; 5]]", Matchers.isList);
+        assertExpression("[[1;2]]", Matchers.isList);
+        assertExpression("[[1;2],[3;4;5]]", Matchers.isList);
       });
       
       test("matrix expressions", () {
-        assertExpression("[[1; 2];[3; 4]]", Matchers.isMatrix);
-        assertExpression("[[1; 2; 3];[4; 5; 6]]", Matchers.isMatrix);
+        assertExpression("[[1;2];[3;4]]", Matchers.isMatrix);
+        assertExpression("[[1;2;3];[4;5;6]]", Matchers.isMatrix);
       });
       
       test("set expressions", () {
@@ -153,11 +153,11 @@ class ParserTest {
       });
       
       test("vector expressions", () {
-        assertExpression("[1; 2]", Matchers.isVector);
-        assertExpression("[1; 2; 3]", Matchers.isVector);
-        assertExpression("[x; x^2]", Matchers.isVector);
-        assertExpression("[f(x); g(x); h(x)]", Matchers.isVector);
-        assertExpression("[x; (1 + x); x + 2; (1 + x)^2]", Matchers.isVector);
+        assertExpression("[1;2]", Matchers.isVector);
+        assertExpression("[1;2;3]", Matchers.isVector);
+        assertExpression("[x;x^2]", Matchers.isVector);
+        assertExpression("[f(x);g(x);h(x)]", Matchers.isVector);
+        assertExpression("[x;(1 + x);x + 2;(1 + x)^2]", Matchers.isVector);
       });
     });
       
@@ -172,10 +172,10 @@ class ParserTest {
       });
       
       test("dot expressions", () {
-        assertExpression("[a; b].[c; d]", Matchers.isDot);
-        assertExpression("[[a; b];[c; d]].[[a; b];[c; d]]", Matchers.isDot);
+        assertExpression("[a;b].[c;d]", Matchers.isDot);
+        assertExpression("[[a;b];[c;d]].[[a;b];[c;d]]", Matchers.isDot);
         assertExpression("[1,2].get(1)", Matchers.isDot); 
-        assertExpression("[1; 2].get(1)", Matchers.isDot); 
+        assertExpression("[1;2].get(1)", Matchers.isDot); 
         assertExpression("{x:2,y:4}.get(y)", Matchers.isDot); 
         assertExpression("[[1,2],[3,4]].get(1)", Matchers.isDot); 
       });
@@ -301,11 +301,13 @@ class ParserTest {
     var parser = new SolvrParser(expression);
     parser.registerObjectTypes(["List", "String", "Set", "Number", "Bool", "Symbol"]);
     var expr = parser.parse();
+
+    // check that expression passed as expected
     var expectedOutput = (compareTo == null) ? expression : compareTo;
-    
     expect(matcher(expr), isTrue, reason:"type comparison failes on instance $expr");
     expect(expr.toString(), equals(expectedOutput), reason:"string comparison of $expectedOutput to ${expr.toString()} fails");
-    // Check that clone works
+    
+    // check that expression deep cloning works
     var clone = expr.clone;
     expect(identical(clone,expr), isFalse);
     expect(expectedOutput, equals(clone.toString()));
@@ -316,7 +318,7 @@ class ParserTest {
       expect(identical(expr.left.parent, expr), isTrue);
       expect(identical(expr.right.parent, expr), isTrue);
     } else if(Matchers.isUnary(expr)) {
-      expect(identical(expr.operand.parent,expr), isTrue);
+      expect(identical(expr.operand.parent, expr), isTrue);
     } 
   }
   

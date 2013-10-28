@@ -18,7 +18,7 @@ class StringExprVisitorTest {
       test("dot product", () {
         var vec1 = asVector([asInteger(1), asInteger(2)]);
         var vec2 = asVector([asInteger(3), asInteger(4)]);
-        assertExpression(asDot(vec1, vec2), "[1;2] . [3;4]");
+        assertExpression(asDot(vec1, vec2), "[1;2].[3;4]");
       });
       
       test("fraction",() {

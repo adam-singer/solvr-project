@@ -32,6 +32,7 @@ part 'src/binary/relational/greater_than_or_equal_expr.dart';
 part 'src/binary/relational/less_than_expr.dart';
 part 'src/binary/relational/less_than_or_equal_expr.dart';
 part 'src/binary/relational/not_equal_expr.dart';
+part 'src/binary/relational/relational_expr.dart';
 
 part 'src/binary/set/complement_expr.dart';
 part 'src/binary/set/entry_expr.dart';
