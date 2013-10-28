@@ -50,29 +50,29 @@ abstract class StringBinaryExprVisitor implements BinaryExprVisitor {
   
   visitSubsitutionExpr(SubstitutionExpr expr) => _visitSimpleBinaryExpr(expr);
   
-  visitEqualExpr(EqualExpr expr);
+  visitEqualExpr(EqualExpr expr) => _visitSimpleBinaryExpr(expr);
   
-  visitGreaterThanExpr(GreaterThanExpr expr);
+  visitGreaterThanExpr(GreaterThanExpr expr) => _visitSimpleBinaryExpr(expr);
   
-  visitGreaterThanOrEqualExpr(GreaterThanOrEqualExpr expr);
+  visitGreaterThanOrEqualExpr(GreaterThanOrEqualExpr expr) => _visitSimpleBinaryExpr(expr);
   
-  visitLessThanExpr(LessThanExpr expr);
+  visitLessThanExpr(LessThanExpr expr) => _visitSimpleBinaryExpr(expr);
   
-  visitLessThanOrEqualExpr(LessThanOrEqualExpr expr);
+  visitLessThanOrEqualExpr(LessThanOrEqualExpr expr) => _visitSimpleBinaryExpr(expr);
   
-  visitNotEqualExpr(NotEqualExpr expr);
+  visitNotEqualExpr(NotEqualExpr expr) => _visitSimpleBinaryExpr(expr);
   
-  visitComplementExpr(ComplementExpr expr);
+  visitComplementExpr(ComplementExpr expr) => _visitSimpleBinaryExpr(expr);
   
-  visitEntryExpr(EntryExpr expr);
+  visitEntryExpr(EntryExpr expr) => _visitSimpleBinaryExpr(expr, padding:"");
   
-  visitIntersectExpr(IntersectExpr expr);
+  visitIntersectExpr(IntersectExpr expr) => _visitSimpleBinaryExpr(expr);
   
-  visitNotSubsetExpr(NotSubsetExpr expr);
+  visitNotSubsetExpr(NotSubsetExpr expr) => _visitSimpleBinaryExpr(expr);
   
-  visitSubsetExpr(SubsetExpr expr);
+  visitSubsetExpr(SubsetExpr expr) => _visitSimpleBinaryExpr(expr);
   
-  visitUnionExpr(UnionExpr expr);
+  visitUnionExpr(UnionExpr expr) => _visitSimpleBinaryExpr(expr);
   
   _visitSimpleBinaryExpr(BinaryExpr expr, {String padding:" "}) {
     expr.left.visit(visitor);

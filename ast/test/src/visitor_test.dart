@@ -6,7 +6,7 @@ part of solvr_ast_test;
 
 class VisitorTest {
   VisitorTest() {
-    solo_group("binary expressions -", () {
+    group("binary expressions -", () {
       test("complex number", () {
         assertExpression(asComplexNumber(asInteger(3), asInteger(4)), "3 + i4");
       });
@@ -57,6 +57,57 @@ class VisitorTest {
       test("substitution", (){
         assertExpression(asSubstitution(asSymbol("x"), asSymbol("y") + asInteger(2)), "x := y + 2");
       });
+      
+      test("equal", () {
+        assertExpression(asEqual(asInteger(2), asInteger(2)), "2 == 2");
+      });
+      
+      test("greater than", () {
+        assertExpression(asGreaterThan(asInteger(3), asInteger(2)), "3 > 2");
+      });
+      
+      test("greater than or equal", () {
+        assertExpression(asGreaterThanOrEqual(asInteger(3), asInteger(2)), "3 >= 2");
+      });
+      
+      test("less than", () {
+        assertExpression(asLessThan(asInteger(2), asInteger(3)), "2 < 3");
+      });
+      
+      test("less than or equal", () {
+        assertExpression(asLessThanOrEqual(asInteger(2), asInteger(2)), "2 <= 2");
+      });
+      
+      test("not equal", () {
+        assertExpression(asNotEqual(asInteger(3), asInteger(4)), "3 != 4");
+      });
+      
+      var set0 = asSet([asInteger(3)]);
+      var set1 = asSet([asInteger(1), asInteger(2), asInteger(3)]);
+      var set2 = asSet([asInteger(3), asInteger(4), asInteger(5)]);
+      test("complement", () {
+        assertExpression(asComplement(set1, set2), r"{1,2,3} \ {3,4,5}");
+      });
+      
+      test("entry", () {
+        assertExpression(asEntry(asSymbol("product"), asSymbol("solvr")), "product:solvr");
+      });
+      
+      test("intersect", () {
+        assertExpression(asIntersect(set1, set2), "{1,2,3} intersect {3,4,5}");
+      });
+      
+      test("not subset", () {
+        assertExpression(asNotSubset(set0, set1), "{3} !subset {1,2,3}");
+      });
+      
+      test("subset", () {
+        assertExpression(asSubset(set0, set1), "{3} subset {1,2,3}");
+      });
+      
+      test("union", () {
+        assertExpression(asUnion(set1, set2), "{1,2,3} union {3,4,5}");
+      });
     });
     
     group("nary expressions -", () {
@@ -102,9 +153,9 @@ class VisitorTest {
       
       test("dictionary", () {
         assertExpression(asDictionary([]), "{}"); 
-        assertExpression(asDictionary([entry(stringOf("key1"), stringOf("val1"))]), '{\"key1\":\"val1\"}'); 
-        assertExpression(asDictionary([entry(stringOf("key1"), stringOf("val1")),
-                                       entry(stringOf("key2"), stringOf("val2"))]), '{\"key1\":\"val1\",\"key2\":\"val2\"}');
+        assertExpression(asDictionary([asEntry(stringOf("key1"), stringOf("val1"))]), '{\"key1\":\"val1\"}'); 
+        assertExpression(asDictionary([asEntry(stringOf("key1"), stringOf("val1")),
+                                       asEntry(stringOf("key2"), stringOf("val2"))]), '{\"key1\":\"val1\",\"key2\":\"val2\"}');
       });
       
       test("interval", () {

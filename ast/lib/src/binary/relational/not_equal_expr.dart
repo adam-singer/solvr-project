@@ -9,10 +9,10 @@ class NotEqualExpr extends SimpleBinaryExpr {
   NotEqualExpr(Expr left, Expr right): super(left, right, BinaryOperators.NOT_EQUAL);
 
   @override
-  Expr get clone => notEqual(left.clone, right.clone);
+  Expr get clone => asNotEqual(left.clone, right.clone);
   
   @override
   visit(ExprVisitor visitor) => visitor.visitNotEqualExpr(this);
 }
 
-NotEqualExpr notEqual(Expr e1, Expr e2) => new NotEqualExpr(e1, e2);
+NotEqualExpr asNotEqual(Expr e1, Expr e2) => new NotEqualExpr(e1, e2);

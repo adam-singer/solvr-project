@@ -172,52 +172,52 @@ abstract class Expr {
 
   // Binary relational expressions
   static Expr equalExpr(Position position, Expr left, Expr right) {
-    return _createExpr(equal(left, right), position);
+    return _createExpr(asEqual(left, right), position);
   }
 
   static Expr notEqualExpr(Position position, Expr left, Expr right) {
-    return _createExpr(notEqual(left, right), position);
+    return _createExpr(asNotEqual(left, right), position);
   }
 
   static Expr greaterThanExpr(Position position, Expr left, Expr right) {
-    return _createExpr(greaterThan(left, right), position);
+    return _createExpr(asGreaterThan(left, right), position);
   }
 
   static Expr greaterThanOrEqualExpr(Position position, Expr left, Expr right) {
-    return _createExpr(greaterThanOrEqual(left, right), position);
+    return _createExpr(asGreaterThanOrEqual(left, right), position);
   }
 
   static Expr lessThanExpr(Position position, Expr left, Expr right) {
-    return _createExpr(lessThan(left, right), position);
+    return _createExpr(asLessThan(left, right), position);
   }
 
   static Expr lessThanOrEqualExpr(Position position, Expr left, Expr right) {
-    return _createExpr(lessThanOrEqual(left, right), position);
+    return _createExpr(asLessThanOrEqual(left, right), position);
   }
 
   // Binary set expressions
   static Expr complementExpr(Position position, Expr left, Expr right) {
-    return _createExpr(complement(left, right), position);
+    return _createExpr(asComplement(left, right), position);
   }
 
   static Expr entryExpr(Position position, Expr left, Expr right) {
-    return _createExpr(entry(left, right), position);
+    return _createExpr(asEntry(left, right), position);
   }
 
   static Expr intersectExpr(Position position, Expr left, Expr right) {
-    return _createExpr(intersect(left, right), position);
+    return _createExpr(asIntersect(left, right), position);
   }
 
   static Expr notSubsetExpr(Position position, Expr left, Expr right) {
-    return _createExpr(notSubset(left, right), position);
+    return _createExpr(asNotSubset(left, right), position);
   }
 
   static Expr subsetExpr(Position position, Expr left, Expr right) {
-    return _createExpr(subset(left, right), position);
+    return _createExpr(asSubset(left, right), position);
   }
 
   static Expr unionExpr(Position position, Expr left, Expr right) {
-    return _createExpr(union(left, right), position);
+    return _createExpr(asUnion(left, right), position);
   }
 
   // Nary expressions

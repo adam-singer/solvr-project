@@ -9,10 +9,10 @@ class UnionExpr extends SimpleBinaryExpr {
   UnionExpr(Expr left, Expr right): super(left, right, BinaryOperators.UNION);
 
   @override
-  Expr get clone => union(left.clone, right.clone);
+  Expr get clone => asUnion(left.clone, right.clone);
   
   @override
   visit(ExprVisitor visitor) => visitor.visitUnionExpr(this);
 }
 
-UnionExpr union(Expr e1, Expr e2) => new UnionExpr(e1, e2);
+UnionExpr asUnion(Expr e1, Expr e2) => new UnionExpr(e1, e2);

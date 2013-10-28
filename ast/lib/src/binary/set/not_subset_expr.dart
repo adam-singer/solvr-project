@@ -9,10 +9,10 @@ class NotSubsetExpr extends SimpleBinaryExpr {
   NotSubsetExpr(Expr left, Expr right): super(left, right, BinaryOperators.NOT_SUBSET);
 
   @override
-  Expr get clone => notSubset(left.clone, right.clone);
+  Expr get clone => asNotSubset(left.clone, right.clone);
   
   @override
   visit(ExprVisitor visitor) => visitor.visitNotSubsetExpr(this);
 }
 
-NotSubsetExpr notSubset(Expr e1, Expr e2) => new NotSubsetExpr(e1, e2);
+NotSubsetExpr asNotSubset(Expr e1, Expr e2) => new NotSubsetExpr(e1, e2);

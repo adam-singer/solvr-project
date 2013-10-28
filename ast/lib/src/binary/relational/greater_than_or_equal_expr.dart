@@ -9,10 +9,10 @@ class GreaterThanOrEqualExpr extends RelationalExpr {
   GreaterThanOrEqualExpr(Expr left, Expr right): super(left, right, BinaryOperators.GREATER_OR_EQUAL);
 
   @override
-  Expr get clone => greaterThanOrEqual(left.clone, right.clone);
+  Expr get clone => asGreaterThanOrEqual(left.clone, right.clone);
   
   @override
   visit(ExprVisitor visitor) => visitor.visitGreaterThanOrEqualExpr(this);
 }
 
-GreaterThanOrEqualExpr greaterThanOrEqual(Expr e1, Expr e2) => new GreaterThanOrEqualExpr(e1, e2);
+GreaterThanOrEqualExpr asGreaterThanOrEqual(Expr e1, Expr e2) => new GreaterThanOrEqualExpr(e1, e2);

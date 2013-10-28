@@ -12,10 +12,10 @@ class EntryExpr extends SimpleBinaryExpr {
   int get hashCode => left.toString().hashCode;
 
   @override
-  Expr get clone => entry(left.clone, right.clone);
+  Expr get clone => asEntry(left.clone, right.clone);
   
   @override
   visit(ExprVisitor visitor) => visitor.visitEntryExpr(this);
 }
 
-EntryExpr entry(Expr e1, Expr e2) => new EntryExpr(e1, e2);
+EntryExpr asEntry(Expr e1, Expr e2) => new EntryExpr(e1, e2);

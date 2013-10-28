@@ -9,10 +9,10 @@ class LessThanExpr extends RelationalExpr {
   LessThanExpr(Expr left, Expr right): super(left, right, BinaryOperators.LESS);
 
   @override
-  Expr get clone => lessThan(left.clone, right.clone);
+  Expr get clone => asLessThan(left.clone, right.clone);
   
   @override
   visit(ExprVisitor visitor) => visitor.visitLessThanExpr(this);
 }
 
-LessThanExpr lessThan(Expr e1, Expr e2) => new LessThanExpr(e1, e2);
+LessThanExpr asLessThan(Expr e1, Expr e2) => new LessThanExpr(e1, e2);

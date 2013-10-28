@@ -9,10 +9,10 @@ class EqualExpr extends SimpleBinaryExpr {
   EqualExpr(Expr left, Expr right): super(left, right, BinaryOperators.EQUAL);
 
   @override
-  Expr get clone => equal(left.clone, right.clone);
+  Expr get clone => asEqual(left.clone, right.clone);
   
   @override
   visit(ExprVisitor visitor) => visitor.visitEqualExpr(this);
 }
 
-EqualExpr equal(Expr e1, Expr e2) => new EqualExpr(e1, e2);
+EqualExpr asEqual(Expr e1, Expr e2) => new EqualExpr(e1, e2);
