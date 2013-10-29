@@ -1,60 +1,79 @@
-// Copyright (c) 2013 Solvr. All rights reserved.
-//
-// This is commercial software. Use or redistribution of this code in full 
-// or in part without the express written consent of Solvr is prohibited.
+// Copyright (c) 2013, the Solvr project authors. Please see the AUTHORS 
+// file for details. All rights reserved. Use of this source code is 
+// governed by a Apache license that can be found in the LICENSE file.
 
 library solvr_kernel;
 
-import 'src/ast_lib.dart';
-export 'src/ast_lib.dart';
-import 'src/parser_lib.dart';
+import 'package:solvr_ast/solvr_ast.dart';
+import 'package:solvr_parser/solvr_parser.dart';
+import 'solvr_kernel_math.dart';
+
+// export the AST and the user errors thrown by the Parser
+export 'package:solvr_parser/solvr_parser.dart' show ParserError;
+export 'package:solvr_ast/solvr_ast.dart';
+
 // TODO perhaps move all error classes into a common place (creates problems if they need access to internals)
-export 'src/parser_lib.dart' show ParserError;
-import 'src/math_lib.dart';
+// TODO figure out how dependency injection should be done (fx. internal math functions that needs to call the kernel)
 
 /** Facade for our mathematical functions and expression handling */
-class Kernel {
+abstract class Kernel {
   /**
    * Get a kernel with a new scope 
    *
-   * Use [Kernel.keepScope()] to get [Kernel] with access to any values bound in prior scopes
+   * Use [Kernel.withScope] to get [Kernel] with access to any values bound in prior scopes
    */
-  factory Kernel.newScope() {
+  factory Kernel() {
     var registry = new Registry();
-    var simplifier = new AutomaticSimplifier(registry);
-    var checker = new TypeChecker(registry);
-    var resolver = new Resolver(registry);
-    return new Kernel._internal(simplifier, checker, registry, resolver);
+    return new _SolvrKernel(registry);
   }
   
   /** Get a [Kernel] with access to the last run scope */
-  factory Kernel.keepScope() {
-    // TODO insane solution, find some other way of doing this
-    // TODO do we need this constructor (only used in unit tests)
-    if(_instance == null) {
-      _instance = new Kernel.newScope();
-    }
-    return _instance;
+  factory Kernel.withScope(Registry registry) {
+    return new _SolvrKernel(registry);
   }
   
-  Kernel._internal(this._simplifier, this._checker, this._registry, this._resolver);
+  /** Get possible function matches for expresssion. */
+  List functionMatches(String expression);
   
-  /**
-   * Get possible function matches for expresssion. 
-   *
-   * TODO implement and use for tab completion
-   */
+  /** Evaluate expression by parsing, resolving, type checking and finally simplifying it */
+  Expr evaluate(String expression);
+  
+  /** Parse expression (does not evaluate or simplify it) */
+  Expr parse(String expression);
+  
+  /** Analyze expression for type errors */
+  Expr analyze(Expr expression);
+  
+  /** Resolve expression by substituting values of known variables and functions */
+  Expr resolve(Expr expression);
+  
+  /** Simplify expression */
+  Expr simplify(Expr expression);
+  
+  /** Clear variable bindings and cached calculations from the kernel!. */
+  resetScope();
+}
+
+class _SolvrKernel implements Kernel { 
+  _SolvrKernel(Registry registry):
+    _simplifier = new AutomaticSimplifier(registry),
+    _checker = new TypeChecker(registry),
+    _resolver = new Resolver(registry),
+    _registry = registry;
+  
+  @override
   List functionMatches(String expression) {
+    // TODO implement and use for tab completion
     throw 'TODO'; 
   }
   
-  /** Evaluate expression by parsing, resolving, type checking and finally simplifying it */
+  @override
   Expr evaluate(String expression) {
     Expr expr;
     try {
       expr = parse(expression);
       expr = resolve(expr);
-      expr = check(expr);
+      expr = analyze(expr);
       expr = simplify(expr);
     } on ExprUndefinedError catch(ex) {
       // mathematically undefined expression
@@ -73,32 +92,28 @@ class Kernel {
     return expr;
   }
   
-  /** Parse expression */
+  @override
   Expr parse(String expression) {
-    var parser = new InputParser(expression);
+    var parser = new SolvrParser(expression);
     return parser.parse();
   }
   
-  /** Type check expression */
-  Expr check(Expr expression) {
+  @override
+  Expr analyze(Expr expression) {
     //if(!_checker.check(expression)) {
     //  throw new ExpressionTypeException(expression, _typeChecker.errors);
     //}
     return expression;
   }
   
-  /** Resolve expression by substituting values of known variables and functions */
+  @override
   Expr resolve(Expr expression) => _resolver.resolve(expression);
   
-  /** Simplify expression */
+  @override
   Expr simplify(Expr expression) => _simplifier.simplify(expression);
   
-  /**
-   * Clear variable bindings and cached calculations from the kernel!.
-   */
-  resetScope() {
-    _registry.resetScopes();
-  }
+  @override
+  resetScope() => _registry.resetScopes();
   
   final AutomaticSimplifier _simplifier;
   final TypeChecker _checker;
@@ -106,3 +121,7 @@ class Kernel {
   final Resolver _resolver;
   static Kernel _instance;
 }
+
+
+
+

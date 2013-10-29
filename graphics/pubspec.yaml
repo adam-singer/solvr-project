@@ -1,5 +1,5 @@
 name: solvr_graphics
-version: 1.0.2
+version: 1.0.0
 author: Lars Tackmann <lars@solvr.io>
 description: Graphics library
 dependencies:
@@ -7,7 +7,7 @@ dependencies:
   solvr_ast:
     path: ../ast
   solvr_common:
-    path: ../common
+    path: ../ast
   solvr_matchers:
     path: ../matchers
 dev_dependencies:

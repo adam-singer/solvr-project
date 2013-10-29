@@ -5,8 +5,6 @@ description: Parser for the Solvr language
 dependencies:
   solvr_ast:
     path: ../ast
-  solvr_common:
-    path: ../common
   solvr_matchers:
     path: ../matchers
 dev_dependencies:

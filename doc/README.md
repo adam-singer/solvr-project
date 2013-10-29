@@ -1,6 +1,2 @@
-Solvr Examples
-==============
+# Solvr Documentation
 
-* EBook
-* Notebook API 
- * Excercise generation (based on answers)

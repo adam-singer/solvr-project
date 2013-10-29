@@ -1,7 +1,6 @@
-// Copyright (c) 2013 Solvr, Inc. All rights reserved.
-//
-// This is commercial software. Use or redistribution of this code in full 
-// or in part without the express written consent of Solvr is prohibited.
+// Copyright (c) 2013, the Solvr project authors. Please see the AUTHORS 
+// file for details. All rights reserved. Use of this source code is 
+// governed by a Apache license that can be found in the LICENSE file.
 
 library solvr_kernel_math_test;
 
@@ -95,7 +94,7 @@ _testSingle() {
 }
 
 assertExpression(String expression, var expectedValue) {
-  var kernel = new Kernel.newScope();
+  var kernel = new Kernel();
   var value = kernel.evaluate(expression).toString();
   expect(value, equals(expectedValue));
 }
@@ -103,7 +102,7 @@ assertExpression(String expression, var expectedValue) {
 assertFailure(String expression) {
   // TODO use exception matchers in unit test lib instead
   print('TODO test failure position reporting');
-  var kernel = new Kernel.newScope();
+  var kernel = new Kernel();
   bool failed = false;
   var expr;
   try {

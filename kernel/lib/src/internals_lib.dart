@@ -9,15 +9,15 @@
  */
 library solvr_kernel_math_internals;
 
+import 'package:solvr_ast/solvr_ast.dart';
 import 'package:solvr_common/solvr_common.dart';
-export 'package:solvr_common/solvr_common.dart';
+import 'package:solvr_matchers/solvr_matchers.dart';
+import 'package:solvr_types/solvr_types.dart';
 
-import '../ast_lib.dart';
-export '../ast_lib.dart';
-import '../matcher_lib.dart';
-export '../matcher_lib.dart';
-import '../types_lib.dart';
-export '../types_lib.dart';
+export 'package:solvr_ast/solvr_ast.dart';
+export 'package:solvr_common/solvr_common.dart';
+export 'package:solvr_matchers/solvr_matchers.dart';
+export 'package:solvr_types/solvr_types.dart';
 
 part 'internals/expr_helpers.dart';
 part 'internals/kernel_errors.dart';

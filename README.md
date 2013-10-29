@@ -20,21 +20,22 @@ below.
 ### Modules
 Solvr consist of the following modules
 
- * **ast** Abstract syntax tree, defines the syntax for the Solvr algebraic language.
- * **backend** *(non-working) Placeholder project for Solvr's service code such as REST services*.
+ * **ast** Abstract syntax tree and syntax for the Solvr algebraic language.
+ * **backend** *(non-working) Placeholder project for Solvr's backend REST services*.
+ * **[chrome](chrome/README.md)** *(non-working) Placeholder project for Solvr's Chrome plugin*
  * **common** Common utilities shared accross modules, such as test helpers,dart utility methods etc.
  * **doc** Documentation for Solvr.
  * **graphics** Renders AST expressions into LaTeX or SVG, also contains plotting code.
  * **iOS** *(non-working) Placeholder project for the Solvr PhoneGap iPad port*.
- * **kernel** Contains mathematical algorithms for simplifying and computing expressions. Also contains REPL
+ * **kernel** The Mathematical algorithms for simplifying and computing Solvr expressions. 
  * **logic** Business logic shared between **webapp** and **iOS** app goes here.
  * **matchers** Matchers for detecting and acting on various types of expressions
- * **parser** Parser for Solvr's algebraic language
+ * **[parser](parser/README.md)** Parser for Solvr's algebraic language.
  * **site** The Solvr web site
  * **types** Types of operators and expressions supported by Solvr 
  * **ui** Shared HTML5 constructs
  * **webapp** The Solvr web application
-
+ 
 ## License
 
 Solvr is made up of many pieces of code, all of them except the fonts are open source under
