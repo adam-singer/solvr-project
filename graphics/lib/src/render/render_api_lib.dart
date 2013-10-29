@@ -9,12 +9,6 @@ import 'package:solvr_ast/solvr_ast.dart';
 export 'package:solvr_ast/solvr_ast.dart';
 export 'package:solvr_common/solvr_common.dart';
 
-part 'api/binary_expr_render.dart';
-part 'api/nary_expr_render.dart';
-part 'api/nullary_expr_render.dart';
-part 'api/special_expr_render.dart';
-part 'api/unary_expr_render.dart';
-
 abstract class ExprRender<T,R> {
   R render(Expr expr);
   

@@ -2,11 +2,9 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-part of solvr_graphics_render_tex;
+part of solvr_graphics_tex_render;
 
-class _TexNaryRender extends _AbstractTexRender implements NaryRender {
-  _TexNaryRender(StringBuffer buf, ExprRender render): super(buf, render);
-  
+class NaryExprTexRender implements NaryExprVisitor {
   renderInterval(IntervalExpr interval) {
     renderExpr(interval.start);
     renderExpr(interval.start);

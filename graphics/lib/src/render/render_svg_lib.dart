@@ -2,7 +2,7 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-library solvr_graphics_render_svg;
+library solvr_graphics_svg_render;
 
 import 'dart:svg';
 import 'dart:html';
@@ -13,12 +13,11 @@ part 'svg/fonts/glyphs/main_regular.dart';
 part 'svg/fonts/glyphs/math_italic.dart';
 part 'svg/fonts/font_manager.dart';
 part 'svg/fonts/font_container.dart';
-part 'svg/abstract_svg_render.dart';
-part 'svg/svg_binary_render.dart';
-part 'svg/svg_nary_render.dart';
-part 'svg/svg_nullary_render.dart';
-part 'svg/svg_special_render.dart';
-part 'svg/svg_unary_render.dart';
+part 'svg/binary_expr_svg_render.dart';
+part 'svg/nary_expr_svg_render.dart';
+part 'svg/nullary_expr_svg_render.dart';
+part 'svg/special_expr_svg_render.dart';
+part 'svg/unary_expr_svg_render.dart';
 
 /**
  * [ExprRender] that renders expressions as SVG 
@@ -28,7 +27,13 @@ part 'svg/svg_unary_render.dart';
  * - unicode and math: http://unicode.org/reports/tr25/tr25-5.html
  * - unicode chars: http://en.wikipedia.org/wiki/List_of_Unicode_characters
  */
-class SvgRender implements ExprRender<Element,Element> {
+class SvgRender extends Object with 
+  BinaryExprSvgRender,
+  NaryExprSvgRender, 
+  NullaryExprSvgRender, 
+  SpecialExprSvgRender,
+  UnaryExprSvgRender implements ExprVisitor, ExprRender<Element,Element> 
+{
   SvgRender() {
     var canvas = new SvgElement.svg("<g stroke='black' fill='black' stroke-thickness='0' transform='matrix(1 0 0 -1 0 0)'>");
     
@@ -42,12 +47,6 @@ class SvgRender implements ExprRender<Element,Element> {
       "version": "1.2"
     };
     var fontManager;
-    
-    var binaryRender = new _SvgBinaryRender(canvas, fontManager);
-    var naryRender = new _SvgNaryRender(canvas, fontManager);
-    var nullaryRender = new _SvgNullaryRender(canvas, fontManager);
-    var specialRender = new _SvgSpecialRender(canvas, fontManager);
-    var unaryRender = new _SvgUnaryRender(canvas, fontManager);
   }
   
   @override

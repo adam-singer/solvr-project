@@ -2,48 +2,29 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-part of solvr_graphics_render_svg;
+part of solvr_graphics_svg_render;
 
-class _SvgNullaryRender extends _AbstractSvgRender implements NullaryExorVisitor {
-  _SvgNullaryRender(Element element, FontManager fontManager, ExprRender render): super(element, fontManager, render);
-  
-  renderBool(BoolExpr expr) {
-    addText(_svgTokenize("${expr.value}"));
-  }
-  
-  renderNumber(NumberExpr expr) {
-    var tokens = _svgTokenize(expr.value);
-    addText(tokens);
-  }
-  
-  renderSymbol(SymbolExpr expr) {
-    /* true
-     <use href="#MJMATHI-74"></use>
-     <use href="#MJMATHI-72" x="366" y="0"></use>
-     <use href="#MJMATHI-75" x="822" y="0"></use>
-     <use href="#MJMATHI-65" x="1399" y="0"></use>
-     </g>
-     */
-    var value = expr.value;
-    if(_greekLowerLetters.containsKey(value)) {
-      addText(_greekLowerLetters[value]);  
-    } else if(_greekUpperLetters.containsKey(value)) {
-      addText(_greekUpperLetters[value]);  
-    } else {
-      addText(_svgTokenize(value));
-    }   
-  }
+class NullaryExprSvgRender implements NullaryExprVisitor {
+  @override
+  visitBoolExpr(BoolExpr expr) {
     
-  List<String> _svgTokenize(String value) {
-    // TODO cache
-    var glyphs = new List<String>();
-    value.codeUnits.forEach((int charCode) {
-      var glyphId = _charToGlyph(charCode);
-      glyphs.add(glyphId);
-    });
-    return tokens.toString();
   }
   
+  @override
+  visitNumberExpr(NumberExpr expr) {
+    
+  }
+  
+  @override
+  visitStringExpr(StringExpr expr) {
+    
+  }
+  
+  @override
+  visitSymbolExpr(SymbolExpr expr) {
+    
+  }
+ 
   static final Map<String, String> _greekLowerLetters = const {
     "alpha": r"&#x3b1;",
     "beta": r"&#x3b2;",

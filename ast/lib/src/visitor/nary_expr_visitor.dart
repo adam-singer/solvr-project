@@ -4,6 +4,7 @@
 
 part of solvr_ast;
 
+/** Visit nary expressions (expressions with n operands) */
 abstract class NaryExprVisitor {
   visitProductExpr(ProductExpr expr);
   

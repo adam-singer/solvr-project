@@ -4,9 +4,19 @@
 
 part of solvr_graphics_svg_render;
 
-class FontContainer {
-  FontContainer(this.fontname): glyphs = new Map<int, List>();
+class UnaryExprSvgRender implements UnaryExprVisitor {
+  @override
+  visitFactorialExpr(FactorialExpr expr) {
+   
+  }
   
-  final Map<int, List> glyphs;
-  final String fontname;
+  @override
+  visitNegationExpr(NegationExpr expr) {
+    
+  }
+  
+  @override
+  visitNegativeExpr(NegativeExpr expr) {
+    
+  }
 }

@@ -4,6 +4,7 @@
 
 part of solvr_ast;
 
+/** Visit unary expressions (expressions with one operand) */
 abstract class UnaryExprVisitor {
   visitFactorialExpr(FactorialExpr expr);
   

@@ -4,6 +4,7 @@
 
 part of solvr_ast;
 
+/** Visit binary expressions (expressions with two operands) */
 abstract class BinaryExprVisitor {
   visitComplexNumberExpr(ComplexNumberExpr expr);
   

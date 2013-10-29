@@ -2,26 +2,21 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-part of solvr_graphics_render_svg;
+part of solvr_graphics_tex_render;
 
-class _SvgUnaryRender extends _AbstractSvgRender implements UnaryRender {
-  _SvgUnaryRender(Element element, FontManager fontManager, ExprRender render): super(element, fontManager, render);
-  
-  @override
+class UnaryExprTexRender implements UnaryExprVisitor {
   renderFactorial(FactorialExpr expr) {
     renderExpr(expr.operand);
-    addText("&#x021;");
+    add(expr.token);
   }
   
-  @override
   renderNegation(NegationExpr expr) {
-    addText("&#x021;");
+    add(expr.token);
     renderExpr(expr.operand);
   }
   
-  @override
   renderNegative(NegativeExpr expr) {
-    addText("&#x02d;");
+    add(expr.token);
     renderExpr(expr.operand);
   }
 }

@@ -2,11 +2,9 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-part of solvr_graphics_render_tex;
+part of solvr_graphics_tex_render;
 
-class _TexSpecialRender extends _AbstractTexRender implements SpecialRender {
-  _TexSpecialRender(StringBuffer buf, ExprRender render): super(buf, render);
-  
+class SpecialExprTexRender implements SpecialExprVisitor {
   render(Expr expr) {
   }
   

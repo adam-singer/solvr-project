@@ -2,7 +2,7 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-part of solvr_graphics_render_svg;
+part of solvr_graphics_svg_render;
 
 class FontManager {
   static FontManager _instance;

@@ -2,12 +2,10 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-part of solvr_graphics_render_tex;
+part of solvr_graphics_tex_render;
 
 /** See http://www.access2science.com/latex/Binary.html */
-class _TexBinaryRender extends _AbstractTexRender implements BinaryRender {
-  _TexBinaryRender(StringBuffer buf, ExprRender render): super(buf, render);
-  
+class BinaryExprTexRender implements BinaryExprVisitor {
   // Algebraic expressions 
   renderDifference(DifferenceExpr expr) => _renderBinary(expr, r"-");
   

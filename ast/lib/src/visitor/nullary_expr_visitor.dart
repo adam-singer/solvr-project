@@ -4,6 +4,7 @@
 
 part of solvr_ast;
 
+/** Visit nullary expressions (expressions with no operands) */
 abstract class NullaryExprVisitor {
   visitBoolExpr(BoolExpr expr);
   

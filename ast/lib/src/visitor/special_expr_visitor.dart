@@ -4,6 +4,7 @@
 
 part of solvr_ast;
 
+/** Visit special expressions (i.e. expressions that are not simple nullary/unary/binary) */
 abstract class SpecialExprVisitor {
   visitAnonymousFunctionExpr(AnonymousFunctionExpr expr);
   

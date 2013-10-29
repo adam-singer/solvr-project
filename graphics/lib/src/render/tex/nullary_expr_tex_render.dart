@@ -2,11 +2,9 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-part of solvr_graphics_render_tex;
+part of solvr_graphics_tex_render;
 
-class _TexNullaryRender extends _AbstractTexRender implements NullaryRender {
-  _TexNullaryRender(StringBuffer buf, ExprRender render): super(buf, render);
-  
+class NullaryExprTexRender implements NullaryExprVisitor {
   renderBool(BoolExpr expr) {
     add("${expr.value}");
   }
