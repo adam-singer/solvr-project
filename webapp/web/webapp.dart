@@ -1,21 +1,23 @@
-// Copyright (c) 2013 Solvr, Inc. All rights reserved.
-//
-// This is commercial software. Use or redistribution of this code in full 
-// or in part without the express written consent of Solvr is prohibited.
+// Copyright (c) 2013, the Solvr project authors. Please see the AUTHORS 
+// file for details. All rights reserved. Use of this source code is 
+// governed by a Apache license that can be found in the LICENSE file.
 
 library solvr_webapp;
 
 import 'dart:html';
 
+import 'package:dice/dice.dart';
 import 'package:route/client.dart';
 
 import 'ui/ui_lib.dart';
 
 main() {
-  bindMockLogic().then((LogicConfig config) {
-    var controller = new AppController(config.messageBus, config.viewModelRepository);
-    controller.go();
-  });
+  var injector = new Injector(new MockDependenciesModule());
+  var messageBus = injector.getInstance(MessageBus);
+  var repository = injector.getInstance(ViewModelRepository);
+  
+  var controller = new AppController(messageBus, repository);
+  controller.go();
 }
 
 class AppController implements AppRouter {

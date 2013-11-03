@@ -2,7 +2,7 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-/** Common utility classes */
+/** Common utility classes and dependencies */
 library solvr_common;
 
 import 'dart:math' as Math;

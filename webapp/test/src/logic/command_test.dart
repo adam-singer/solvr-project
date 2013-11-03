@@ -6,16 +6,11 @@
 part of solvr_logic_test;
 
 class CommandTest {
-  CommandTest(LogicConfig config) {
-    _messageBus = config.messageBus;
-    _repository = config.viewModelRepository;
-    
+  CommandTest(this._messageBus, this._repository) {
     group('notebook commands -', () {
       var notebookName = "notebook name";
       
       test('initial state', () {
-        expect(_messageBus, isNotNull);
-        expect(_repository, isNotNull);
         expect(_repository.starredNotes, hasLength(0));
         expect(_repository.sharedNotes, hasLength(0));
         expect(_repository.notebooks, hasLength(1), reason:'initially one notebook should exists');
@@ -32,6 +27,6 @@ class CommandTest {
     });
   }
   
-  MessageBus _messageBus;
-  ViewModelRepository _repository;
+  final MessageBus _messageBus;
+  final ViewModelRepository _repository;
 }

@@ -1,4 +1,5 @@
 name: solvr_site
+version: 1.0.0
 author: Lars Tackmann <lars@solvr.io>
 description: The Solvr web site
 dependencies:

@@ -7,6 +7,7 @@ part of solvr_logic_internal;
 
 // TODO save using a real model repo
 class EventHandler {
+  @inject
   EventHandler(this._messageBus, this._viewModelRepository) {
     // user events
     _messageBus.stream(NotebookCreated).listen(_notebookCreated);

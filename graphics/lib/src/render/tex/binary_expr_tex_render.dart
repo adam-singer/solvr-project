@@ -5,13 +5,17 @@
 part of solvr_graphics_tex_render;
 
 /** See http://www.access2science.com/latex/Binary.html */
-class BinaryExprTexRender implements BinaryExprVisitor {
-  // Algebraic expressions 
-  renderDifference(DifferenceExpr expr) => _renderBinary(expr, r"-");
+abstract class BinaryExprTexRender implements BinaryExprVisitor {
+  visitComplexNumberExpr(ComplexNumberExpr expr);
   
-  renderDot(DotExpr expr) => _renderBinary(expr, r"\cdot");
+  @override
+  visitDifferenceExpr(DifferenceExpr expr) => _renderBinary(expr, r"-");
   
-  renderFraction(FractionExpr expr) {
+  @override
+  visitDotExpr(DotExpr expr) => _renderBinary(expr, r"\cdot");
+  
+  @override
+  visitFractionExpr(FractionExpr expr) {
     add(r"\frac{\displaystyle ");
     renderExpr(expr.left);
     add(r"}{\displaystyle ");
@@ -19,7 +23,8 @@ class BinaryExprTexRender implements BinaryExprVisitor {
     add(r"}");
   }
   
-  renderPower(PowerExpr expr) {
+  @override
+  visitPowerExpr(PowerExpr expr) {
     var base = baseOf(expr);
     var exponent = exponentOf(expr);
     
@@ -41,36 +46,56 @@ class BinaryExprTexRender implements BinaryExprVisitor {
     }
   }
   
-  // Logical expressions 
-  renderAnd(AndExpr expr) => _renderBinary(expr, r"\wedge");
+  @override
+  visitAndExpr(AndExpr expr) => _renderBinary(expr, r"\wedge");
   
-  renderOr(OrExpr expr) => _renderBinary(expr, r"\vee");
+  @override
+  visitOrExpr(OrExpr expr) => _renderBinary(expr, r"\vee");
   
-  // Object expressions 
+  visitBindExpr(BindExpr expr);
   
-  // Relational expressions 
-  renderEqual(EqualExpr expr) => _renderBinary(expr, r" = ");
+  visitGuardExpr(GuardExpr expr);
   
-  renderGreaterThan(GreaterThanExpr expr) => _renderBinary(expr, r">");
+  visitInstanceOfExpr(InstanceOfExpr expr);
   
-  renderGreaterThanOrEqual(GreaterThanOrEqualExpr expr) => _renderBinary(expr, r"\geq");
+  visitNotInstanceOfExpr(NotInstanceOfExpr expr);
   
-  renderLessThan(LessThanExpr expr) => _renderBinary(expr, r"<");
+  visitSubsitutionExpr(SubstitutionExpr expr);
   
-  renderLessThanOrEqual(LessThanOrEqualExpr expr) => _renderBinary(expr, r"\leq");
+  @override
+  visitEqualExpr(EqualExpr expr) => _renderBinary(expr, r" = ");
   
-  renderNotEqual(NotEqualExpr expr) => _renderBinary(expr, r"\neq");
+  @override
+  visitGreaterThanExpr(GreaterThanExpr expr) => _renderBinary(expr, r">");
   
-  // Set expressions 
-  renderComplement(ComplementExpr expr) => _renderBinary(expr, r"\setminus");
+  @override
+  visitGreaterThanOrEqualExpr(GreaterThanOrEqualExpr expr) => _renderBinary(expr, r"\geq");
   
-  renderIntersect(IntersectExpr expr) => _renderBinary(expr, r"\cap");
+  @override
+  visitLessThanExpr(LessThanExpr expr) => _renderBinary(expr, r"<");
   
-  renderNotSubset(NotSubsetExpr expr)  => _renderBinary(expr, r"\not\subset");
+  @override
+  visitLessThanOrEqualExpr(LessThanOrEqualExpr expr) => _renderBinary(expr, r"\leq");
   
-  renderSubset(SubsetExpr expr)  => _renderBinary(expr, "@\subset");
-    
-  renderUnion(UnionExpr expr)  => _renderBinary(expr, r"\cup");
+  @override
+  visitNotEqualExpr(NotEqualExpr expr) => _renderBinary(expr, r"\neq");
+  
+  @override
+  visitComplementExpr(ComplementExpr expr) => _renderBinary(expr, r"\setminus");
+  
+  visitEntryExpr(EntryExpr expr);
+  
+  @override
+  visitIntersectExpr(IntersectExpr expr) => _renderBinary(expr, r"\cap");
+  
+  @override
+  visitNotSubsetExpr(NotSubsetExpr expr) => _renderBinary(expr, r"\not\subset");
+  
+  @override
+  visitSubsetExpr(SubsetExpr expr) => _renderBinary(expr, "@\subset");
+  
+  @override
+  visitUnionExpr(UnionExpr expr) => _renderBinary(expr, r"\cup");
   
   // Helpers 
   _renderBinary(BinaryExpr expr, String token) {

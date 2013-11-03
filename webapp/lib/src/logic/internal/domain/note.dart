@@ -23,12 +23,12 @@ class Note extends AggregateRoot {
       super(noteId);
   
   apply(DomainEvent event) {
-    if(event is NotebookEvent) {
+    if(event is NoteEvent) {
       if(event is NoteCreated) {
         _applyNoteCreated(event);
       }
       // enforce access control after creation
-      _checkNoteAccess(event);
+      _checkSecurity(event);
       
       if(event is NoteStarChanged) {
         _applyNoteStarChanged(event);
@@ -65,7 +65,7 @@ class Note extends AggregateRoot {
     applyChange(event);
   }
   
-  _checkNoteAccess(NoteEvent event) {
+  _checkSecurity(NoteEvent event) {
     if(this.id != event.noteId) {
       throw new StateError("cannot apply note event $event to note with id ${this.id}");
     }

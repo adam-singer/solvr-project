@@ -7,7 +7,7 @@ dependencies:
   solvr_ast:
     path: ../ast
   solvr_common:
-    path: ../ast
+    path: ../common
   solvr_matchers:
     path: ../matchers
 dev_dependencies:

@@ -5,27 +5,36 @@
 
 part of solvr_logic_internal;
 
+// TODO see if this can be moved to Harvest
+
 /** Manage life cycle of long running processes */
 class ProcessManager {
+  @inject
   ProcessManager(this._messageBus) {
     _messageBus.stream(UserCreated).listen(_createUser);
-    _messageBus.stream(UserSetupCompleted).listen((e) => _disposeProcess(e.processId));
+    _messageBus.stream(UserSetupCompleted).listen((e) => removeProcess(e.processId));
   }
   
   _createUser(UserCreated event) {
     var process = new UserSetupProcess(_messageBus, event.userId);
-    _processes[process.processId] = process;
+    registerProcess(process);
     process.run();
   }
   
-  _disposeProcess(Guid processId) {
+  /** register process for life cycle management */
+  registerProcess(Process process) {
+    _processes[process.processId] = process;
+  }
+  
+  /** remove process from life cycle */
+  removeProcess(Guid processId) {
     if(_processes.containsKey(processId)) {
       _processes.remove(processId);
     } else {
-      throw new StateError('unknown long running process $processId finished');
+      throw new StateError('unknown process $processId');
     }
   }
   
-  final _processes = new Map<Guid, Object>();
+  final _processes = new Map<Guid, Process>();
   final MessageBus _messageBus;
 }

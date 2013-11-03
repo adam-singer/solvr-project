@@ -4,23 +4,20 @@
 
 library solvr_repl;
 
-import 'dart:core';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:solvr_kernel/solvr_kernel.dart';
 
-main() {
+main(List<String> args) {
   final prompt = 'solvr> ';
-  var stream = stdin.transform(new StringDecoder());
-  final lines = new List<String>();
-  
-  final options = new Options();
-  
   print('${prompt}');
   
+  var stream = stdin.transform(UTF8.decoder);
   stream.listen((String line) { 
     if (line != null) {
       try {
+        // TODO handle scope
         var kernel = new Kernel();
         var value = kernel.evaluate(line).toString();
         print(line);

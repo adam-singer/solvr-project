@@ -8,12 +8,13 @@ library solvr_logic;
 import 'package:dice/dice.dart';
 
 import 'logic/solvr_logic_api.dart';
-export 'logic/solvr_logic_api.dart';
 import 'logic/solvr_logic_internal.dart';
+
+export 'logic/solvr_logic_api.dart';
 
 // TODO get rid of this when dart:mirrors get sync API
 class LogicConfig {
-  @Inject
+  @inject
   LogicConfig(this.messageBus, this.viewModelRepository, EventStore eventStore) {
     var eventHandler = new EventHandler(messageBus, viewModelRepository);
     var userCommandHandler = new UserCommandHandler(messageBus, eventStore);

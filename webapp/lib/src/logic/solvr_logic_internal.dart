@@ -9,8 +9,6 @@ library solvr_logic_internal;
 import 'dart:async';
 
 import 'package:dice/dice.dart';
-import 'package:log4dart/log4dart.dart';
-import 'package:meta/meta.dart';
 
 import 'solvr_logic_api.dart';
 
@@ -20,6 +18,7 @@ part 'internal/commandhandler/user_command_handler.dart';
 part 'internal/domain/note.dart';
 part 'internal/domain/user.dart';
 
+part 'internal/process/process.dart';
 part 'internal/process/user_setup_process.dart';
 
 part 'internal/event_handlers.dart';

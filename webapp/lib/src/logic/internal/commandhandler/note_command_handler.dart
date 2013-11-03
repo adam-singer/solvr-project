@@ -6,6 +6,7 @@
 part of solvr_logic_internal;
 
 class NoteCommandHandler {
+  @inject
   factory NoteCommandHandler(MessageBus messageBus, EventStore eventStore) {
     var noteRepository = new DomainRepository<Note>((id) => new Note.fromId(id), eventStore, messageBus);
     return new NoteCommandHandler._internal(messageBus, noteRepository);

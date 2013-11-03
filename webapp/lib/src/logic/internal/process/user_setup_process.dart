@@ -5,9 +5,10 @@
 
 part of solvr_logic_internal;
 
-class UserSetupProcess {
-  UserSetupProcess(this._messageBus, this._userId): processId = new Guid();
+class UserSetupProcess extends Process {
+  UserSetupProcess(this._messageBus, this._userId);
   
+  @override
   run() {
     _notebookId = new Guid();
     _subscriptions.add( _messageBus.stream(NotebookCreated).listen(_notebookCreated) );
@@ -38,7 +39,7 @@ class UserSetupProcess {
   
   Guid _notebookId, _noteId;
   final _subscriptions = new List<StreamSubscription>(); 
-  final Guid _userId, processId;
+  final Guid _userId;
   final MessageBus _messageBus;
 }
 
