@@ -3,7 +3,7 @@ version: 1.0.0
 author: Lars Tackmann <lars@solvr.io>
 description: Graphics library
 dependencies:
-  js: "0.0.24"
+  js: "0.1.0"
   solvr_ast:
     path: ../ast
   solvr_common:

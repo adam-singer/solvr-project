@@ -105,6 +105,8 @@ abstract class BinaryExprTexRender implements BinaryExprVisitor {
     add(" ");
     renderExpr(expr.right);
   }
+  
+  add(String tex);
 }
 
 

@@ -3,10 +3,10 @@ version: 1.0.0
 author: Lars Tackmann <lars@solvr.io>
 description: Common utility classes
 environment:
-  sdk: '>=0.8.5'
+  sdk: '>=0.8.7'
 dependencies:
-  dice: '>=1.4.1'
-  log4dart: '>=1.4.10'
-  meta: '>=0.8.5'
+  dice: '>=1.4.3'
+  log4dart: '>=1.4.11'
+  meta: '>=0.8.7'
 dev_dependencies:
   unittest: any
