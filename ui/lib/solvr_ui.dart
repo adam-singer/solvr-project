@@ -1,11 +1,17 @@
-// Copyright (c) 2013 Solvr, Inc. All rights reserved.
-//
-// This is commercial software. Use or redistribution of this code in full 
-// or in part without the express written consent of Solvr is prohibited.
+// Copyright (c) 2013, the Solvr project authors. Please see the AUTHORS 
+// file for details. All rights reserved. Use of this source code is 
+// governed by a Apache license that can be found in the LICENSE file.
 
 library solvr_ui;
 
 import "dart:html";
+
+part 'framework/component.dart';
+part 'framework/component_presenter.dart';
+part 'framework/frame.dart';
+part 'framework/navigation_manager.dart';
+part 'framework/page.dart';
+part 'framework/page_presenter.dart';
 
 Element createElement(String type, [String id = null, String text = null, var classes = null, Map<String,String> attributes = null, Element parent = null]) {
   var element = new Element.tag(type);
