@@ -5,5 +5,20 @@
 part of solvr_ui;
 
 abstract class NavigationManager {
-  registerPage(String url, Type pageType);
+  NavigationManager(this._injector);
+  
+  registerPage(String url, Type pageType) {
+    _urlMap[url] = pageType;
+    _pageMap[pageType] = url;
+  }
+  
+  showPage(Type pageType) {
+      
+  }
+  
+  final Injector _injector;
+  final Map<String, Type> _urlMap = new Map<String, Type>();
+  final Map<Type, String> _pageMap = new Map<Type, String>();
 }
+
+typedef Page PageBuilder(Type pageType);

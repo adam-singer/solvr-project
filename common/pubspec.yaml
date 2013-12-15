@@ -5,7 +5,7 @@ description: Common utility classes
 environment:
   sdk: '>=0.8.10+6 <2.0.0'
 dependencies:
-  dice: '>=1.4.4'
+  dice: '>=1.4.5'
   log4dart: '>=1.4.12'
   meta: '>=0.8.8'
 dev_dependencies:

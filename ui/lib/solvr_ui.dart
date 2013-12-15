@@ -4,8 +4,10 @@
 
 library solvr_ui;
 
-import "dart:html";
+import 'dart:html';
+import 'package:dice/dice.dart';
 
+part 'framework/app_session.dart';
 part 'framework/component.dart';
 part 'framework/component_presenter.dart';
 part 'framework/frame.dart';

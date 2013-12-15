@@ -3,3 +3,7 @@
 // governed by a Apache license that can be found in the LICENSE file.
 
 part of solvr_ui;
+
+abstract class ComponentPresenter<C extends Component> {
+  
+}

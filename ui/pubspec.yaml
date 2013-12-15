@@ -5,3 +5,5 @@ description: Shared HTML5 constructs
 dependencies:
   polymer: any
   route: any
+  solvr_common:
+    path: ../common

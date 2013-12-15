@@ -4,6 +4,6 @@
 
 part of solvr_ui;
 
-abstract class PagePresenter<P extends Page> {
+class AppSession {
   
 }
