@@ -4,6 +4,6 @@
 
 part of solvr_site;
 
-class SiteFrame extends Frame {
+class SolvrSiteFrame extends Frame {
   
 }

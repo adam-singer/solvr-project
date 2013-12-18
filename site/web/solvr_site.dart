@@ -2,13 +2,13 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-library solvr_site;
+library solvr_site_app;
 
-import 'package:solvr_ui/solvr_ui.dart';
+import 'package:polymer/polymer.dart';
 
-part 'pages/about_page.dart';
-part 'pages/main_page.dart';
-
-main() {
-  //var login = document.body.query("#login");
+@CustomTag('solvr-site')
+class SolvrSite extends PolymerElement {
+  SolvrSite.created(): super.created() {
+    print("app created");
+  }
 }
