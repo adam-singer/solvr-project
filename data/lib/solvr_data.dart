@@ -2,8 +2,5 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-part of solvr_ui;
-
-abstract class Page extends PolymerElement {
-  
-}
+/** Open data for Solvr computations and lookup */
+library solvr_data;

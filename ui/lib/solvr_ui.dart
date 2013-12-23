@@ -6,6 +6,7 @@ library solvr_ui;
 
 import 'dart:html';
 import 'package:dice/dice.dart';
+import 'package:polymer/polymer.dart';
 
 part 'framework/app_session.dart';
 part 'framework/component.dart';

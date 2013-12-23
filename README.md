@@ -24,6 +24,7 @@ Solvr consist of the following modules
  * **backend** *(non-working) Placeholder project for Solvr's backend REST services*.
  * **[chrome](chrome/README.md)** *(non-working) Placeholder project for Solvr's Chrome plugin*
  * **common** Common utilities shared accross modules, such as test helpers,dart utility methods etc.
+ * **[data](data/README.md)** Open data for Solvr computations and lookup
  * **doc** Documentation for Solvr.
  * **graphics** Renders AST expressions into LaTeX or SVG, also contains plotting code.
  * **iOS** *(non-working) Placeholder project for the Solvr PhoneGap iPad port*.

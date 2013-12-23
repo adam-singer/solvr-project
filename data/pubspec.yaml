@@ -1,0 +1,9 @@
+name: solvr_data
+version: 1.0.0
+author: Lars Tackmann <lars@solvr.io>
+description: Open data for Solvr computations and lookup
+dependencies:
+  solvr_common:
+    path: ../common
+dev_dependencies:
+  unittest: any
