@@ -4,6 +4,6 @@
 
 part of solvr_ui;
 
-abstract class Component extends PolymerElement {
-  Component.created(): super.created()
+abstract class UiList extends Component {
+  
 }

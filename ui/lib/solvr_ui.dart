@@ -8,6 +8,9 @@ import 'dart:html';
 import 'package:dice/dice.dart';
 import 'package:polymer/polymer.dart';
 
+part 'framework/components/ui_horizontal_list.dart';
+part 'framework/components/ui_list.dart';
+part 'framework/components/ui_vertical_list.dart';
 part 'framework/app_session.dart';
 part 'framework/component.dart';
 part 'framework/component_presenter.dart';

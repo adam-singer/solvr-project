@@ -4,6 +4,7 @@
 
 part of solvr_ui;
 
-abstract class Component extends PolymerElement {
-  Component.created(): super.created()
+@CustomTag('ui-horizontal-list')
+class UiHorizontalList extends UiList {
+  
 }
