@@ -5,5 +5,5 @@
 part of solvr_ui;
 
 abstract class UiList extends Component {
-  
+   
 }
