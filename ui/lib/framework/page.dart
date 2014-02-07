@@ -4,6 +4,7 @@
 
 part of solvr_ui;
 
+/** A page is a UI element that is identified by an URL */
 abstract class Page extends PolymerElement {
-  
+  Page(): super.created();
 }

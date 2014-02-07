@@ -6,5 +6,5 @@ part of solvr_ui;
 
 @CustomTag('ui-horizontal-list')
 class UiHorizontalList extends UiList {
-  
+
 }

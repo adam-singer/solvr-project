@@ -6,5 +6,5 @@ part of solvr_ui;
 
 @CustomTag('ui-vertical-list')
 class UiVerticalList extends UiList {
-  UiVerticalList.created(): super.created();
+
 }

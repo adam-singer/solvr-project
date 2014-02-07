@@ -4,6 +4,10 @@
 
 part of solvr_ui;
 
+/** 
+ * A component is a UI element that encapsulates markup 
+ * and functionality but does not represent a entire page 
+ */
 abstract class Component extends PolymerElement {
-  Component.created(): super.created()
+  Component(): super.created();
 }
