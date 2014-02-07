@@ -85,7 +85,7 @@ List<Expr> _coefficientMonomial(Expr monomial, Expr variable) {
       var degreeMonomial = res[1];
       if(degreeMonomial != zero) {
         deg = degreeMonomial;
-        coeff = monomial/power(variable, deg);
+        coeff = monomial/asPower(variable, deg);
       }
     });
     return [coeff, deg];
@@ -147,9 +147,9 @@ SetExpr variablesOf(var expr) {
     var exponent = exponentOf(expr);
     var base = baseOf(expr);
     if(isPositiveInteger(exponent)) {
-      return setOf([base]);
+      return asSet([base]);
     }
-    return setOf([expr]);
+    return asSet([expr]);
   } else if(expr.anyOf([isSum, isProduct])) {
     var res = emptySet;
     expr.operands.forEach((Expr operand) {
@@ -157,7 +157,7 @@ SetExpr variablesOf(var expr) {
     });
     return res;
   } else {
-    return setOf([expr]);
+    return asSet([expr]);
   }
 }
 

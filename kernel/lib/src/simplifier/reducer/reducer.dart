@@ -104,7 +104,7 @@ bool isInOrder(var e1, var e2) {
 
   if(isPower(e1) && e2.anyOf([isSum, isFactorial, isInvoke, isSymbol])) {
     // e2 = e2^1
-    return isInOrder(e1, power(e2, one));
+    return isInOrder(e1, asPower(e2, one));
   }
 
   if(isSum(e1) && e2.anyOf([isFactorial, isInvoke, isSymbol])) {
@@ -124,7 +124,7 @@ bool isInOrder(var e1, var e2) {
 
   if(isTuple(e1) && !isTuple(e2)) {
     // e2 = (e2)
-    return isInOrder(e1, tupleOf(e2));
+    return isInOrder(e1, asTuple(e2));
   }
 
   if(!isAlgebraicCollection(e1) && isAlgebraicCollection(e2)) {

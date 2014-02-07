@@ -41,7 +41,7 @@ Expr derivative(Expr expr, SymbolExpr symbol) {
     // logarithmic differentiation
     var base = baseOf(expr);
     var exp = exponentOf(expr);
-    var deriv1 = exp * power(base, exp - one) * derivative(base, symbol);
+    var deriv1 = exp * asPower(base, exp - one) * derivative(base, symbol);
     var deriv2 = derivative(exp,symbol) * expr * ln(base);
     return deriv1 + deriv2;
   } else if(isSum(expr)) {
@@ -64,6 +64,6 @@ Expr derivative(Expr expr, SymbolExpr symbol) {
   } else if(freeOf(expr, symbol)) {
     return zero;
   } else {
-    return asInvoke("derivative", tupleOf([expr, symbol]));
+    return asInvoke("derivative", asTuple([expr, symbol]));
   }
 }

@@ -22,9 +22,9 @@ Expr _abs(var expr) {
     var base = baseOf(expr);
     var exponent = exponentOf(expr);
     if(isPositiveInteger(exponent)) {
-      return power(_abs(base), exponent);
+      return asPower(_abs(base), exponent);
     } else if(isNegativeInteger(exponent)) {
-      var denom = power(_abs(base), _negate(exponent));
+      var denom = asPower(_abs(base), _negate(exponent));
       return one/denom;
     }
   } else if(isProduct(expr)) {
@@ -32,7 +32,7 @@ Expr _abs(var expr) {
     var values = expr.operands.map(_abs);
     return new ProductExpr(values);
   }
-  return asInvoke("abs", tupleOf(expr));
+  return asInvoke("abs", asTuple(expr));
 }
 
 NumberExpr _negate(var expr) => ~expr;

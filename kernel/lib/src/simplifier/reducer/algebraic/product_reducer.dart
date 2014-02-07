@@ -83,7 +83,7 @@ class ProductReducer extends Reducer<ProductExpr> {
       if(baseOf(u1) == baseOf(u2)) {
         var exp = exponentOf(u1) + exponentOf(u2);
         exp = _simplifier.simplifySum(exp);
-        Expr p = _simplifier.simplifyPower( power(baseOf(u1), exp) );
+        Expr p = _simplifier.simplifyPower( asPower(baseOf(u1), exp) );
         // check for cases such as x^(-1) * x = x^(-1+1) = x^0 = 1
         return isOne(p) ? [] : [p];
       }

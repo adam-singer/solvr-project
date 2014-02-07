@@ -24,7 +24,6 @@ part 'internals/kernel_errors.dart';
 part 'internals/memorizer.dart';
 part 'internals/quotients.dart';
 part 'internals/rational_number.dart';
-part 'internals/visitor.dart';
 
 part 'internals/api/function_object.dart';
 part 'internals/api/invokable_object.dart';

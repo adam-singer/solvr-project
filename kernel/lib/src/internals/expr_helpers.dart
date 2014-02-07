@@ -10,10 +10,10 @@ Expr baseOf(var expr) => isPower(expr) ? expr.left : expr;
 
 Expr exponentOf(var expr) => isPower(expr) ? expr.right : one;
 
-Expr invert(var expr) => power(expr, minusOne);
+Expr invert(var expr) => asPower(expr, minusOne);
 
 // Set helpers 
-SetExpr get emptySet => setOf([]);
+SetExpr get emptySet => asSet([]);
 
 // Product helpers 
 /** Construct a product from a list, return one if the list is empty */
@@ -58,15 +58,15 @@ bool isNegativeInteger(var expr) => (isInteger(expr) && isNegativeNumber(expr));
 
 bool isHalf(var expr) => (isNumber(expr) && expr == half);
 
-NumberExpr get two => asNumber(Integer.two);
+NumberExpr get two => asInteger(Integer.two);
 
-NumberExpr get one => asNumber(Integer.one);
+NumberExpr get one => asInteger(Integer.one);
 
 NumberExpr get half => new NumberExpr(Integer.one, Integer.two);
 
-NumberExpr get zero => asNumber(Integer.zero);
+NumberExpr get zero => asInteger(Integer.zero);
 
-NumberExpr get minusOne => asNumber(Integer.minusOne);
+NumberExpr get minusOne => asInteger(Integer.minusOne);
 
 // Symbol helpers 
 SymbolExpr get euler => asSymbol("e");

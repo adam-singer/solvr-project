@@ -64,7 +64,7 @@ bool setFreeOf(Expr target, SetExpr variables) {
   return res;
 }
 
-InvokeExpr hold(Expr expr) => asInvoke("hold", tupleOf(expr));
+InvokeExpr hold(Expr expr) => asInvoke("hold", asTuple(expr));
 
 /** Get the length (number of operands) of [expr] */
 int lengthOf(Expr expr) => expr.operands.length;

@@ -36,7 +36,7 @@ Expr expand(var expr) {
     if(isPower(base)) {
       var b = _expandTuple(baseOf(base));
       var e = _expandTuple(exponentOf(base));
-      return expand(power(b, e*exponent));
+      return expand(asPower(b, e*exponent));
     }
     // x^2, x^3....
     return _expandPower(expand(base), exponent);
@@ -90,9 +90,9 @@ Expr _expandPower(Expr base, Expr exponent) {
     if(isSum(exponent)) {
       // (a+b)^(2+n) = (a+b)^2 * (a+b)^n
       var operands = _expandOperands(exponent);
-      base = isNullary(base) ? base : tupleOf(base);
+      base = isNullary(base) ? base : asTuple(base);
       operands.forEach((Expr operand) {
-        var tmp = power(base, expand(operand));
+        var tmp = asPower(base, expand(operand));
         if(result == null) {
           result = tmp;
         } else {
@@ -104,7 +104,7 @@ Expr _expandPower(Expr base, Expr exponent) {
     }
     return result;
   } else {
-    return power(base, exponent);
+    return asPower(base, exponent);
   }
 }
 
@@ -153,8 +153,8 @@ List<Expr> _numeratorDenominator(var expr) {
       List<Expr> operands = exponent.operands;
       List<Expr> negated = operands.where(isNegativeExpr).map(negative);
       List<Expr> positives = operands.where(isPositiveExpr);
-      var numerator = positives.isEmpty ? one : power(base, sumOf(positives));
-      var denominator = negated.isEmpty ? one : power(base, sumOf(negated));
+      var numerator = positives.isEmpty ? one : asPower(base, sumOf(positives));
+      var denominator = negated.isEmpty ? one : asPower(base, sumOf(negated));
       return [numerator, denominator];
     }
   } else if(isProduct(expr)) {

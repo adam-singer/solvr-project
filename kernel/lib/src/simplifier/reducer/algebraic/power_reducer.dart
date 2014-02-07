@@ -51,7 +51,7 @@ class PowerReducer extends Reducer<PowerExpr> {
     if(isPower(base)) {
       var p = exponentOf(base) * exponentOf(expr);
       var exp = _simplifier.simplifyProduct(p);
-      var res = power(baseOf(base), exp);
+      var res = asPower(baseOf(base), exp);
 
       _logger.debug("converted $orig into $res");
       if(isNumber(res)) {
@@ -62,7 +62,7 @@ class PowerReducer extends Reducer<PowerExpr> {
 
     // (v1 * v2 * v3)^n = v1^n * v2^n * v3^n
     if(isProduct(base)) {
-      base.map((Expr e) => power(e, exponentOf(expr)));
+      base.map((Expr e) => asPower(e, exponentOf(expr)));
       base.map((Expr e) => isPower(e) ? _reduceNumericalPow(e) : e);
 
       _logger.debug("converted $orig into $base");

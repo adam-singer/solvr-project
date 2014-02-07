@@ -51,7 +51,7 @@ class InvokeReducer extends Reducer<Expr> {
       var args = expr.args.clone;
       var simplified = _simplifier.simplify(args);
       if(simplified != args) {
-        expr.args = isTuple(simplified) ? simplified : tupleOf(simplified);
+        expr.args = isTuple(simplified) ? simplified : asTuple(simplified);
         return expr;
       }
       return expr;
