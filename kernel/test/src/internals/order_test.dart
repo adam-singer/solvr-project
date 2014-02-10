@@ -99,5 +99,5 @@ class OrderTest {
     expect(Internal.isInOrder(expr1, expr2), equals(inOrder), reason:"expr1: $expr1 is not ordered $inOrder with: expr2 $expr2");
   }
   
-  final _kernel = new Kernel.newScope();
+  final _kernel = new Kernel();
 }

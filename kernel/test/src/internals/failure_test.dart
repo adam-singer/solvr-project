@@ -41,7 +41,7 @@ class FailureTest {
   assertFailure(String expression, Matcher errorMatcher) {
     Expr expr;
     evaluate(String expr, Expr res) {
-      var kernel = new Kernel.newScope();
+      var kernel = new Kernel();
       res = kernel.evaluate(expression);
     }
     expect(evaluate(expression, expr), errorMatcher, reason: 'expression [$expression] contains errors but evaluated successfully');

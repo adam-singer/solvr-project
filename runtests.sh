@@ -13,3 +13,8 @@ cd parser
 	dart test/solvr_parser_test.dart
 cd ..
 
+cd kernel
+  pub install
+  dart test/solvr_kernel_internals_test.dart
+cd ..
+

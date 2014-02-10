@@ -22,14 +22,6 @@ class NumberTheoryModule extends AbstractModule {
 
     // Fibonacci family of functions
     registerFunction(new _FibonacciFn());
-    registerFunction(new _TribonacciFn());
-    registerFunction(new _TetranacciFn());
-    registerFunction(new _PentanacciFn());
-    registerFunction(new _HexanacciFn());
-    registerFunction(new _HeptanacciFn());
-    registerFunction(new _OctonacciFn());
-    registerFunction(new _NonanacciFn());
-    registerFunction(new _DecanacciFn());
   }
 }
 
@@ -147,77 +139,7 @@ class _FibonacciFn extends AbstractFunction {
   }
 }
 
-class _TribonacciFn extends AbstractFunction {
-  _TribonacciFn(): super(NumberTheoryFunctions.TRIBONACCI);
 
-  Expr apply(TupleExpr args) {
-    var n = asInteger(args[0]);
-    return asNumber(nacciSequence(n, "tribo"));
-  }
-}
-
-class _TetranacciFn extends AbstractFunction {
-  _TetranacciFn(): super(NumberTheoryFunctions.TETRANACCI);
-
-  Expr apply(TupleExpr args) {
-    var n = asInteger(args[0]);
-    return asNumber(nacciSequence(n, "tetra"));
-  }
-}
-
-class _PentanacciFn extends AbstractFunction {
-  _PentanacciFn(): super(NumberTheoryFunctions.PENTANACCI);
-
-  Expr apply(TupleExpr args) {
-    var n = asInteger(args[0]);
-    return asNumber(nacciSequence(n, "penta"));
-  }
-}
-
-class _HexanacciFn extends AbstractFunction {
-  _HexanacciFn(): super(NumberTheoryFunctions.HEXANACCI);
-
-  Expr apply(TupleExpr args) {
-    var n = asInteger(args[0]);
-    return asNumber(nacciSequence(n, "hexa"));
-  }
-}
-
-class _HeptanacciFn extends AbstractFunction {
-  _HeptanacciFn(): super(NumberTheoryFunctions.HEPTANACCI);
-
-  Expr apply(TupleExpr args) {
-    var n = asInteger(args[0]);
-    return asNumber(nacciSequence(n, "hepta"));
-  }
-}
-
-class _OctonacciFn extends AbstractFunction {
-  _OctonacciFn(): super(NumberTheoryFunctions.OCTONACCI);
-
-  Expr apply(TupleExpr args) {
-    var n = asInteger(args[0]);
-    return asNumber(nacciSequence(n, "octo"));
-  }
-}
-
-class _NonanacciFn extends AbstractFunction {
-  _NonanacciFn(): super(NumberTheoryFunctions.NONANACCI);
-
-  Expr apply(TupleExpr args) {
-    var n = asInteger(args[0]);
-    return asNumber(nacciSequence(n, "nona"));
-  }
-}
-
-class _DecanacciFn extends AbstractFunction {
-  _DecanacciFn(): super(NumberTheoryFunctions.DECANACCI);
-
-  Expr apply(TupleExpr args) {
-    var n = asInteger(args[0]);
-    return asNumber(nacciSequence(n, "deca"));
-  }
-}
 
 
 

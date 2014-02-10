@@ -57,5 +57,5 @@ class ResolverTest {
     expect(result.value, isTrue, reason:"value comparison failes for ${result.value}");
   }
   
-  final Kernel _kernel = new Kernel.newScope();
+  final Kernel _kernel = new Kernel();
 }

@@ -32,7 +32,7 @@ class _DegreeFn extends AbstractFunction {
   _DegreeFn(): super(AlgebraFunctions.DEGREE);
 
   Expr apply(TupleExpr args) {
-    return asNumber(degreeOf(args[0], args[1]));
+    return asInteger(degreeOf(args[0], args[1]));
   }
 }
 
@@ -58,7 +58,7 @@ class _IsPolynomialFn extends AbstractFunction {
 
   Expr apply(TupleExpr args) {
     var expr = args[0];
-    var symbolSet = setOf([ args[1] ]);
+    var symbolSet = asSet([ args[1] ]);
     return asBool(isPolynomial(expr, symbolSet));
   }
 }
