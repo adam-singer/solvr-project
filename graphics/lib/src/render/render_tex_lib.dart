@@ -8,7 +8,7 @@ import 'render_api_lib.dart';
 import 'package:solvr_matchers/solvr_matchers.dart';
 
 part 'tex/binary_expr_tex_render.dart';
-part 'tex/tex_nary_render.dart';
+part 'tex/nary_expr_tex_render.dart';
 part 'tex/nullary_expr_tex_render.dart';
 part 'tex/special_expr_tex_render.dart';
 part 'tex/unary_expr_tex_render.dart';
