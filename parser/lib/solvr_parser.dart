@@ -25,9 +25,9 @@ part 'src/prefix/nullary_parselet.dart';
 part 'src/prefix/tuple_parselet.dart';
 part 'src/prefix/prefix_unary_parselet.dart';
 
-part 'src/precedence.dart';
 part 'src/solvr_grammar.dart';
 part 'src/solvr_lexer.dart';
 part 'src/solvr_parser.dart';
+part 'src/solvr_precedence.dart';
 part 'src/solvr_tokens.dart';
 
