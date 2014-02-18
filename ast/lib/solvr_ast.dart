@@ -5,7 +5,6 @@
 /** Abstract syntax tree */
 library solvr_ast;
 
-import 'dart:math' as Math;
 import 'dart:collection';
 
 import 'package:solvr_common/solvr_common.dart';
@@ -89,7 +88,6 @@ part 'src/visitor/special_expr_visitor.dart';
 part 'src/visitor/unary_expr_visitor.dart';
 
 part 'src/expr.dart';
-part 'src/position.dart';
 part 'src/expr_errors.dart';
 part 'src/expr_visitor.dart';
 part 'src/string_expr_visitor.dart';

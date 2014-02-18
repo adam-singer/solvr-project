@@ -28,8 +28,8 @@ abstract class Expr {
    */
   bool reduced;
 
-  /** Position is used to track the origin of a expression, mostly used when reporting errors */
-  Position position;
+  /** The original location of the expression, mostly used when reporting errors */
+  Location location;
 
   /** Pointer to parent node, null when at the root */
   Expr parent;
@@ -52,8 +52,9 @@ abstract class Expr {
   bool hasSameType(Expr other) => other.runtimeType == this.runtimeType;
 
   /** Map a function over the expressions operands, this modifies the tree in place! */
-  Expr map(ExprConverter morpher);
+  Expr map(ExprConverter morpher); 
   
+  // TODO rename to accept
   /** Visit expression */
   visit(ExprVisitor visitor);
 
@@ -113,226 +114,225 @@ abstract class Expr {
   }
 
   // Binary algebraic expressions
-  static Expr differenceExpr(Position position, Expr left, Expr right) {
-    return _createExpr((left - right), position);
+  static Expr differenceExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr((left - right), location);
   }
 
-  static Expr dotExpr(Position position, Expr left, Expr right) {
-    return _createExpr(asDot(left, right), position);
+  static Expr dotExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr(asDot(left, right), location);
   }
 
-  static Expr fractionExpr(Position position, Expr left, Expr right) {
-    return _createExpr((left/right), position);
+  static Expr fractionExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr((left/right), location);
   }
 
-  static Expr powerExpr(Position position, Expr left, Expr right) {
-    return _createExpr(asPower(left, right), position);
+  static Expr powerExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr(asPower(left, right), location);
   }
 
-  static Expr productExpr(Position position, Expr left, Expr right) {
-    return _createExpr((left * right), position);
+  static Expr productExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr((left * right), location);
   }
 
-  static Expr sumExpr(Position position, Expr left, Expr right) {
-    return _createExpr((left + right), position);
+  static Expr sumExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr((left + right), location);
   }
 
   // Binary logical expressions
-  static Expr andExpr(Position position, Expr left, Expr right) {
-    return _createExpr(asAnd(left, right), position);
+  static Expr andExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr(asAnd(left, right), location);
   }
 
-  static Expr orExpr(Position position, Expr left, Expr right) {
-    return _createExpr(asOr(left, right), position);
+  static Expr orExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr(asOr(left, right), location);
   }
 
   // Binary object expressions
-  static Expr bindExpr(Position position, Expr left, Expr right) {
-    return _createExpr(asBind(left, right), position);
+  static Expr bindExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr(asBind(left, right), location);
   }
 
-  static Expr guardExpr(Position position, Expr left, Expr right) {
-    return _createExpr(asGuard(left, right), position);
+  static Expr guardExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr(asGuard(left, right), location);
   }
 
-  static Expr instanceOfExpr(Position position, Expr left, Expr right) {
-    return _createExpr(asInstanceOf(left, right), position);
+  static Expr instanceOfExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr(asInstanceOf(left, right), location);
   }
 
-  static Expr notInstanceOfExpr(Position position, Expr left, Expr right) {
-    return _createExpr(asNotInstanceOf(left, right), position);
+  static Expr notInstanceOfExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr(asNotInstanceOf(left, right), location);
   }
 
-  static Expr substitutionExpr(Position position, Expr left, Expr right) {
-    return _createExpr(asSubstitution(left, right), position);
+  static Expr substitutionExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr(asSubstitution(left, right), location);
   }
 
   // Binary relational expressions
-  static Expr equalExpr(Position position, Expr left, Expr right) {
-    return _createExpr(asEqual(left, right), position);
+  static Expr equalExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr(asEqual(left, right), location);
   }
 
-  static Expr notEqualExpr(Position position, Expr left, Expr right) {
-    return _createExpr(asNotEqual(left, right), position);
+  static Expr notEqualExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr(asNotEqual(left, right), location);
   }
 
-  static Expr greaterThanExpr(Position position, Expr left, Expr right) {
-    return _createExpr(asGreaterThan(left, right), position);
+  static Expr greaterThanExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr(asGreaterThan(left, right), location);
   }
 
-  static Expr greaterThanOrEqualExpr(Position position, Expr left, Expr right) {
-    return _createExpr(asGreaterThanOrEqual(left, right), position);
+  static Expr greaterThanOrEqualExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr(asGreaterThanOrEqual(left, right), location);
   }
 
-  static Expr lessThanExpr(Position position, Expr left, Expr right) {
-    return _createExpr(asLessThan(left, right), position);
+  static Expr lessThanExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr(asLessThan(left, right), location);
   }
 
-  static Expr lessThanOrEqualExpr(Position position, Expr left, Expr right) {
-    return _createExpr(asLessThanOrEqual(left, right), position);
+  static Expr lessThanOrEqualExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr(asLessThanOrEqual(left, right), location);
   }
 
   // Binary set expressions
-  static Expr complementExpr(Position position, Expr left, Expr right) {
-    return _createExpr(asComplement(left, right), position);
+  static Expr complementExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr(asComplement(left, right), location);
   }
 
-  static Expr entryExpr(Position position, Expr left, Expr right) {
-    return _createExpr(asEntry(left, right), position);
+  static Expr entryExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr(asEntry(left, right), location);
   }
 
-  static Expr intersectExpr(Position position, Expr left, Expr right) {
-    return _createExpr(asIntersect(left, right), position);
+  static Expr intersectExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr(asIntersect(left, right), location);
   }
 
-  static Expr notSubsetExpr(Position position, Expr left, Expr right) {
-    return _createExpr(asNotSubset(left, right), position);
+  static Expr notSubsetExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr(asNotSubset(left, right), location);
   }
 
-  static Expr subsetExpr(Position position, Expr left, Expr right) {
-    return _createExpr(asSubset(left, right), position);
+  static Expr subsetExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr(asSubset(left, right), location);
   }
 
-  static Expr unionExpr(Position position, Expr left, Expr right) {
-    return _createExpr(asUnion(left, right), position);
+  static Expr unionExpr(Expr left, Expr right, [Location location = null]) {
+    return _createExpr(asUnion(left, right), location);
   }
 
   // Nary expressions
-  static Expr dictionaryExpr(Position position, List<Expr> elements) {
-
-    return _createExpr(asDictionary(elements), position);
+  static Expr dictionaryExpr(List<Expr> elements, [Location location = null]) {
+    return _createExpr(asDictionary(elements), location);
   }
 
-  static Expr intervalExpr(Position position, Expr start, Expr step, Expr end) {
-    return _createExpr(asInterval(start, step, end), position);
+  static Expr intervalExpr(Expr start, Expr step, Expr end, [Location location = null]) {
+    return _createExpr(asInterval(start, step, end), location);
   }
 
-  static Expr listExpr(Position position, List<Expr> elements) {
-    return _createExpr(asList(elements), position);
+  static Expr listExpr(List<Expr> elements, [Location location = null]) {
+    return _createExpr(asList(elements), location);
   }
 
-  static Expr matrixExpr(Position position, List<VectorExpr> elements) {
-    return _createExpr(asMatrix(elements), position);
+  static Expr matrixExpr(List<VectorExpr> elements, [Location location = null]) {
+    return _createExpr(asMatrix(elements), location);
   }
 
-  static Expr setExpr(Position position, List<Expr> elements) {
-    return _createExpr(asSet(elements), position);
+  static Expr setExpr(List<Expr> elements, [Location location = null]) {
+    return _createExpr(asSet(elements), location);
   }
 
-  static Expr tupleExpr(Position position, List<Expr> elements) {
-    return _createExpr(asTuple(elements), position);
+  static Expr tupleExpr(List<Expr> elements, [Location location = null]) {
+    return _createExpr(asTuple(elements), location);
   }
 
-  static Expr vectorExpr(Position position, List<Expr> elements) {
-    return _createExpr(asVector(elements), position);
+  static Expr vectorExpr(List<Expr> elements, [Location location = null]) {
+    return _createExpr(asVector(elements), location);
   }
 
   // Nullary expressions 
-  static Expr boolExpr(Position position, String value) {
-    return _createExpr(asBool(value == "true"), position);
+  static Expr boolExpr(String value, [Location location = null]) {
+    return _createExpr(asBool(value == "true"), location);
   }
 
-  static Expr integerExpr(Position position, String value) {
-    return _createExpr(asInteger(value), position);
+  static Expr integerExpr(String value, [Location location = null]) {
+    return _createExpr(asInteger(value), location);
   }
 
-  static Expr realExpr(Position position, String value) {
-    return _createExpr(asReal(value), position);
+  static Expr realExpr(String value, [Location location = null]) {
+    return _createExpr(asReal(value), location);
   }
 
-  static Expr symbolExpr(Position position, String value) {
-    return _createExpr(asSymbol(value), position);
+  static Expr symbolExpr(String value, [Location location = null]) {
+    return _createExpr(asSymbol(value), location);
   }
 
-  static Expr stringExpr(Position position, String value) {
-    return _createExpr(asString(value), position);
+  static Expr stringExpr(String value, [Location location = null]) {
+    return _createExpr(asString(value), location);
   }
 
   // Special expressions 
-  static Expr anonymousFunctionExpr(Position position, TupleExpr args, Expr body) {
-    return _createExpr(asAnonymousFunction(args, body), position);
+  static Expr anonymousFunctionExpr(TupleExpr args, Expr body, [Location location = null]) {
+    return _createExpr(asAnonymousFunction(args, body), location);
   }
 
-  static Expr assignExpr(Position position, SymbolExpr variable, Expr value) {
-    return _createExpr(asAssign(variable, value), position);
+  static Expr assignExpr(SymbolExpr variable, Expr value, [Location location = null]) {
+    return _createExpr(asAssign(variable, value), location);
   }
 
-  static Expr blockExpr(Position position, List<Expr> content) {
-    return _createExpr(asBlock(content), position);
+  static Expr blockExpr(List<Expr> content, [Location location = null]) {
+    return _createExpr(asBlock(content), location);
   }
 
-  static Expr conditionalExpr(Position position, Expr condition, Expr ifBody, Expr elsePart) {
-    return _createExpr(asConditional(condition, ifBody, elsePart), position);
+  static Expr conditionalExpr(Expr condition, Expr ifBody, Expr elsePart, [Location location = null]) {
+    return _createExpr(asConditional(condition, ifBody, elsePart), location);
   }
 
-  static Expr functionExpr(Position position, String name, TupleExpr args, Expr body) {
-    return _createExpr(asFunction(name, args, body), position);
+  static Expr functionExpr(String name, TupleExpr args, Expr body, [Location location = null]) {
+    return _createExpr(asFunction(name, args, body), location);
   }
 
-  static Expr genericExpr(Position position, Expr template, List<Expr> boundaries) {
-    return _createExpr(asGeneric(template, boundaries), position);
+  static Expr genericExpr(Expr template, List<Expr> boundaries, [Location location = null]) {
+    return _createExpr(asGeneric(template, boundaries), location);
   }
 
-  static Expr invokeExpr(Position position, String name, TupleExpr args) {
-    return _createExpr(asInvoke(name, args), position);
+  static Expr invokeExpr(String name, TupleExpr args, [Location location = null]) {
+    return _createExpr(asInvoke(name, args), location);
   }
 
-  static Expr methodExpr(Position position, ObjectExpr target, String name, TupleExpr args) {
-    return _createExpr(asMethod(target, name, args), position);
+  static Expr methodExpr(ObjectExpr target, String name, TupleExpr args, [Location location = null]) {
+    return _createExpr(asMethod(target, name, args), location);
   }
 
-  static Expr nothingExpr(Position position) {
-    return _createExpr(asNothing(), position);
+  static Expr nothingExpr([Location location = null]) {
+    return _createExpr(asNothing(), location);
   }
 
-  static Expr returnExpr(Position position, Expr value) {
-    return _createExpr(asReturn(value), position);
+  static Expr returnExpr(Expr value, [Location location = null]) {
+    return _createExpr(asReturn(value), location);
   }
 
-  static Expr seqExpr(Position position, List<Expr> arguments, Expr body) {
-    return _createExpr(asSeq(arguments, body), position);
+  static Expr seqExpr(List<Expr> arguments, Expr body, [Location location = null]) {
+    return _createExpr(asSeq(arguments, body), location);
   }
 
-  static Expr typedExpr(Position position, Expr key, Expr value) {
-    return _createExpr(asTyped(key, value), position);
+  static Expr typedExpr(Expr key, Expr value, [Location location = null]) {
+    return _createExpr(asTyped(key, value), location);
   }
 
   // Unary expressions 
-  static Expr factorialExpr(Position position, Expr operand) {
-    return _createExpr(factorial(operand), position);
+  static Expr factorialExpr(Expr operand, [Location location = null]) {
+    return _createExpr(factorial(operand), location);
   }
 
-  static Expr negationExpr(Position position, BoolExpr operand) {
-    return _createExpr(negation(operand), position);
+  static Expr negationExpr(BoolExpr operand, [Location location = null]) {
+    return _createExpr(negation(operand), location);
   }
 
-  static Expr negativeExpr(Position position, Expr operand) {
-    return _createExpr(negative(operand), position);
+  static Expr negativeExpr(Expr operand, [Location location = null]) {
+    return _createExpr(negative(operand), location);
   }
 
   // Helpers 
-  static Expr _createExpr(Expr expr, Position position) {
-    expr.position = position;
+  static Expr _createExpr(Expr expr, Location location) {
+    expr.location = location;
     return expr;
   }
 }

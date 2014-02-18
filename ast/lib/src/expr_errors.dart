@@ -13,14 +13,14 @@ class ExprInvocationUndefinedError extends ExprError {
 class ExprUndefinedError extends ExprError {
   ExprUndefinedError(String errorMessage, Expr expr): super(errorMessage, expr);
   
-  String toString() => "Undefined expression: $errorMessage at position $errorPosition";
+  String toString() => "Undefined expression: $errorMessage at location $errorLocation";
 }
 
 /// error for expressions that have no handlers registred 
 class ExprUnhandledError extends ExprError {
   ExprUnhandledError(String errorMessage, Expr expr): super(errorMessage, expr);
   
-  ExprUnhandledError.expr(Expr expr): this("Unhandled expression ${expr} at position ${expr.position}", expr);
+  ExprUnhandledError.expr(Expr expr): this("Unhandled expression ${expr} at location ${expr.location}", expr);
 }
 
 /// error when arguments for expressions are wrong
@@ -32,7 +32,7 @@ class ExprArgumentError extends ExprError {
 abstract class ExprError extends SolvrError {
   ExprError(this.errorMessage, this.expr);
   
-  Position get errorPosition => expr.position;
+  Location get errorLocation => expr.location;
   
   // expr is not final as it might not always be possible to resolve it from deep function calls
   Expr expr;
