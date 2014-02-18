@@ -5,7 +5,7 @@
 part of solvr_parser;
 
 /** [Parser] for the Solvr language */
-class SolvrParser extends Parser<Expr> {
+class SolvrParser extends Parser<Expr, SolvrParser> {
   SolvrParser(String sourceString)
     : super(new SolvrLexer(new StringReader(sourceString)), new SolvrGrammar());
 

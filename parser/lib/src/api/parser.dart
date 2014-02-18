@@ -9,7 +9,7 @@ part of solvr_parser_api;
  *
  * This class should have no reference to the expresssions handled by the parser
  */
-abstract class Parser<E> {
+abstract class Parser<E, P extends Parser<E,P>> {
   Parser(this.lexer, this.grammar) {
     _readTokens = new List<Token>();
     _consumedTokens = new List<Token>();
@@ -118,11 +118,11 @@ abstract class Parser<E> {
   }
 
   /** Creates a [LocationSpan] that starts before the last consumed Token. */
-  LocationSpan span() => new LocationSpan(this, last().location);
+  LocationSpan<E,P> span() => new LocationSpan(this, last().location);
   
   static final _logger = LoggerFactory.getLoggerFor(Parser);
   List<Token> _readTokens, _consumedTokens;
   Lexer lexer;
   int _returnedTokens;
-  Grammar grammar;
+  Grammar<E,P> grammar;
 }

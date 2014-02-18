@@ -4,10 +4,10 @@
 
 part of solvr_parser_api;
 
-abstract class Grammar {
-   PrefixParselet getPrefixParselet(TokenType type);
+abstract class Grammar<E, P extends Parser<E>> {
+   PrefixParselet<E,P> getPrefixParselet(TokenType type);
 
-   InfixParselet getInfixParselet(TokenType type);
+   InfixParselet<E,P> getInfixParselet(TokenType type);
 
    /** Get precedence of token. */
    int getPrecedence(Token token);

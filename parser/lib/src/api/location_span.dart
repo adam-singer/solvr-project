@@ -5,13 +5,13 @@
 part of solvr_parser_api;
 
 /** Creates a location that spans a range of Tokens. */
-class LocationSpan {
+class LocationSpan<E,P extends Parser<E,P>> {
   LocationSpan(this._parser, this._start);
 
   Location end() {
     return _start.union(_parser.last().location);
   }
   
-  final Parser _parser;
+  final P _parser;
   final Location _start;
 }
