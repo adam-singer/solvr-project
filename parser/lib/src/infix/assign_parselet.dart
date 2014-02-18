@@ -37,6 +37,6 @@ class AssignParselet implements InfixParselet {
     throw new ParserError('assignment expression error for expression ${left.toString()}');
   }
   
-  final int precedence = Precedence.ASSIGNMENT;
+  final int precedence = SolvrPrecedence.ASSIGNMENT;
   static final _logger = LoggerFactory.getLoggerFor(AssignParselet);
 }

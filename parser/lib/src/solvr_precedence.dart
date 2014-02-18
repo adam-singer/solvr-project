@@ -5,7 +5,7 @@
 part of solvr_parser;
 
 /** Precedence values, ordered by increasing precedence */
-class Precedence {
+class SolvrPrecedence {
   static final int ASSIGNMENT  = 1;  // = : => | in
   static final int EQUALITY    = 2;  // == != is is!
   static final int LOGICAL_OR  = 3;  // ||

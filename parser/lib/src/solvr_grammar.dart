@@ -33,49 +33,49 @@ class SolvrGrammar implements Grammar<Expr, SolvrParser> {
   }
   
   _registerUnaryPrefixExpressions() {
-    _addUnaryPrefixExpression(SolvrTokens.MINUS, Precedence.PREFIX);
-    _addUnaryPrefixExpression(SolvrTokens.BANG, Precedence.LOGICAL_NOT);
+    _addUnaryPrefixExpression(SolvrTokens.MINUS, SolvrPrecedence.PREFIX);
+    _addUnaryPrefixExpression(SolvrTokens.BANG, SolvrPrecedence.LOGICAL_NOT);
     // handle numbers with no leading zero fx .1, 0.11 etc.
-    _addUnaryPrefixExpression(SolvrTokens.DOT, Precedence.LITERAL);
+    _addUnaryPrefixExpression(SolvrTokens.DOT, SolvrPrecedence.LITERAL);
   }
   
   _registerUnaryPostfixExpressions() {
     // "!" is both prefix, infix and postfix (i.e. negation and faculty function)
-    _addUnaryPostfixExpression(SolvrTokens.BANG, Precedence.POSTFIX);
+    _addUnaryPostfixExpression(SolvrTokens.BANG, SolvrPrecedence.POSTFIX);
   }
   
   _registerInfixLeftAssociativeExpressions() {
-    _addInfixLeftAssociativeExpression(SolvrTokens.ASTERISK, Precedence.PRODUCT);
-    _addInfixLeftAssociativeExpression(SolvrTokens.BACK_SLASH, Precedence.SUM);
-    _addInfixLeftAssociativeExpression(SolvrTokens.COLON, Precedence.ASSIGNMENT);
-    _addInfixLeftAssociativeExpression(SolvrTokens.DOT, Precedence.PRODUCT);
-    _addInfixLeftAssociativeExpression(SolvrTokens.DOTS, Precedence.INTERVAL);
-    _addInfixLeftAssociativeExpression(SolvrTokens.EQUAL, Precedence.EQUALITY);
-    _addInfixLeftAssociativeExpression(SolvrTokens.GREATER_THAN, Precedence.COMPARISON);
-    _addInfixLeftAssociativeExpression(SolvrTokens.GREATER_THAN_OR_EQUAL, Precedence.COMPARISON);
-    _addInfixLeftAssociativeExpression(SolvrTokens.INTERSECT, Precedence.PRODUCT);
-    _addInfixLeftAssociativeExpression(SolvrTokens.INSTANCE_OF, Precedence.EQUALITY);
-    _addInfixLeftAssociativeExpression(SolvrTokens.NOT_INSTANCE_OF, Precedence.EQUALITY);
-    _addInfixLeftAssociativeExpression(SolvrTokens.IN, Precedence.ASSIGNMENT);
-    _addInfixLeftAssociativeExpression(SolvrTokens.INTERSECT, Precedence.PRODUCT);
-    _addInfixLeftAssociativeExpression(SolvrTokens.LESS_THAN, Precedence.COMPARISON);
-    _addInfixLeftAssociativeExpression(SolvrTokens.LESS_THAN_OR_EQUAL, Precedence.COMPARISON);
-    _addInfixLeftAssociativeExpression(SolvrTokens.MINUS, Precedence.SUM);
-    _addInfixLeftAssociativeExpression(SolvrTokens.NOT_EQUAL, Precedence.EQUALITY);
-    _addInfixLeftAssociativeExpression(SolvrTokens.NOT_SUBSET, Precedence.COMPARISON);
-    _addInfixLeftAssociativeExpression(SolvrTokens.PIPE, Precedence.ASSIGNMENT);
-    _addInfixLeftAssociativeExpression(SolvrTokens.PLUS, Precedence.SUM);
-    _addInfixLeftAssociativeExpression(SolvrTokens.SLASH, Precedence.PRODUCT);
-    _addInfixLeftAssociativeExpression(SolvrTokens.SUBSET, Precedence.COMPARISON);
-    _addInfixLeftAssociativeExpression(SolvrTokens.UNION, Precedence.SUM);
-    _addInfixLeftAssociativeExpression(SolvrTokens.ASTERISK, Precedence.PRODUCT);
+    _addInfixLeftAssociativeExpression(SolvrTokens.ASTERISK, SolvrPrecedence.PRODUCT);
+    _addInfixLeftAssociativeExpression(SolvrTokens.BACK_SLASH, SolvrPrecedence.SUM);
+    _addInfixLeftAssociativeExpression(SolvrTokens.COLON, SolvrPrecedence.ASSIGNMENT);
+    _addInfixLeftAssociativeExpression(SolvrTokens.DOT, SolvrPrecedence.PRODUCT);
+    _addInfixLeftAssociativeExpression(SolvrTokens.DOTS, SolvrPrecedence.INTERVAL);
+    _addInfixLeftAssociativeExpression(SolvrTokens.EQUAL, SolvrPrecedence.EQUALITY);
+    _addInfixLeftAssociativeExpression(SolvrTokens.GREATER_THAN, SolvrPrecedence.COMPARISON);
+    _addInfixLeftAssociativeExpression(SolvrTokens.GREATER_THAN_OR_EQUAL, SolvrPrecedence.COMPARISON);
+    _addInfixLeftAssociativeExpression(SolvrTokens.INTERSECT, SolvrPrecedence.PRODUCT);
+    _addInfixLeftAssociativeExpression(SolvrTokens.INSTANCE_OF, SolvrPrecedence.EQUALITY);
+    _addInfixLeftAssociativeExpression(SolvrTokens.NOT_INSTANCE_OF, SolvrPrecedence.EQUALITY);
+    _addInfixLeftAssociativeExpression(SolvrTokens.IN, SolvrPrecedence.ASSIGNMENT);
+    _addInfixLeftAssociativeExpression(SolvrTokens.INTERSECT, SolvrPrecedence.PRODUCT);
+    _addInfixLeftAssociativeExpression(SolvrTokens.LESS_THAN, SolvrPrecedence.COMPARISON);
+    _addInfixLeftAssociativeExpression(SolvrTokens.LESS_THAN_OR_EQUAL, SolvrPrecedence.COMPARISON);
+    _addInfixLeftAssociativeExpression(SolvrTokens.MINUS, SolvrPrecedence.SUM);
+    _addInfixLeftAssociativeExpression(SolvrTokens.NOT_EQUAL, SolvrPrecedence.EQUALITY);
+    _addInfixLeftAssociativeExpression(SolvrTokens.NOT_SUBSET, SolvrPrecedence.COMPARISON);
+    _addInfixLeftAssociativeExpression(SolvrTokens.PIPE, SolvrPrecedence.ASSIGNMENT);
+    _addInfixLeftAssociativeExpression(SolvrTokens.PLUS, SolvrPrecedence.SUM);
+    _addInfixLeftAssociativeExpression(SolvrTokens.SLASH, SolvrPrecedence.PRODUCT);
+    _addInfixLeftAssociativeExpression(SolvrTokens.SUBSET, SolvrPrecedence.COMPARISON);
+    _addInfixLeftAssociativeExpression(SolvrTokens.UNION, SolvrPrecedence.SUM);
+    _addInfixLeftAssociativeExpression(SolvrTokens.ASTERISK, SolvrPrecedence.PRODUCT);
   }
   
   _registerInfixRightAssociativeExpressions() {
     // infix right operators
-    _addInfixRightAssociativeExpression(SolvrTokens.CARET, Precedence.EXPONENT);
-    _addInfixRightAssociativeExpression(SolvrTokens.LOGICAL_AND, Precedence.LOGICAL_AND);
-    _addInfixRightAssociativeExpression(SolvrTokens.LOGICAL_OR, Precedence.LOGICAL_OR);
+    _addInfixRightAssociativeExpression(SolvrTokens.CARET, SolvrPrecedence.EXPONENT);
+    _addInfixRightAssociativeExpression(SolvrTokens.LOGICAL_AND, SolvrPrecedence.LOGICAL_AND);
+    _addInfixRightAssociativeExpression(SolvrTokens.LOGICAL_OR, SolvrPrecedence.LOGICAL_OR);
   }
   
   _addPostfixExpressionParselet(TokenType token, PrefixParselet parselet) {
