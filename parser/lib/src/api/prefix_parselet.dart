@@ -5,6 +5,6 @@
 part of solvr_parser_api;
 
 /** A [PrefixParselet] parses tokens that appears at the beginning of an expression. */
-abstract class PrefixParselet<E, P extends Parser<E>> {
+abstract class PrefixParselet<E, P extends Parser<E,P>> {
   E parse(P parser, Token token);
 }

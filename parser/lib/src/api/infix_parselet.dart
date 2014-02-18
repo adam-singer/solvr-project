@@ -11,7 +11,7 @@ part of solvr_parser_api;
  * expression with nothing on the left, followed by the postfix operator and its 
  * operand.
  */
-abstract class InfixParselet<E, P extends Parser<E>> {
+abstract class InfixParselet<E, P extends Parser<E,P>> {
   E parse(P parser, E left, Token token);
 
   int get precedence;

@@ -4,7 +4,7 @@
 
 part of solvr_parser_api;
 
-abstract class Grammar<E, P extends Parser<E>> {
+abstract class Grammar<E, P extends Parser<E,P>> {
    PrefixParselet<E,P> getPrefixParselet(TokenType type);
 
    InfixParselet<E,P> getInfixParselet(TokenType type);
