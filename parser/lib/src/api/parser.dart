@@ -2,21 +2,37 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-part of solvr_parser;
+part of solvr_parser_api;
 
 /**
  * Generic super class for arbitrary lookahead recusive decent parser.
  *
  * This class should have no reference to the expresssions handled by the parser
  */
-abstract class Parser {
+abstract class Parser<E> {
   Parser(this.lexer, this.grammar) {
     _readTokens = new List<Token>();
     _consumedTokens = new List<Token>();
     _returnedTokens = 0;
   }
+  
+  /** Parse entire module */
+  List<E> parseModule();
 
- /** Consumes next token if it matches the expected else error is thrown */
+  /**
+  * Parse a single statement and expression. Generally everything that cannot directly take part
+  * of or impacts automatic simplification, such as if-else statements, are considered a
+  * statement.
+  */
+  E parse();
+  
+  /** The number of tokens consumed */
+  int get consumedTokens => _consumedTokens.length;
+  
+  /** The number of tokens returned */
+  int get returnedTokens => _returnedTokens;
+
+  /** Consumes next token if it matches the expected else error is thrown */
   Token consumeExpected(TokenType expected) {
     Token token = current();
     if(token.type != expected) throw new ParserError("Expected token [${expected.toString()}] but found [${token.value}]");
@@ -26,7 +42,7 @@ abstract class Parser {
   }
 
   /** Consumes next tokens if they matches the list of expected tokens else error is thrown */
-   consumeAllExpected(List<TokenType> expected) => expected.forEach(consumeExpected);
+  consumeAllExpected(List<TokenType> expected) => expected.forEach(consumeExpected);
 
   /** Consumes and return true if the next token matches the expected, else false */
    bool consumeMatch(TokenType token) {
@@ -101,8 +117,8 @@ abstract class Parser {
     return _consumedTokens[(offset - 1)];
   }
 
-  /** Creates a new PositionSpan that starts before the last consumed Token. */
-  PositionSpan span() => new PositionSpan(this, last().position);
+  /** Creates a [LocationSpan] that starts before the last consumed Token. */
+  LocationSpan span() => new LocationSpan(this, last().location);
   
   static final _logger = LoggerFactory.getLoggerFor(Parser);
   List<Token> _readTokens, _consumedTokens;

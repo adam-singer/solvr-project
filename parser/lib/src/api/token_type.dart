@@ -4,7 +4,11 @@
 
 part of solvr_parser_api;
 
-/** Read a string as token's one at a time */
-abstract class Lexer {
-  Token readToken();
+/** A legal [Token] in the language */
+class TokenType {
+  const TokenType(this.name);
+
+  String toString() => name;
+
+  final String name;
 }

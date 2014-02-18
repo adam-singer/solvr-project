@@ -10,35 +10,35 @@ class NameParselet implements PrefixParselet {
     _logger.debug('parsing: ${token.value}');
     final String name = token.value;
 
-    if(parser.consumeImmediateMatch(TokenType.LEFT_PAREN)) {
+    if(parser.consumeImmediateMatch(SolvrTokens.LEFT_PAREN)) {
       var args = parser.parseTuple();
       if(!isTuple(args)) throw new ParserError('expected tuple found $args');
 
       // check to see if its a invocation or a function declaration
-      if(parser.lookAheadFor(TokenType.LEFT_BRACE)) {
+      if(parser.lookAheadFor(SolvrTokens.LEFT_BRACE)) {
         var body = parser.parseBlock();
-        return Expr.functionExpr(token.position, name, args, body);
+        return Expr.functionExpr(name, args, body, token.location);
       } else {
         // A symbol followed immediatly by a tuple such as (), (expr), (expr1, expr2, ...)
         // is treated as a function call
-        return parser.checkForProduct(Expr.invokeExpr(token.position, name, args));
+        return parser.checkForProduct(Expr.invokeExpr(name, args, token.location));
       }
     } else {
       var res = _makeSymbol(token);
 
       if(parser.isObjectType(res)) {
-        if(parser.consumeMatch(TokenType.LESS_THAN)) {
+        if(parser.consumeMatch(SolvrTokens.LESS_THAN)) {
           res = _parseGeneric(parser, res);
           _logger.debug('parsed generic expression $res');
         }
         // check to see if we have a typed expression like
         // - String str...
         // - List<String> f(x)...
-        if(parser.lookAheadFor(TokenType.NAME)) {
+        if(parser.lookAheadFor(SolvrTokens.NAME)) {
           var span = parser.span();
           Expr declaration = parser.parseExpression();
 
-          res = Expr.typedExpr(span.end(), res, declaration);
+          res = Expr.typedExpr(res, declaration, span.end());
           _logger.debug('parsed typed expression $res');
         }
       } else {
@@ -63,7 +63,7 @@ class NameParselet implements PrefixParselet {
     // - all symbols involved are known object types
     var boundaries = new List<Expr>();
 
-    if(!parser.lookAheadFor(TokenType.NAME)) {
+    if(!parser.lookAheadFor(SolvrTokens.NAME)) {
       throw new ParserError('generic expression name error for token ${parser.current()}');
     }
     var boundary = _makeSymbol(parser.consume());
@@ -71,21 +71,21 @@ class NameParselet implements PrefixParselet {
       throw new ParserError('unknown generic boundary object $boundary');
     }
 
-    if(parser.consumeMatch(TokenType.LESS_THAN)) {
+    if(parser.consumeMatch(SolvrTokens.LESS_THAN)) {
       boundaries.add(_parseGeneric(parser, boundary));
     } else {
       boundaries.add(boundary);
     }
-    parser.consumeExpected(TokenType.GREATER_THAN);
+    parser.consumeExpected(SolvrTokens.GREATER_THAN);
 
     if(boundaries.isEmpty) {
       throw new ParserError('generic expressions must have boundaries ${parser.current()}');
     }
 
-    return Expr.genericExpr(span.end(), template, boundaries);
+    return Expr.genericExpr(template, boundaries, span.end());
   }
 
-  SymbolExpr _makeSymbol(Token token) => Expr.symbolExpr(token.position, token.value);
+  SymbolExpr _makeSymbol(Token token) => Expr.symbolExpr(token.value, token.location);
   
   static final _logger = LoggerFactory.getLoggerFor(NameParselet);
 }

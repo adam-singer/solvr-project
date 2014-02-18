@@ -5,9 +5,7 @@
 part of solvr_parser;
 
 /** The [Token] types defined for the Solvr language */
-class TokenType {
-  const TokenType(this.name);
-
+class SolvrTokens {
   // grouping
   static const COMMA = const TokenType("comma");
   static const COLON = const TokenType("colon");
@@ -74,8 +72,4 @@ class TokenType {
   static const RETURN = const TokenType("return");
   static const STRING = const TokenType("string");
   static const SUBSTITUTION = const TokenType("substitution");
-
-  String toString() => name;
-
-  final String name;
 }

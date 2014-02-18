@@ -4,7 +4,7 @@
 
 part of solvr_parser_api;
 
-/** Read a string as token's one at a time */
-abstract class Lexer {
-  Token readToken();
+/** A [PrefixParselet] parses tokens that appears at the beginning of an expression. */
+abstract class PrefixParselet<E, P extends Parser<E>> {
+  E parse(P parser, Token token);
 }

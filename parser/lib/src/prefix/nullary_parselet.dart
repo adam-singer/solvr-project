@@ -10,21 +10,21 @@ class NullaryParselet implements PrefixParselet {
     _logger.debug("parsing: ${token.value}");
 
     switch(token.type) {
-    case TokenType.BOOL:
-      return Expr.boolExpr(token.position, token.value);
+    case SolvrTokens.BOOL:
+      return Expr.boolExpr(token.value, token.location);
 
-    case TokenType.NUMBER:
+    case SolvrTokens.NUMBER:
       var number;
       if(token.value.contains(r".")) {
-        number = Expr.realExpr(token.position, token.value);
+        number = Expr.realExpr(token.value, token.location);
       } else {
-        number = Expr.integerExpr(token.position, token.value);
+        number = Expr.integerExpr(token.value, token.location);
       }
       // check for cases such as 2(x+3)
       return parser.checkForProduct(number);
 
-    case TokenType.STRING:
-      return Expr.stringExpr(token.position, token.value);
+    case SolvrTokens.STRING:
+      return Expr.stringExpr(token.value, token.location);
 
     default:
       throw new ParserError("nullary expression error for ${token.toString()}");

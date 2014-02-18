@@ -5,38 +5,34 @@
 part of solvr_parser;
 
 /** [Parser] for the Solvr language */
-class SolvrParser extends Parser {
+class SolvrParser extends Parser<Expr> {
   SolvrParser(String sourceString)
     : super(new SolvrLexer(new StringReader(sourceString)), new SolvrGrammar());
 
-  /** Parse entire module */
+  @override 
   List<Expr> parseModule() {
     List<Expr> exprs = [];
 
-    while (!lookAheadFor(TokenType.EOF)) {
+    while (!lookAheadFor(SolvrTokens.EOF)) {
       Expr expr = parse();
       exprs.add(expr);
-      if (!lookAheadFor(TokenType.EOF)) {
-        consumeExpected(TokenType.LINE);
+      if (!lookAheadFor(SolvrTokens.EOF)) {
+        consumeExpected(SolvrTokens.LINE);
       }
     }
     return exprs;
   }
 
-  /**
-  * Parse a single statement and expression. Generally everything that cannot directly take part
-  * of or impacts automatic simplification, such as if-else statements, are considered a
-  * statement.
-  */
+  @override 
   Expr parse() {
-    if (lookAheadFor(TokenType.IF)) return parseIf();
-    if (lookAheadFor(TokenType.RETURN)) return parseReturn();
+    if (lookAheadFor(SolvrTokens.IF)) return parseIf();
+    if (lookAheadFor(SolvrTokens.RETURN)) return parseReturn();
 
     Expr expr = parseExpression();
 
     // check all tokens are consumed (subtract one as EOF token is never consumed)
-    var expected = _returnedTokens - 1;
-    if(_consumedTokens.length != expected) throw new ParserError("only consumed ${_consumedTokens.length} of ${expected} tokens");
+    var expected = returnedTokens - 1;
+    if(consumedTokens != expected) throw new ParserError("only consumed ${consumedTokens} of ${expected} tokens");
 
     // fix erronous precedence structure caused by injected expressions
     if(!_tainted.isEmpty) {
@@ -71,9 +67,9 @@ class SolvrParser extends Parser {
 
   /** Handle missing "multipication" in expressions such as 2(x+3), 3!(3+2), (2+3)(3+4). */
   Expr checkForProduct(Expr expr) {
-    if(immediateMatch(TokenType.LEFT_PAREN) || immediateMatch(TokenType.NAME)) {
+    if(immediateMatch(SolvrTokens.LEFT_PAREN) || immediateMatch(SolvrTokens.NAME)) {
       _logger.debug("product balancing $expr");
-      var taintedExpr = Expr.productExpr(null, expr, parseExpression());
+      var taintedExpr = Expr.productExpr(expr, parseExpression());
       _tainted.add(taintedExpr);
       return taintedExpr;
     }
@@ -86,7 +82,7 @@ class SolvrParser extends Parser {
       _logger.debug("and balancing $expr");
       var clone = expr.clone as RelationalExpr;
       clone.left = (expr.left as RelationalExpr).right;
-      var taintedExpr = Expr.andExpr(null, expr.left, clone);
+      var taintedExpr = Expr.andExpr(expr.left, clone);
       _tainted.add(taintedExpr);
       return taintedExpr;
     } 
@@ -99,65 +95,65 @@ class SolvrParser extends Parser {
    * Expects that the starting left ( has already been consumed
    */
   TupleExpr parseTuple() {
-    var position = span();
+    var locationSpan = span();
     var elements = new List();
 
-    if (!lookAheadFor(TokenType.RIGHT_PAREN)) {
+    if (!lookAheadFor(SolvrTokens.RIGHT_PAREN)) {
       do {
         elements.add(parseExpression());
-      } while (consumeMatch(TokenType.COMMA));
+      } while (consumeMatch(SolvrTokens.COMMA));
     }
-    consumeExpected(TokenType.RIGHT_PAREN);
+    consumeExpected(SolvrTokens.RIGHT_PAREN);
 
-    return Expr.tupleExpr(position.end(), elements);
+    return Expr.tupleExpr(elements, locationSpan.end());
   }
 
   /** Parse conditional expressions */
   Expr parseIf() {
-    consumeAllExpected([TokenType.IF, TokenType.LEFT_PAREN]);
+    consumeAllExpected([SolvrTokens.IF, SolvrTokens.LEFT_PAREN]);
     Expr ifCondition = parseTuple();
     Expr ifBody = parseBlock();
 
-    var position = span();
-    Expr elseExpr = Expr.nothingExpr(last().position);
-    if(consumeMatch(TokenType.ELSE)) {
-      if(lookAheadFor(TokenType.IF)) {
+    var locationSpan = span();
+    Expr elseExpr = Expr.nothingExpr(last().location);
+    if(consumeMatch(SolvrTokens.ELSE)) {
+      if(lookAheadFor(SolvrTokens.IF)) {
         elseExpr = parseIf();
       } else {
         elseExpr = parseBlock();
       }
     }
-    return Expr.conditionalExpr(position.end(), ifCondition, ifBody, elseExpr);
+    return Expr.conditionalExpr(ifCondition, ifBody, elseExpr, locationSpan.end());
   }
 
   /** Parse block */
   Expr parseBlock() {
-    var position = span();
+    var locationSpan = span();
     List<Expr> exprs = [];
 
-    consumeExpected(TokenType.LEFT_BRACE);
+    consumeExpected(SolvrTokens.LEFT_BRACE);
     do {
       exprs.add(parse());
-      if(consumeMatch(TokenType.RIGHT_BRACE)) {
+      if(consumeMatch(SolvrTokens.RIGHT_BRACE)) {
         break;
       }
     } while(true);
-    return Expr.blockExpr(position.end(), exprs);
+    return Expr.blockExpr(exprs, locationSpan.end());
   }
 
   /** Parse return statements */
   Expr parseReturn() {
-    var position = span();
-    consumeExpected(TokenType.RETURN);
+    var locationSpan = span();
+    consumeExpected(SolvrTokens.RETURN);
 
     Expr value;
-    if (lookAheadAny([TokenType.LINE, TokenType.RIGHT_BRACE])) {
+    if (lookAheadAny([SolvrTokens.LINE, SolvrTokens.RIGHT_BRACE])) {
       // A return with nothing after it
-      value = Expr.nothingExpr(last().position);
+      value = Expr.nothingExpr(last().location);
     } else {
       value = parseExpression();
     }
-    return Expr.returnExpr(position.end(), value);
+    return Expr.returnExpr(value, locationSpan.end());
   }
 
   bool isObjectType(SymbolExpr symbol) => _objectTypes.contains(symbol.value);

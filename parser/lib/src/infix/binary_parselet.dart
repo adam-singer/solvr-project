@@ -19,93 +19,93 @@ class BinaryParselet implements InfixParselet {
     Expr right = parser.parseExpression(rightPrecedence);
 
     switch(token.type) {
-    case TokenType.ASTERISK:
-      return Expr.productExpr(token.position, left, right);
+    case SolvrTokens.ASTERISK:
+      return Expr.productExpr(left, right, token.location);
 
-    case TokenType.BACK_SLASH:
-      return Expr.complementExpr(token.position, left, right);
+    case SolvrTokens.BACK_SLASH:
+      return Expr.complementExpr(left, right, token.location);
 
-    case TokenType.COLON:
-      return Expr.entryExpr(token.position, left, right);
+    case SolvrTokens.COLON:
+      return Expr.entryExpr(left, right, token.location);
 
-    case TokenType.CARET:
-      return Expr.powerExpr(token.position, left, right);
+    case SolvrTokens.CARET:
+      return Expr.powerExpr(left, right, token.location);
 
-    case TokenType.DOT:
-      return Expr.dotExpr(token.position, left, right);
+    case SolvrTokens.DOT:
+      return Expr.dotExpr(left, right, token.location);
 
-    case TokenType.DOTS:
+    case SolvrTokens.DOTS:
       Expr step = null;
-      if(parser.consumeMatch(TokenType.DOTS)) {
+      if(parser.consumeMatch(SolvrTokens.DOTS)) {
         // Handle case where a step is invovled i.e. 1..2..10
         step = right;
         right = parser.parseExpression();
       }
       if(step == null) {
-        step = Expr.nothingExpr(parser.last().position);
+        step = Expr.nothingExpr(parser.last().location);
       }
-      return Expr.intervalExpr(token.position, left, step, right);
+      return Expr.intervalExpr(left, step, right, token.location);
 
-    case TokenType.EQUAL:
-      return Expr.equalExpr(token.position, left, right);
+    case SolvrTokens.EQUAL:
+      return Expr.equalExpr(left, right, token.location);
 
-    case TokenType.GREATER_THAN:
-      var greaterThan = Expr.greaterThanExpr(token.position, left, right);
+    case SolvrTokens.GREATER_THAN:
+      var greaterThan = Expr.greaterThanExpr(left, right, token.location);
       return parser.checkForAnd(greaterThan);
 
-    case TokenType.GREATER_THAN_OR_EQUAL:
-      var greaterThanOrEqual = Expr.greaterThanOrEqualExpr(token.position, left, right);
+    case SolvrTokens.GREATER_THAN_OR_EQUAL:
+      var greaterThanOrEqual = Expr.greaterThanOrEqualExpr(left, right, token.location);
       return parser.checkForAnd(greaterThanOrEqual);
 
-    case TokenType.IN:
-      return Expr.bindExpr(token.position, left, right);
+    case SolvrTokens.IN:
+      return Expr.bindExpr(left, right, token.location);
 
-    case TokenType.INSTANCE_OF:
-      return Expr.instanceOfExpr(token.position, left, right);
+    case SolvrTokens.INSTANCE_OF:
+      return Expr.instanceOfExpr(left, right, token.location);
 
-    case TokenType.INTERSECT:
-      return Expr.intersectExpr(token.position, left, right);
+    case SolvrTokens.INTERSECT:
+      return Expr.intersectExpr(left, right, token.location);
 
-    case TokenType.LESS_THAN:
-      var lessThan = Expr.lessThanExpr(token.position, left, right);
+    case SolvrTokens.LESS_THAN:
+      var lessThan = Expr.lessThanExpr(left, right, token.location);
       return parser.checkForAnd(lessThan);
 
-    case TokenType.LESS_THAN_OR_EQUAL:
-      var lessThanOrEqual = Expr.lessThanOrEqualExpr(token.position, left, right);
+    case SolvrTokens.LESS_THAN_OR_EQUAL:
+      var lessThanOrEqual = Expr.lessThanOrEqualExpr(left, right, token.location);
       return parser.checkForAnd(lessThanOrEqual);
 
-    case TokenType.LOGICAL_AND:
-      return Expr.andExpr(token.position, left, right);
+    case SolvrTokens.LOGICAL_AND:
+      return Expr.andExpr(left, right, token.location);
 
-    case TokenType.LOGICAL_OR:
-      return Expr.orExpr(token.position, left, right);
+    case SolvrTokens.LOGICAL_OR:
+      return Expr.orExpr(left, right, token.location);
 
-    case TokenType.MINUS:
-      return Expr.differenceExpr(token.position, left, right);
+    case SolvrTokens.MINUS:
+      return Expr.differenceExpr(left, right, token.location);
 
-    case TokenType.NOT_EQUAL:
-      return Expr.notEqualExpr(token.position, left, right);
+    case SolvrTokens.NOT_EQUAL:
+      return Expr.notEqualExpr(left, right, token.location);
 
-    case TokenType.NOT_SUBSET:
-      return Expr.notSubsetExpr(token.position, left, right);
+    case SolvrTokens.NOT_SUBSET:
+      return Expr.notSubsetExpr(left, right, token.location);
 
-    case TokenType.NOT_INSTANCE_OF:
-      return Expr.notInstanceOfExpr(token.position, left, right);
+    case SolvrTokens.NOT_INSTANCE_OF:
+      return Expr.notInstanceOfExpr(left, right, token.location);
 
-    case TokenType.PIPE:
-      return Expr.guardExpr(token.position, left, right);
+    case SolvrTokens.PIPE:
+      return Expr.guardExpr(left, right, token.location);
 
-    case TokenType.PLUS:
-      return Expr.sumExpr(token.position, left, right);
+    case SolvrTokens.PLUS:
+      return Expr.sumExpr(left, right, token.location);
 
-    case TokenType.SLASH:
-      return Expr.fractionExpr(token.position, left, right);
+    case SolvrTokens.SLASH:
+      return Expr.fractionExpr(left, right, token.location);
 
-    case TokenType.SUBSET:
-      return Expr.subsetExpr(token.position, left, right);
+    case SolvrTokens.SUBSET:
+      return Expr.subsetExpr(left, right, token.location);
 
-    case TokenType.UNION:
-      return Expr.unionExpr(token.position, left, right);
+    case SolvrTokens.UNION:
+      return Expr.unionExpr(left, right, token.location);
 
     default:
       throw new ParserError('binary expression error for operator ${token.toString()}');

@@ -20,7 +20,7 @@ class SolvrLexer implements Lexer {
 
     if(c == "") {
       // add EOF token, so the parser doesn't have to worry about running out of tokens.
-      return _makeToken(TokenType.EOF);
+      return _makeToken(SolvrTokens.EOF);
     } else if (_isName(c)) {
       return _readName();
     } else if (_isPunctuator(c)) {
@@ -56,7 +56,7 @@ class SolvrLexer implements Lexer {
     if(_reservedWords.containsKey(_read)) {
       return _makeReservedToken();
     }
-    return _makeToken(TokenType.NAME);
+    return _makeToken(SolvrTokens.NAME);
   }
 
   Token _readNumber() {
@@ -69,7 +69,7 @@ class SolvrLexer implements Lexer {
       }
       _advance();
     }
-    return _makeToken(TokenType.NUMBER);
+    return _makeToken(SolvrTokens.NUMBER);
   }
 
   Token _readPunctuator() {
@@ -104,7 +104,7 @@ class SolvrLexer implements Lexer {
         break;
 
       case '"':
-        return _makeTokenOf(TokenType.STRING, escaped.toString());
+        return _makeTokenOf(SolvrTokens.STRING, escaped.toString());
 
       case '\0': throw new ParserError("Unterminated string.");
 
@@ -128,14 +128,14 @@ class SolvrLexer implements Lexer {
   Token _makeToken(TokenType type) => _makeTokenOf(type, _read);
 
   Token _makeTokenOf(TokenType type, String content) {
-    Token token = new Token(content, type, _currentPosition, _isWhiteSpace(_last));
+    Token token = new Token(content, type, _currentLocation, _isWhiteSpace(_last));
     _markStartingPoint();
     _logger.debug("read token ${token.toString()}");
     return token;
   }
 
-  Position get _currentPosition {
-    return new Position(_startCol, _startLine, _col, _line);
+  Location get _currentLocation {
+    return new Location(_startCol, _startLine, _col, _line);
   }
 
   _markStartingPoint() {
@@ -196,7 +196,7 @@ class SolvrLexer implements Lexer {
     return _text.peek(distance);
   }
 
-  Error _error() => new ParserError("illegal token: ${_read} at ${_currentPosition} in source [${_text}]");
+  Error _error() => new ParserError("illegal token: ${_read} at ${_currentLocation} in source [${_text}]");
 
   // token follow set (i.e. possible tokens that can follow other tokens)
   static Map<String, List<String>> _followSet;
@@ -219,66 +219,66 @@ class SolvrLexer implements Lexer {
   static Map<String, TokenType> _reservedWords =
     const {
      // grouping
-     ":": TokenType.COLON,
-     ",": TokenType.COMMA,
-     ".": TokenType.DOT,
-     "..": TokenType.DOTS,
-     "{": TokenType.LEFT_BRACE,
-     "[": TokenType.LEFT_BRACKET,
-     "(": TokenType.LEFT_PAREN,
-     "|": TokenType.PIPE,
-     "&": TokenType.REFERENCE,
-     "}": TokenType.RIGHT_BRACE,
-     "]": TokenType.RIGHT_BRACKET,
-     ")": TokenType.RIGHT_PAREN,
-     ";": TokenType.SEMI_COLON,
+     ":": SolvrTokens.COLON,
+     ",": SolvrTokens.COMMA,
+     ".": SolvrTokens.DOT,
+     "..": SolvrTokens.DOTS,
+     "{": SolvrTokens.LEFT_BRACE,
+     "[": SolvrTokens.LEFT_BRACKET,
+     "(": SolvrTokens.LEFT_PAREN,
+     "|": SolvrTokens.PIPE,
+     "&": SolvrTokens.REFERENCE,
+     "}": SolvrTokens.RIGHT_BRACE,
+     "]": SolvrTokens.RIGHT_BRACKET,
+     ")": SolvrTokens.RIGHT_PAREN,
+     ";": SolvrTokens.SEMI_COLON,
 
      // math operators
-     "*": TokenType.ASTERISK,
-     "!": TokenType.BANG,
-     "^": TokenType.CARET,
-     "-": TokenType.MINUS,
-     "+": TokenType.PLUS,
-     "/": TokenType.SLASH,
+     "*": SolvrTokens.ASTERISK,
+     "!": SolvrTokens.BANG,
+     "^": SolvrTokens.CARET,
+     "-": SolvrTokens.MINUS,
+     "+": SolvrTokens.PLUS,
+     "/": SolvrTokens.SLASH,
 
      // logical operators
-     "&&": TokenType.LOGICAL_AND,
-     "||": TokenType.LOGICAL_OR,
+     "&&": SolvrTokens.LOGICAL_AND,
+     "||": SolvrTokens.LOGICAL_OR,
 
      // object operators
-     "class": TokenType.CLASS,
-     "extends": TokenType.EXTENDS,
-     "in": TokenType.IN,
-     "is": TokenType.INSTANCE_OF,
-     "implements": TokenType.IMPLEMENTS,
-     "interface": TokenType.INTERFACE,
-     "new": TokenType.NEW,
-     "is!": TokenType.NOT_INSTANCE_OF,
+     "class": SolvrTokens.CLASS,
+     "extends": SolvrTokens.EXTENDS,
+     "in": SolvrTokens.IN,
+     "is": SolvrTokens.INSTANCE_OF,
+     "implements": SolvrTokens.IMPLEMENTS,
+     "interface": SolvrTokens.INTERFACE,
+     "new": SolvrTokens.NEW,
+     "is!": SolvrTokens.NOT_INSTANCE_OF,
 
      // comparison operators
-     "==": TokenType.EQUAL,
-     "<": TokenType.LESS_THAN,
-     "<=": TokenType.LESS_THAN_OR_EQUAL,
-     ">": TokenType.GREATER_THAN,
-     ">=": TokenType.GREATER_THAN_OR_EQUAL,
-     "!=": TokenType.NOT_EQUAL,
+     "==": SolvrTokens.EQUAL,
+     "<": SolvrTokens.LESS_THAN,
+     "<=": SolvrTokens.LESS_THAN_OR_EQUAL,
+     ">": SolvrTokens.GREATER_THAN,
+     ">=": SolvrTokens.GREATER_THAN_OR_EQUAL,
+     "!=": SolvrTokens.NOT_EQUAL,
 
      // set operators
-     r"\": TokenType.BACK_SLASH,
-     "intersect": TokenType.INTERSECT,
-     "!subset": TokenType.NOT_SUBSET,
-     "subset": TokenType.SUBSET,
-     "union": TokenType.UNION,
+     r"\": SolvrTokens.BACK_SLASH,
+     "intersect": SolvrTokens.INTERSECT,
+     "!subset": SolvrTokens.NOT_SUBSET,
+     "subset": SolvrTokens.SUBSET,
+     "union": SolvrTokens.UNION,
 
      // tokens that requres special parsing
-     "=": TokenType.ASSIGN,
-     "false": TokenType.BOOL,
-     "true": TokenType.BOOL,
-     "else": TokenType.ELSE,
-     "if": TokenType.IF,
-     "=>": TokenType.LEFT_ARROW,
-     "return": TokenType.RETURN,
-     ":=": TokenType.SUBSTITUTION
+     "=": SolvrTokens.ASSIGN,
+     "false": SolvrTokens.BOOL,
+     "true": SolvrTokens.BOOL,
+     "else": SolvrTokens.ELSE,
+     "if": SolvrTokens.IF,
+     "=>": SolvrTokens.LEFT_ARROW,
+     "return": SolvrTokens.RETURN,
+     ":=": SolvrTokens.SUBSTITUTION
   };
 
   var _numberRegex = new RegExp(r"^(\d+)");

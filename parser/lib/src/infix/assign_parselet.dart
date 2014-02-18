@@ -10,27 +10,27 @@ class AssignParselet implements InfixParselet {
     _logger.debug('parsing: ${token.value}');
 
     switch(token.type) {
-      case TokenType.ASSIGN:
+      case SolvrTokens.ASSIGN:
         if(isInvoke(left)) {
           // single line function declaration fx f(x) = x^2
           Expr body = parser.parseExpression();
-          return Expr.functionExpr(token.position, left.name, left.args, body);
+          return Expr.functionExpr(left.name, left.args, body, token.location);
         } else if(isSymbol(left)) {
           // variable assignment fx x = 24
           Expr value = parser.parseExpression();
-          return Expr.assignExpr(token.position, left, value);
+          return Expr.assignExpr(left, value, token.location);
         }
         break;
 
-      case TokenType.SUBSTITUTION:
+      case SolvrTokens.SUBSTITUTION:
         Expr value = parser.parseExpression();
-        return Expr.substitutionExpr(token.position, left, value);
+        return Expr.substitutionExpr(left, value, token.location);
 
-      case TokenType.LEFT_ARROW:
+      case SolvrTokens.LEFT_ARROW:
         if(isTuple(left)) {
           // anonymous function declaration fx (x) => x^2
           var body = parser.parseExpression();
-          return Expr.anonymousFunctionExpr(token.position, left, body);
+          return Expr.anonymousFunctionExpr(left, body, token.location);
         }
         break;        
     }

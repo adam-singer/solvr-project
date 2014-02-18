@@ -2,7 +2,7 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-part of solvr_parser;
+part of solvr_parser_api;
 
 /** Abstract away source reading so [Lexer] stays the same when reading from files or REPL */
 abstract class SourceReader {

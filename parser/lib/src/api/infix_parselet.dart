@@ -2,7 +2,7 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-part of solvr_parser;
+part of solvr_parser_api;
 
 /**
  * An [InfixParselet]'s parses tokens that appears in the middle of expressions 
@@ -11,8 +11,8 @@ part of solvr_parser;
  * expression with nothing on the left, followed by the postfix operator and its 
  * operand.
  */
-abstract class InfixParselet {
-  Expr parse(SolvrParser parser, Expr left, Token token);
+abstract class InfixParselet<E, P extends Parser<E>> {
+  E parse(P parser, E left, Token token);
 
   int get precedence;
 }

@@ -14,4 +14,5 @@ export 'package:meta/meta.dart';
 part 'src/errors.dart';
 part 'src/helpers.dart';
 part 'src/integer.dart';
+part 'src/location.dart';
 

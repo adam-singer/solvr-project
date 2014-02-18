@@ -15,14 +15,14 @@ class BracketParselet implements PrefixParselet {
     var asMatrix = false;
     var asVector = false;
 
-    if(!parser.lookAheadFor(TokenType.RIGHT_BRACKET)) {
+    if(!parser.lookAheadFor(SolvrTokens.RIGHT_BRACKET)) {
       // since the list is not empty we cannot be sure its not a vector/matrix
       asList = false;
       do {
         Expr expr = parser.parseExpression();
         elements.add(expr);
 
-        if(parser.lookAheadFor(TokenType.RIGHT_BRACKET)) {
+        if(parser.lookAheadFor(SolvrTokens.RIGHT_BRACKET)) {
           if(elements.length == 1) {
             // single elements like [1], [[]] or [[1; 2]] are always treated as a list
             asList = true;
@@ -30,10 +30,10 @@ class BracketParselet implements PrefixParselet {
           break;
         }
 
-        if(parser.consumeMatch(TokenType.COMMA)) {
+        if(parser.consumeMatch(SolvrTokens.COMMA)) {
           if(asMatrix || asVector) throw new ParserError('expected list type');
           asList = true;
-        } else if(parser.consumeMatch(TokenType.SEMI_COLON)) {
+        } else if(parser.consumeMatch(SolvrTokens.SEMI_COLON)) {
           if(asList) throw new ParserError('unexpected list type');
           if(!asVector && !asMatrix) {
             // determin type of expression
@@ -46,17 +46,17 @@ class BracketParselet implements PrefixParselet {
         }
       } while (true);
     }
-    parser.consumeExpected(TokenType.RIGHT_BRACKET);
-    var position = span.end();
+    parser.consumeExpected(SolvrTokens.RIGHT_BRACKET);
+    var location = span.end();
 
     if(asList) {
-      return Expr.listExpr(position, elements);
+      return Expr.listExpr(elements, location);
     } else if(asMatrix) {
       var vectors = new List<VectorExpr>();
       elements.forEach((var e) => vectors.add(e));
-      return Expr.matrixExpr(position, vectors);
+      return Expr.matrixExpr(vectors, location);
     } else if(asVector) {
-      return Expr.vectorExpr(position, elements);
+      return Expr.vectorExpr(elements, location);
     }
     throw new ParserError("bracket parser error for ${token.toString()}");
   }

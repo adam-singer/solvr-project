@@ -15,18 +15,18 @@ class PrefixUnaryParselet implements PrefixParselet {
     _logger.debug("left is $left");
 
     switch(token.type) {
-    case TokenType.BANG:
-      return Expr.negationExpr(token.position, left);
+    case SolvrTokens.BANG:
+      return Expr.negationExpr(left, token.location);
 
-    case TokenType.DOT:
+    case SolvrTokens.DOT:
       if(isInteger(left)) {
         var str = "0.${left.toString()}";
-        return Expr.realExpr(token.position, str);
+        return Expr.realExpr(str, token.location);
       }
       throw new ParserError("prefix expression error for operator ${token.toString()}");
 
-    case TokenType.MINUS:
-      return Expr.negativeExpr(token.position, left);
+    case SolvrTokens.MINUS:
+      return Expr.negativeExpr(left, token.location);
 
     default:
       throw new ParserError("prefix expression error for operator ${token.toString()}");

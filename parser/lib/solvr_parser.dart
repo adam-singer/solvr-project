@@ -2,7 +2,7 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-/** Parser, lexer and grammar */
+/** Implementation of Solvr's parser, lexer and grammar */
 library solvr_parser;
 
 import 'dart:collection';
@@ -10,6 +10,9 @@ import 'dart:collection';
 import 'package:solvr_ast/solvr_ast.dart';
 import 'package:solvr_common/solvr_common.dart';
 import 'package:solvr_matchers/solvr_matchers.dart';
+
+import 'src/api_lib.dart';
+export 'src/api_lib.dart';
 
 part 'src/infix/assign_parselet.dart';
 part 'src/infix/binary_parselet.dart';
@@ -22,24 +25,9 @@ part 'src/prefix/nullary_parselet.dart';
 part 'src/prefix/tuple_parselet.dart';
 part 'src/prefix/prefix_unary_parselet.dart';
 
-part 'src/api/grammar.dart';
-part 'src/api/lexer.dart';
-part 'src/api/parser.dart';
-part 'src/api/position_span.dart';
-part 'src/api/source_reader.dart';
-part 'src/api/string_reader.dart';
-part 'src/api/token.dart';
-
-
-part 'src/infix_parselet.dart';
 part 'src/precedence.dart';
-part 'src/prefix_parselet.dart';
 part 'src/solvr_grammar.dart';
 part 'src/solvr_lexer.dart';
 part 'src/solvr_parser.dart';
-part 'src/token_type.dart';
+part 'src/solvr_tokens.dart';
 
-class ParserError extends SolvrError {
-  ParserError(this.errorMessage);
-  final String errorMessage;
-}

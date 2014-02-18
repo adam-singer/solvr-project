@@ -2,15 +2,15 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-part of solvr_parser;
+part of solvr_parser_api;
 
 class Token {
-   Token(this.value, this.type, this.position, this.followedWhitespace);
+   Token(this.value, this.type, this.location, this.followedWhitespace);
 
    String toString() => "type: ${type} value: ${value}";
 
    final bool followedWhitespace;
-   final Position position;
+   final Location location;
    final TokenType type;
    final String value;
 }

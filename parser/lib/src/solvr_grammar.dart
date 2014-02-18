@@ -11,59 +11,59 @@ class SolvrGrammar implements Grammar {
       _prefixParselets = new Map<TokenType, PrefixParselet>()
     {
     // prefix tokens that need special parselets.
-    _prefixParselet(TokenType.BOOL, new NullaryParselet());
-    _prefixParselet(TokenType.LEFT_PAREN, new TupleParselet());
-    _prefixParselet(TokenType.LEFT_BRACE, new BraceParselet());
-    _prefixParselet(TokenType.LEFT_BRACKET, new BracketParselet());
-    _prefixParselet(TokenType.NAME, new NameParselet());
-    _prefixParselet(TokenType.NUMBER, new NullaryParselet());
-    _prefixParselet(TokenType.RIGHT_BRACKET, new BracketParselet());
-    _prefixParselet(TokenType.STRING, new NullaryParselet());
+    _prefixParselet(SolvrTokens.BOOL, new NullaryParselet());
+    _prefixParselet(SolvrTokens.LEFT_PAREN, new TupleParselet());
+    _prefixParselet(SolvrTokens.LEFT_BRACE, new BraceParselet());
+    _prefixParselet(SolvrTokens.LEFT_BRACKET, new BracketParselet());
+    _prefixParselet(SolvrTokens.NAME, new NameParselet());
+    _prefixParselet(SolvrTokens.NUMBER, new NullaryParselet());
+    _prefixParselet(SolvrTokens.RIGHT_BRACKET, new BracketParselet());
+    _prefixParselet(SolvrTokens.STRING, new NullaryParselet());
 
     // infix tokens that need special parselets.
-    _infixParselet(TokenType.ASSIGN, new AssignParselet());
-    _infixParselet(TokenType.SUBSTITUTION, new AssignParselet());
-    _infixParselet(TokenType.LEFT_ARROW, new AssignParselet());
+    _infixParselet(SolvrTokens.ASSIGN, new AssignParselet());
+    _infixParselet(SolvrTokens.SUBSTITUTION, new AssignParselet());
+    _infixParselet(SolvrTokens.LEFT_ARROW, new AssignParselet());
 
     // unary operators
-    _prefixOperator(TokenType.MINUS, Precedence.PREFIX);
-    _prefixOperator(TokenType.BANG, Precedence.LOGICAL_NOT);
+    _prefixOperator(SolvrTokens.MINUS, Precedence.PREFIX);
+    _prefixOperator(SolvrTokens.BANG, Precedence.LOGICAL_NOT);
     // handle numbers with no leading zero fx .1, 0.11 etc.
-    _prefixOperator(TokenType.DOT, Precedence.LITERAL);
+    _prefixOperator(SolvrTokens.DOT, Precedence.LITERAL);
 
     // "!" is both prefix, infix and postfix (i.e. negation and faculty function)
-    _postfixOperator(TokenType.BANG, Precedence.POSTFIX);
+    _postfixOperator(SolvrTokens.BANG, Precedence.POSTFIX);
 
     // infix left operators
-    _infixOperatorLeft(TokenType.ASTERISK, Precedence.PRODUCT);
-    _infixOperatorLeft(TokenType.BACK_SLASH, Precedence.SUM);
-    _infixOperatorLeft(TokenType.COLON, Precedence.ASSIGNMENT);
-    _infixOperatorLeft(TokenType.DOT, Precedence.PRODUCT);
-    _infixOperatorLeft(TokenType.DOTS, Precedence.INTERVAL);
-    _infixOperatorLeft(TokenType.EQUAL, Precedence.EQUALITY);
-    _infixOperatorLeft(TokenType.GREATER_THAN, Precedence.COMPARISON);
-    _infixOperatorLeft(TokenType.GREATER_THAN_OR_EQUAL, Precedence.COMPARISON);
-    _infixOperatorLeft(TokenType.INTERSECT, Precedence.PRODUCT);
-    _infixOperatorLeft(TokenType.INSTANCE_OF, Precedence.EQUALITY);
-    _infixOperatorLeft(TokenType.NOT_INSTANCE_OF, Precedence.EQUALITY);
-    _infixOperatorLeft(TokenType.IN, Precedence.ASSIGNMENT);
-    _infixOperatorLeft(TokenType.INTERSECT, Precedence.PRODUCT);
-    _infixOperatorLeft(TokenType.LESS_THAN, Precedence.COMPARISON);
-    _infixOperatorLeft(TokenType.LESS_THAN_OR_EQUAL, Precedence.COMPARISON);
-    _infixOperatorLeft(TokenType.MINUS, Precedence.SUM);
-    _infixOperatorLeft(TokenType.NOT_EQUAL, Precedence.EQUALITY);
-    _infixOperatorLeft(TokenType.NOT_SUBSET, Precedence.COMPARISON);
-    _infixOperatorLeft(TokenType.PIPE, Precedence.ASSIGNMENT);
-    _infixOperatorLeft(TokenType.PLUS, Precedence.SUM);
-    _infixOperatorLeft(TokenType.SLASH, Precedence.PRODUCT);
-    _infixOperatorLeft(TokenType.SUBSET, Precedence.COMPARISON);
-    _infixOperatorLeft(TokenType.UNION, Precedence.SUM);
-    _infixOperatorLeft(TokenType.ASTERISK, Precedence.PRODUCT);
+    _infixOperatorLeft(SolvrTokens.ASTERISK, Precedence.PRODUCT);
+    _infixOperatorLeft(SolvrTokens.BACK_SLASH, Precedence.SUM);
+    _infixOperatorLeft(SolvrTokens.COLON, Precedence.ASSIGNMENT);
+    _infixOperatorLeft(SolvrTokens.DOT, Precedence.PRODUCT);
+    _infixOperatorLeft(SolvrTokens.DOTS, Precedence.INTERVAL);
+    _infixOperatorLeft(SolvrTokens.EQUAL, Precedence.EQUALITY);
+    _infixOperatorLeft(SolvrTokens.GREATER_THAN, Precedence.COMPARISON);
+    _infixOperatorLeft(SolvrTokens.GREATER_THAN_OR_EQUAL, Precedence.COMPARISON);
+    _infixOperatorLeft(SolvrTokens.INTERSECT, Precedence.PRODUCT);
+    _infixOperatorLeft(SolvrTokens.INSTANCE_OF, Precedence.EQUALITY);
+    _infixOperatorLeft(SolvrTokens.NOT_INSTANCE_OF, Precedence.EQUALITY);
+    _infixOperatorLeft(SolvrTokens.IN, Precedence.ASSIGNMENT);
+    _infixOperatorLeft(SolvrTokens.INTERSECT, Precedence.PRODUCT);
+    _infixOperatorLeft(SolvrTokens.LESS_THAN, Precedence.COMPARISON);
+    _infixOperatorLeft(SolvrTokens.LESS_THAN_OR_EQUAL, Precedence.COMPARISON);
+    _infixOperatorLeft(SolvrTokens.MINUS, Precedence.SUM);
+    _infixOperatorLeft(SolvrTokens.NOT_EQUAL, Precedence.EQUALITY);
+    _infixOperatorLeft(SolvrTokens.NOT_SUBSET, Precedence.COMPARISON);
+    _infixOperatorLeft(SolvrTokens.PIPE, Precedence.ASSIGNMENT);
+    _infixOperatorLeft(SolvrTokens.PLUS, Precedence.SUM);
+    _infixOperatorLeft(SolvrTokens.SLASH, Precedence.PRODUCT);
+    _infixOperatorLeft(SolvrTokens.SUBSET, Precedence.COMPARISON);
+    _infixOperatorLeft(SolvrTokens.UNION, Precedence.SUM);
+    _infixOperatorLeft(SolvrTokens.ASTERISK, Precedence.PRODUCT);
 
     // infix right operators
-    _infixOperatorRight(TokenType.CARET, Precedence.EXPONENT);
-    _infixOperatorRight(TokenType.LOGICAL_AND, Precedence.LOGICAL_AND);
-    _infixOperatorRight(TokenType.LOGICAL_OR, Precedence.LOGICAL_OR);
+    _infixOperatorRight(SolvrTokens.CARET, Precedence.EXPONENT);
+    _infixOperatorRight(SolvrTokens.LOGICAL_AND, Precedence.LOGICAL_AND);
+    _infixOperatorRight(SolvrTokens.LOGICAL_OR, Precedence.LOGICAL_OR);
   }
 
    // registers a postfix unary operator parselet for the given token and precedence

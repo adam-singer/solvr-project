@@ -12,9 +12,9 @@ class PostfixUnaryParselet implements InfixParselet {
     _logger.debug("parsing: ${token.value}");
 
     switch(token.type) {
-    case TokenType.BANG:
+    case SolvrTokens.BANG:
       // check for cases (2+3)!(x*2)
-      return parser.checkForProduct(Expr.factorialExpr(token.position, left));
+      return parser.checkForProduct(Expr.factorialExpr(left, token.location));
     default:
       throw new ParserError("postfix expression error for operator ${token.toString()}");
     }
