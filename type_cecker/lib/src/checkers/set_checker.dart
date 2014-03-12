@@ -2,7 +2,7 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-part of solvr_kernel_math_checker;
+part of solvr_type_checker;
 
 class SetChecker extends Checker {
   SetChecker(this.typeChecker, this.registry);

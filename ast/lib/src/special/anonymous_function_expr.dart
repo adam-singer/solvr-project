@@ -30,13 +30,10 @@ class AnonymousFunctionExpr extends Expr {
   visit(ExprVisitor visitor) => visitor.visitAnonymousFunctionExpr(this);
 
   final IType type = LanguageTypes.ANONYMOUS_FUNCTION;
-  TupleExpr args;
+  Expr args;
   Expr body;
 }
 
 AnonymousFunctionExpr asAnonymousFunction(TupleExpr args, Expr body) {
-  if(!args.every((e) => e is SymbolExpr)) {
-    throw new ArgumentError("parameters for anonymous functions can only be symbols");
-  }
   return new AnonymousFunctionExpr(args, body);
 }

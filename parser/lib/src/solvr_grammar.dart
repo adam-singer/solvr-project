@@ -68,11 +68,9 @@ class SolvrGrammar implements Grammar<Expr, SolvrParser> {
     _addInfixLeftAssociativeExpression(SolvrTokens.SLASH, SolvrPrecedence.PRODUCT);
     _addInfixLeftAssociativeExpression(SolvrTokens.SUBSET, SolvrPrecedence.COMPARISON);
     _addInfixLeftAssociativeExpression(SolvrTokens.UNION, SolvrPrecedence.SUM);
-    _addInfixLeftAssociativeExpression(SolvrTokens.ASTERISK, SolvrPrecedence.PRODUCT);
   }
   
   _registerInfixRightAssociativeExpressions() {
-    // infix right operators
     _addInfixRightAssociativeExpression(SolvrTokens.CARET, SolvrPrecedence.EXPONENT);
     _addInfixRightAssociativeExpression(SolvrTokens.LOGICAL_AND, SolvrPrecedence.LOGICAL_AND);
     _addInfixRightAssociativeExpression(SolvrTokens.LOGICAL_OR, SolvrPrecedence.LOGICAL_OR);

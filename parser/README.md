@@ -1,3 +1,3 @@
 # Solvr Parser
 
-Parser for Solvr's algebraic language.
+Parser for the Solvr language

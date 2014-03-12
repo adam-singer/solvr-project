@@ -302,7 +302,7 @@ class ParserTest {
     parser.registerObjectTypes(["List", "String", "Set", "Number", "Bool", "Symbol"]);
     var expr = parser.parse();
 
-    // check that expression passed as expected
+    // check that expression parsed as expected
     var expectedOutput = (compareTo == null) ? expression : compareTo;
     expect(matcher(expr), isTrue, reason:"type comparison failes on instance $expr");
     expect(expr.toString(), equals(expectedOutput), reason:"string comparison of $expectedOutput to ${expr.toString()} fails");

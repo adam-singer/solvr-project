@@ -12,7 +12,9 @@ part of solvr_ast;
  * }
  */
 class ConditionalExpr extends Expr {
-  ConditionalExpr(this.condition, this.ifBody, this.elsePart);
+  ConditionalExpr(this.condition, this.ifBody, this.elsePart) {
+    // TODO set parent
+  }
 
   @override
   Expr map(ExprConverter converter) {

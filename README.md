@@ -31,9 +31,10 @@ Solvr consist of the following modules
  * **kernel** The Mathematical algorithms for simplifying and computing Solvr expressions. 
  * **logic** Business logic shared between **webapp** and **iOS** app goes here.
  * **matchers** Matchers for detecting and acting on various types of expressions
- * **[parser](parser/README.md)** Parser for Solvr's algebraic language.
+ * **[parser](parser/README.md)** Parser for the Solvr language.
  * **site** The Solvr web site
  * **types** Types of operators and expressions supported by Solvr 
+ * **[type_checker](type_checker/README.md)** Type checker for the Solvr language
  * **ui** Shared HTML5 constructs
  * **webapp** The Solvr web application
  
