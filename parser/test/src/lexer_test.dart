@@ -1,14 +1,13 @@
-// Copyright (c) 2013 Solvr, Inc. All rights reserved.
-//
-// This is commercial software. Use or redistribution of this code in full 
-// or in part without the express written consent of Solvr is prohibited.
+// Copyright (c) 2013, the Solvr project authors. Please see the AUTHORS 
+// file for details. All rights reserved. Use of this source code is 
+// governed by a Apache license that can be found in the LICENSE file.
 
 part of solvr_parser_test;
 
 class LexerTest {
   LexerTest() {
-    group("lexer", () {
-      test("token matching", () {
+    group("lexer -", () {
+      test("single token matching", () {
         assertToken("   ", [SolvrTokens.EOF]);
         assertToken(r"\", [SolvrTokens.BACK_SLASH]);
         assertToken("1", [SolvrTokens.NUMBER]);
@@ -31,6 +30,9 @@ class LexerTest {
         assertToken("is!", [SolvrTokens.NOT_INSTANCE_OF]);
         assertToken("intersect", [SolvrTokens.INTERSECT]);
         assertToken("union", [SolvrTokens.UNION]);
+      });
+      
+      test("multiple token matching", () {
         assertToken(".1", [SolvrTokens.DOT, SolvrTokens.NUMBER]);
         assertToken("-42", [SolvrTokens.MINUS, SolvrTokens.NUMBER]);
         assertToken("2x", [SolvrTokens.NUMBER, SolvrTokens.NAME]);
@@ -52,7 +54,6 @@ class LexerTest {
         ''', [SolvrTokens.IF, SolvrTokens.LEFT_PAREN, SolvrTokens.BOOL, SolvrTokens.RIGHT_PAREN, SolvrTokens.LEFT_BRACE, 
               SolvrTokens.NAME, SolvrTokens.LEFT_PAREN, SolvrTokens.STRING, SolvrTokens.RIGHT_PAREN, SolvrTokens.RIGHT_BRACE]);
       }); 
-      // TODO test position when used with whitespace and new lines (multiline strings)
     });
   }
   
