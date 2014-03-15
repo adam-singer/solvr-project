@@ -1,7 +1,9 @@
-projects=(common types ast parser type_checker kernel)
+declare -a projects=("common" "types" "ast" "parser" "type_checker" "kernel")
 
-foreach in projects
-pushd common
-    pub upgrade
-popd
+for i in "${projects[@]}"
+do
+	pushd "$i"
+  		pub upgrade
+	popd
+done
 
