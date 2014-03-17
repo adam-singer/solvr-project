@@ -5,4 +5,4 @@
 
 library solvr_backend_test;
 
-import "../lib/backend.dart";
+import "../lib/solvr_backend.dart";
