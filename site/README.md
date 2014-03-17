@@ -1,3 +1,3 @@
-# solvr_site
+# Solvr Site
 
 The Solvr web site

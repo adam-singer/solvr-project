@@ -6,7 +6,7 @@ library solvr_site_app;
 
 import 'package:polymer/polymer.dart';
 
-@CustomTag('solvr-site')
+//@CustomTag('solvr-site')
 class SolvrSite extends PolymerElement {
   SolvrSite.created(): super.created() {
     print("app created");
