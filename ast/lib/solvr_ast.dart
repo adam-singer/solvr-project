@@ -73,8 +73,9 @@ part 'src/special/method_expr.dart';
 part 'src/special/nothing_expr.dart';
 part 'src/special/object_expr.dart';
 part 'src/special/return_expr.dart';
-part 'src/special/typed_expr.dart';
 part 'src/special/seq_expr.dart';
+part 'src/special/special_expr.dart';
+part 'src/special/typed_expr.dart';
 
 part 'src/unary/factorial_expr.dart';
 part 'src/unary/negative_expr.dart';

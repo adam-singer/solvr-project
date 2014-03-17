@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** Represents a function call like f(x) */
-class InvokeExpr extends Expr {
+class InvokeExpr extends SpecialExpr {
   InvokeExpr(this.name, this.args);
 
   @override

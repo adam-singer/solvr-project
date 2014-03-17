@@ -4,7 +4,7 @@
 
 part of solvr_ast;
 
-/// Marker class for relational expressions
+/** Marker class for relational expressions */
 abstract class RelationalExpr extends BinaryExpr {
   RelationalExpr(Expr leftExpr, Expr rightExpr, IType typeInfo): super(leftExpr, rightExpr, typeInfo);
 }

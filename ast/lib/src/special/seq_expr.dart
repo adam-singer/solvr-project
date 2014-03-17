@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** Represents a sequence expression such as {x in 1..10 | (x) => x^2} */
-class SeqExpr extends Expr {
+class SeqExpr extends SpecialExpr {
   SeqExpr(this.args, this.body) {
     args.map((Expr arg) => arg.parent = this);
     body.parent = this;

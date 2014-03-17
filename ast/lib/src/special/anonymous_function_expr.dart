@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** Represents an anonymous function like (x) => x^2 */
-class AnonymousFunctionExpr extends Expr {
+class AnonymousFunctionExpr extends SpecialExpr {
   AnonymousFunctionExpr(this.args, this.body) {
     args.parent = this;
     body.parent = this;

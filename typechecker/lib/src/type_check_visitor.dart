@@ -4,12 +4,12 @@
 
 part of solvr_ast;
 
-/** Visitor that visits nodes and stores their content in a string buffer */
-class StringExprVisitor extends Object with 
+/** Visitor that visits nodes and check their types are correct */
+class CheckExprVisitor extends Object with 
   BinaryExprStringVisitor,
   NaryExprStringVisitor, 
   NullaryExprStringVisitor, 
-  SpecialExprStringVisitor,
+  StringSpecialExprVisitor,
   UnaryExprStringVisitor implements ExprVisitor {
   
   ExprVisitor get visitor => this;
@@ -193,7 +193,7 @@ abstract class NullaryExprStringVisitor implements NullaryExprVisitor {
   StringBuffer get buf;
 }
 
-abstract class SpecialExprStringVisitor implements SpecialExprVisitor {
+abstract class StringSpecialExprVisitor implements SpecialExprVisitor {
   @override
   visitAnonymousFunctionExpr(AnonymousFunctionExpr expr) {
     expr.args.visit(visitor);

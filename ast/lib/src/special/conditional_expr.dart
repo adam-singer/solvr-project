@@ -11,7 +11,7 @@ part of solvr_ast;
  *   :
  * }
  */
-class ConditionalExpr extends Expr {
+class ConditionalExpr extends SpecialExpr {
   ConditionalExpr(this.condition, this.ifBody, this.elsePart) {
     // TODO set parent
   }

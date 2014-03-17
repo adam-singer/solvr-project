@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** Represents a variable assignment like x = 2 or x = y + 3 */
-class AssignExpr extends Expr {
+class AssignExpr extends SpecialExpr {
   AssignExpr(this.variable, this.value) {
     variable.parent = this;
     value.parent = this;

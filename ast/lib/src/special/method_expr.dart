@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** Represents a method invocation like [1,2].length() */
-class MethodExpr extends Expr {
+class MethodExpr extends SpecialExpr {
   MethodExpr(this.target, this.name, this.args);
 
   @override

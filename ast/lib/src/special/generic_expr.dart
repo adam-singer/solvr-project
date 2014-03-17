@@ -7,7 +7,7 @@ part of solvr_ast;
 // TODO can we kill this for the first release ?
 
 /** Generic fx Set<Symbol> */
-class GenericExpr extends Expr {
+class GenericExpr extends SpecialExpr {
   GenericExpr(this.template, this.operands);
 
   @override

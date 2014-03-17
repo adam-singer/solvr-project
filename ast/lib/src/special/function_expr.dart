@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** Represents a function declaration like "f(x) = x^2" or "Number g(x) => x+x" */
-class FunctionExpr extends Expr {
+class FunctionExpr extends SpecialExpr {
   FunctionExpr(this.name, this.args, this.body, [this.returnType = null]) {
     args.parent = this;
     body.parent = this;

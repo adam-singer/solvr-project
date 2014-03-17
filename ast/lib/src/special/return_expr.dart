@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** A return statement */
-class ReturnExpr extends Expr {
+class ReturnExpr extends SpecialExpr {
   ReturnExpr(this.value);
 
   @override

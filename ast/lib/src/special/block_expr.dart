@@ -10,7 +10,7 @@ part of solvr_ast;
  *   :
  * }
  */
-class BlockExpr extends Expr {
+class BlockExpr extends SpecialExpr {
   BlockExpr(this.operands);
 
   @override

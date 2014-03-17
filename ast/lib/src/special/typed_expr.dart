@@ -5,7 +5,7 @@
 part of solvr_ast;
 
 /** Type/value pair fx: "String value" or "List<Symbol> symbols" */
-class TypedExpr extends Expr {
+class TypedExpr extends SpecialExpr {
   TypedExpr(this.key, this.value);
 
   @override
