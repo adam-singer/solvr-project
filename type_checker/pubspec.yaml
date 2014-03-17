@@ -1,4 +1,4 @@
-name: solvr_type_checker
+name: solvr_typechecker
 version: 1.0.0
 author: Lars Tackmann <lars@solvr.io>
 description: Type checker for the Solvr language
@@ -8,4 +8,6 @@ dependencies:
   solvr_matchers:
     path: ../matchers
 dev_dependencies:
+  solvr_parser:
+    path: ../parser
   unittest: any

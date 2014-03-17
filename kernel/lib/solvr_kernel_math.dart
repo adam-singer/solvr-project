@@ -5,7 +5,6 @@
 /** Math library, created to ease the import of math functions into the kernel and unittests. */
 library solvr_kernel_math;
 
-export 'src/checker_lib.dart';
 export 'src/registry_lib.dart';
 export 'src/resolver_lib.dart';
 export 'src/simplifier_lib.dart';

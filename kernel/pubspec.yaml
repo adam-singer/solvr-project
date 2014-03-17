@@ -11,5 +11,7 @@ dependencies:
     path: ../matchers
   solvr_parser:
     path: ../parser
+  solvr_typechecker:
+    path: ../typechecker
 dev_dependencies:
   unittest: any

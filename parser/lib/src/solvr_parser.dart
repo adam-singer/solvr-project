@@ -1,5 +1,5 @@
-// Copyright (c) 2013, the Solvr project authors. Please see the AUTHORS 
-// file for details. All rights reserved. Use of this source code is 
+// Copyright (c) 2013, the Solvr project authors. Please see the AUTHORS
+// file for details. All rights reserved. Use of this source code is
 // governed by a Apache license that can be found in the LICENSE file.
 
 part of solvr_parser;
@@ -7,9 +7,9 @@ part of solvr_parser;
 /** [Parser] for the Solvr language */
 class SolvrParser extends Parser<Expr, SolvrParser> {
   SolvrParser(String sourceString)
-    : super(new SolvrLexer(new StringReader(sourceString)), new SolvrGrammar());
+      : super(new SolvrLexer(new StringReader(sourceString)), new SolvrGrammar());
 
-  @override 
+  @override
   List<Expr> parseModule() {
     List<Expr> exprs = [];
 
@@ -23,7 +23,7 @@ class SolvrParser extends Parser<Expr, SolvrParser> {
     return exprs;
   }
 
-  @override 
+  @override
   Expr parse() {
     if (lookAheadFor(SolvrTokens.IF)) return parseIf();
     if (lookAheadFor(SolvrTokens.RETURN)) return parseReturn();
@@ -32,10 +32,12 @@ class SolvrParser extends Parser<Expr, SolvrParser> {
 
     // check all tokens are consumed (subtract one as EOF token is never consumed)
     var expected = returnedTokens - 1;
-    if(consumedTokens != expected) throw new ParserError("only consumed ${consumedTokens} of ${expected} tokens");
-
+    if (consumedTokens != expected) {
+      throw new ParserError("only consumed ${consumedTokens} of ${expected} tokens");
+    }
+    
     // fix erronous precedence structure caused by injected expressions
-    if(!_tainted.isEmpty) {
+    if (!_tainted.isEmpty) {
       var parser = new SolvrParser(expr.root.toString());
       return parser.parse();
     }
@@ -46,19 +48,22 @@ class SolvrParser extends Parser<Expr, SolvrParser> {
    * Parse expression. In Solvr anything that can take part of
    * automatic simplification are considered an expression
    */
-  Expr parseExpression([int precedence=0]) {
+  Expr parseExpression([int precedence = 0]) {
     // parse prefix
     var token = consume();
     var prefixParselet = grammar.getPrefixParselet(token.type);
-    if(prefixParselet == null) throw new ParserError("Could not find prefix parser for token [${token}]");
+    if (prefixParselet == null) throw new ParserError(
+        "Could not find prefix parser for token [${token}]");
     Expr left = prefixParselet.parse(this, token);
 
     // parse infix
-    while ( precedence < grammar.getPrecedence(current()) ) {
+    while (precedence < grammar.getPrecedence(current())) {
       token = consume();
 
       InfixParselet infixParselet = grammar.getInfixParselet(token.type);
-      if(infixParselet == null) throw new ParserError("Could not find infix parser for ${token.value}");
+      if (infixParselet == null) {
+        throw new ParserError("Could not find infix parser for ${token.value}");
+      }
 
       left = infixParselet.parse(this, left, token);
     }
@@ -67,7 +72,8 @@ class SolvrParser extends Parser<Expr, SolvrParser> {
 
   /** Handle missing "multipication" in expressions such as 2(x+3), 3!(3+2), (2+3)(3+4). */
   Expr checkForProduct(Expr expr) {
-    if(immediateMatch(SolvrTokens.LEFT_PAREN) || immediateMatch(SolvrTokens.NAME)) {
+    if (immediateMatch(SolvrTokens.LEFT_PAREN) || immediateMatch(
+        SolvrTokens.NAME)) {
       _logger.debug("product balancing $expr");
       var taintedExpr = Expr.productExpr(expr, parseExpression());
       _tainted.add(taintedExpr);
@@ -78,14 +84,14 @@ class SolvrParser extends Parser<Expr, SolvrParser> {
 
   /** Handle missing logical "and" in expressions such as x > 5 > y (parse as: x > 5 && 5 > y) */
   Expr checkForAnd(RelationalExpr expr) {
-    if(isRelational(expr.left)) {
+    if (isRelational(expr.left)) {
       _logger.debug("and balancing $expr");
       var clone = expr.clone as RelationalExpr;
       clone.left = (expr.left as RelationalExpr).right;
       var taintedExpr = Expr.andExpr(expr.left, clone);
       _tainted.add(taintedExpr);
       return taintedExpr;
-    } 
+    }
     return expr;
   }
 
@@ -116,8 +122,8 @@ class SolvrParser extends Parser<Expr, SolvrParser> {
 
     var locationSpan = span();
     Expr elseExpr = Expr.nothingExpr(last().location);
-    if(consumeMatch(SolvrTokens.ELSE)) {
-      if(lookAheadFor(SolvrTokens.IF)) {
+    if (consumeMatch(SolvrTokens.ELSE)) {
+      if (lookAheadFor(SolvrTokens.IF)) {
         elseExpr = parseIf();
       } else {
         elseExpr = parseBlock();
@@ -134,10 +140,10 @@ class SolvrParser extends Parser<Expr, SolvrParser> {
     consumeExpected(SolvrTokens.LEFT_BRACE);
     do {
       exprs.add(parse());
-      if(consumeMatch(SolvrTokens.RIGHT_BRACE)) {
+      if (consumeMatch(SolvrTokens.RIGHT_BRACE)) {
         break;
       }
-    } while(true);
+    } while (true);
     return Expr.blockExpr(exprs, locationSpan.end());
   }
 
