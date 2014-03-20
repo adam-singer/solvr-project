@@ -35,7 +35,7 @@ Solvr consist of the following modules
  * **site** The Solvr web site
  * **types** Types of operators and expressions supported by Solvr 
  * **[type_checker](type_checker/README.md)** Type checker for the Solvr language
- * **ui** Shared HTML5 constructs
+ * **ui** Shared user interface constructs
  * **webapp** The Solvr web application
  
 ## License

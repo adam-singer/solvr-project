@@ -2,8 +2,8 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-part of solvr_ui;
+part of solvr_ui_web;
 
-abstract class UiList extends Component {
+abstract class ComponentPresenter<C extends Component> {
   
 }

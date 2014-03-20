@@ -5,19 +5,8 @@
 library solvr_ui;
 
 import 'dart:html';
-import 'package:dice/dice.dart';
-import 'package:polymer/polymer.dart';
-
-part 'framework/components/ui_horizontal_list.dart';
-part 'framework/components/ui_list.dart';
-part 'framework/components/ui_vertical_list.dart';
-part 'framework/app_session.dart';
-part 'framework/component.dart';
-part 'framework/component_presenter.dart';
-part 'framework/frame.dart';
-part 'framework/navigation_manager.dart';
-part 'framework/page.dart';
-part 'framework/page_presenter.dart';
+export 'src/solvr_ui_web.dart';
+export 'src/solvr_ui_web_components.dart';
 
 Element createElement(String type, [String id = null, String text = null, var classes = null, Map<String,String> attributes = null, Element parent = null]) {
   var element = new Element.tag(type);

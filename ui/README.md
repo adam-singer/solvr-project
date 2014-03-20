@@ -1,3 +1,3 @@
 # Solvr UI
 
-Shared HTML5 constructs
+Shared user interface constructs

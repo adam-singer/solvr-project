@@ -2,13 +2,9 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-library solvr_site_app;
+part of solvr_ui_web_components;
 
-import 'package:polymer/polymer.dart';
+@CustomTag('ui-vertical-list')
+class UiVerticalList extends UiList {
 
-//@CustomTag('solvr-site')
-class SolvrSite extends PolymerElement {
-  SolvrSite.created(): super.created() {
-    print("app created");
-  }
 }

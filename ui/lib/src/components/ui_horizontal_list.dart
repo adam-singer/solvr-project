@@ -2,8 +2,9 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-part of solvr_ui;
+part of solvr_ui_web_components;
 
-abstract class PagePresenter<P extends Page> {
-  
+@CustomTag('ui-horizontal-list')
+class UiHorizontalList extends UiList {
+
 }
