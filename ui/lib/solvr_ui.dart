@@ -5,8 +5,8 @@
 library solvr_ui;
 
 import 'dart:html';
-export 'src/solvr_ui_web.dart';
-export 'src/solvr_ui_web_components.dart';
+export 'src/solvr_ui_framework.dart';
+export 'src/solvr_ui_components.dart';
 
 Element createElement(String type, [String id = null, String text = null, var classes = null, Map<String,String> attributes = null, Element parent = null]) {
   var element = new Element.tag(type);

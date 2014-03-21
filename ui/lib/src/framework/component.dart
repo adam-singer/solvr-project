@@ -2,12 +2,14 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-part of solvr_ui_web;
+part of solvr_ui_framework;
 
 /** 
  * A component is a UI element that encapsulates markup 
  * and functionality but does not represent a entire page 
  */
 abstract class Component extends PolymerElement {
-  Component(): super.created();
+  Component.created(): super.created() {
+    print('created ${super.localName}');
+  }
 }

@@ -2,8 +2,11 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-part of solvr_ui_web;
+part of solvr_site;
 
-abstract class Frame extends Component {
-  showPage(Page page);
+class SiteModule extends Module {
+  configure() {
+    //bind(CreditProcessor).toInstance(new CreditProcessorImpl());
+    //bind(BillingService).toType(BillingServiceImpl);
+  }
 }

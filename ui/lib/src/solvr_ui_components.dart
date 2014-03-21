@@ -2,8 +2,8 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-part of solvr_ui_web;
+library solvr_ui_components;
 
-abstract class ComponentPresenter<C extends Component> {
-  
-}
+export 'components/ui_horizontal_list.dart';
+export 'components/ui_list.dart';
+export 'components/ui_vertical_list.dart';

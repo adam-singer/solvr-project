@@ -2,10 +2,12 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-library solvr_site;
+part of solvr_ui_framework;
 
-import 'package:solvr_ui/solvr_ui.dart';
-
-export 'package:solvr_ui/solvr_ui.dart';
-
-part 'src/site_module.dart';
+abstract class Frame extends Component {
+  Frame.created(): super.created();
+  
+  showPage(Page page);
+  
+  NavigationManager get navigationManager;
+}

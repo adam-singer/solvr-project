@@ -2,13 +2,21 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-library solvr_site
+library solvr_site_frame;
 
-import 'package:polymer/polymer.dart';
+import '../solvr_site.dart';
 
-@CustomTag('solvr-site-frame')
+@CustomTag('site-frame')
 class SolvrSiteFrame extends Frame {
   SolvrSiteFrame.created(): super.created() {
-  
+    initSite();
   }
+  
+  initSite() {
+    var module = new SiteModule();
+    var injector = new Injector(module);
+    navigationManager = new NavigationManager(injector, this);
+  }
+  
+  NavigationManager navigationManager;
 }
