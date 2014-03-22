@@ -7,8 +7,8 @@ library solvr_site_frame;
 import '../solvr_site.dart';
 
 @CustomTag('site-frame')
-class SolvrSiteFrame extends Frame {
-  SolvrSiteFrame.created(): super.created() {
+class SiteFrame extends Frame {
+  SiteFrame.created(): super.created() {
     initSite();
   }
   

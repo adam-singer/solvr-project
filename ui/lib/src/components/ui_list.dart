@@ -9,7 +9,7 @@ import '../solvr_ui_framework.dart';
 abstract class UiList extends Component {
   UiList.created(): super.created();
   
-  addElement(); 
+  //addElement(); 
   
-  removeElement();
+  //removeElement();
 }
