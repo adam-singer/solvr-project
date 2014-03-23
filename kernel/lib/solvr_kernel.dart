@@ -6,6 +6,7 @@ library solvr_kernel;
 
 import 'package:solvr_ast/solvr_ast.dart';
 import 'package:solvr_parser/solvr_parser.dart';
+import 'package:solvr_typechecker/solvr_typechecker.dart';
 import 'solvr_kernel_math.dart';
 
 // export the AST and the user errors thrown by the Parser
@@ -57,7 +58,7 @@ abstract class Kernel {
 class _SolvrKernel implements Kernel { 
   _SolvrKernel(Registry registry):
     _simplifier = new AutomaticSimplifier(registry),
-    _checker = new TypeChecker(registry),
+    _checker = new TypeChecker(),
     _resolver = new Resolver(registry),
     _registry = registry;
   
