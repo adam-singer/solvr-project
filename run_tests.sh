@@ -1,3 +1,5 @@
+#!/bin/bash
+
 declare -a projects=(
 	"common:solvr_common_test.dart" 
 	"types:skip" 
