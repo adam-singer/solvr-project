@@ -56,11 +56,6 @@ class ParserTest {
         assertExpression("x/x", Matchers.isFraction);
       });
       
-      test("generic expression", () {
-        assertExpression("Set<String>", Matchers.isGeneric); 
-        assertExpression("List<Set<Symbol>>", Matchers.isGeneric);
-      });
-      
       test("guard expressions", () {
         assertExpression("x in 0..5 | x^2", Matchers.isGuard);
         assertExpression("Number | Symbol", Matchers.isGuard);
@@ -203,10 +198,8 @@ class ParserTest {
       
       test("typed expressions", () {
         assertExpression("Number n", Matchers.isTyped);
-        assertExpression("Set<String> set", Matchers.isTyped);
-        assertExpression("Set<String> strings", Matchers.isTyped);
         assertExpression("f(Symbol x) = x^2", Matchers.isFunction);
-        assertExpression("List<Symbol> f(Symbol x) = [x^2]", Matchers.isTyped);
+        assertExpression("List f(Symbol x) = [x^2]", Matchers.isTyped);
       });
       
       test("sequence expressions", () {
