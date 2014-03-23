@@ -289,10 +289,6 @@ abstract class Expr {
     return _createExpr(asFunction(name, args, body), location);
   }
 
-  static Expr genericExpr(Expr template, List<Expr> boundaries, [Location location = null]) {
-    return _createExpr(asGeneric(template, boundaries), location);
-  }
-
   static Expr invokeExpr(String name, TupleExpr args, [Location location = null]) {
     return _createExpr(asInvoke(name, args), location);
   }

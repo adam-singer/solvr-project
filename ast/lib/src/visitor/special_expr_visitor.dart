@@ -16,8 +16,6 @@ abstract class SpecialExprVisitor {
   
   visitFunctionExpr(FunctionExpr expr);
   
-  visitGenericExpr(GenericExpr expr);
-  
   visitInvokeExpr(InvokeExpr expr);
   
   visitMethodExpr(MethodExpr expr);

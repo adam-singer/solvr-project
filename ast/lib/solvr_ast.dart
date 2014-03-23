@@ -67,7 +67,6 @@ part 'src/special/assign_expr.dart';
 part 'src/special/block_expr.dart';
 part 'src/special/conditional_expr.dart';
 part 'src/special/function_expr.dart';
-part 'src/special/generic_expr.dart';
 part 'src/special/invoke_expr.dart';
 part 'src/special/method_expr.dart';
 part 'src/special/nothing_expr.dart';

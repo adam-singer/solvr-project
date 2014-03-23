@@ -238,12 +238,6 @@ abstract class SpecialExprStringVisitor implements SpecialExprVisitor {
   }
   
   @override
-  visitGenericExpr(GenericExpr expr) {
-    expr.template.visit(visitor);
-    _visitElements("<", r"|", ">", buf, visitor, expr.operands);
-  }
-  
-  @override
   visitInvokeExpr(InvokeExpr expr) {
     buf.write(expr.name);
     expr.args.visit(visitor);
