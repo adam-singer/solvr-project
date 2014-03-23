@@ -5,7 +5,7 @@ declare -a projects=(
 	"types:skip" 
 	"ast:solvr_ast_test.dart" 
 	"parser:solvr_parser_test.dart" 
-	"type_checker:solvr_type_checker_test.dart" 
+	"typechecker:solvr_typechecker_test.dart" 
 	"kernel:solvr_kernel_internals_test.dart")
 
 # TODO run all kernel tests
