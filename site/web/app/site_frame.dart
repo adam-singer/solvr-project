@@ -8,15 +8,10 @@ import '../solvr_site.dart';
 
 @CustomTag('site-frame')
 class SiteFrame extends Frame {
-  SiteFrame.created(): super.created() {
-    initSite();
-  }
+  SiteFrame.created(): super.created(new SiteModule());
   
-  initSite() {
-    var module = new SiteModule();
-    var injector = new Injector(module);
-    navigationManager = new NavigationManager(injector, this);
+  @override
+  showPage(Page page) {
+    
   }
-  
-  NavigationManager navigationManager;
 }

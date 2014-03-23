@@ -4,6 +4,6 @@
 
 part of solvr_ui_framework;
 
-class AppSession {
+abstract class AppSession {
   
 }

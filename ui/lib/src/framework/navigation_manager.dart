@@ -11,6 +11,9 @@ class NavigationManager {
   }
     
   registerPage(String url, Type pageType) {
+    if(_urlToPageMap.containsKey(url) || _pageToUrlMap.containsKey(pageType)) {
+      throw "registration already exists for ${url} and ${pageType}";
+    }
     _urlToPageMap[url] = pageType;
     _pageToUrlMap[pageType] = url;
   }

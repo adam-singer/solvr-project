@@ -4,6 +4,10 @@
 
 library solvr_site;
 
+import 'package:solvr_ui/solvr_ui.dart';
+
 export 'package:solvr_ui/solvr_ui.dart';
 
-part 'site_module.dart';
+part 'app/site_module.dart';
+part 'pages/about_page.dart';
+part 'pages/main_page.dart';

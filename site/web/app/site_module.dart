@@ -4,9 +4,16 @@
 
 part of solvr_site;
 
-class SiteModule extends Module {
+class SiteModule extends WebModule {
+  @override
   configure() {
     //bind(CreditProcessor).toInstance(new CreditProcessorImpl());
     //bind(BillingService).toType(BillingServiceImpl);
+  }
+  
+  @override
+  registerPages(NavigationManager navigationManager) {
+    navigationManager.registerPage("about", AboutPage);
+    navigationManager.registerPage("main", MainPage);
   }
 }

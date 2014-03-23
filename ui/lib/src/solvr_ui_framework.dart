@@ -17,4 +17,5 @@ part 'framework/frame.dart';
 part 'framework/navigation_manager.dart';
 part 'framework/page.dart';
 part 'framework/page_presenter.dart';
+part 'framework/web_module.dart';
 

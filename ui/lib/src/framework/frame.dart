@@ -4,10 +4,25 @@
 
 part of solvr_ui_framework;
 
+/**
+ * A [Frame] is a unit which contains pages and navigation 
+ */
 abstract class Frame extends Component {
-  Frame.created(): super.created();
+  Frame.created(WebModule module): super.created() {
+    _injector = new Injector(module);
+    _navigationManager = new NavigationManager(_injector, this);
+    module.registerPages(_navigationManager);
+  }
   
+  /**
+   * Implement DOM manipulation for showing a new page here
+   * 
+   * This method is called automatically by the [NavigationManager] when 
+   * asked to navigate to a new page
+   */
   showPage(Page page);
   
-  NavigationManager get navigationManager;
+  Injector _injector;
+  
+  NavigationManager _navigationManager;
 }
