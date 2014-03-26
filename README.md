@@ -20,6 +20,7 @@ below.
 ### Modules
 Solvr consist of the following modules
 
+ * **[analyzer](analyzer/README.md)** Type analyzer for the Solvr language
  * **ast** Abstract syntax tree and syntax for the Solvr algebraic language.
  * **backend** *(non-working) Placeholder project for Solvr's backend REST services*.
  * **[chrome](chrome/README.md)** *(non-working) Placeholder project for Solvr's Chrome plugin*
@@ -34,7 +35,6 @@ Solvr consist of the following modules
  * **[parser](parser/README.md)** Parser for the Solvr language.
  * **site** The Solvr web site
  * **types** Types of operators and expressions supported by Solvr 
- * **[type_checker](type_checker/README.md)** Type checker for the Solvr language
  * **ui** Shared user interface constructs
  * **webapp** The Solvr web application
  

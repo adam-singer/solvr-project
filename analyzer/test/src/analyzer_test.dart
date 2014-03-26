@@ -2,26 +2,20 @@
 // file for details. All rights reserved. Use of this source code is
 // governed by a Apache license that can be found in the LICENSE file.
 
-part of solvr_typechecker_test;
+part of solvr_analyzer_test;
 
-class TypeCheckerTest {
-  TypeCheckerTest() {
-    group("type checker", () {
-      test("token matching", () {
-
-      });
-    });
-
+class AnalyzerTest {
+  AnalyzerTest() {
     // TODO predefine
     // f(x) -> String
     // g(x) -> Number
 
-    group("type checking unary -", () {
+    group("analyze unary -", () {
       test("factorial expression", () {
         assertTypeError("Object!", description:"factorial of Object is undefined");
-        assertTypeError("f(x)", description:"factorial of function returning string is undefined");
+        assertTypeError("f(x)!", description:"factorial of function returning string is undefined");
         // TODO should factorial of list be factorial of each element ?
-        assertTypeMatch("g(x)", description:"factorial of function returning number is valid");
+        assertTypeMatch("g(x)!", description:"factorial of function returning number is valid");
       });
 
       test("negative expression", () {
@@ -36,15 +30,15 @@ class TypeCheckerTest {
     Parser parser = new SolvrParser(expresssion);
     Expr expr = parser.parse();
 
-    typeChecker.check(expr);
+    typeChecker.analyze(expr);
   }
 
   assertTypeError(String expresssion, {String description: null}) {
     Parser parser = new SolvrParser(expresssion);
     Expr expr = parser.parse();
 
-    typeChecker.check(expr);
+    typeChecker.analyze(expr);
   }
 
-  final TypeChecker typeChecker = new TypeChecker();
+  final SolvrAnalyzer typeChecker = new SolvrAnalyzer();
 }

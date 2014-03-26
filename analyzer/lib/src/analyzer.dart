@@ -2,25 +2,17 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-part of solvr_type_checker;
+part of solvr_analyzer_internal;
+
+// TODO rename to checker once the old checker is gone
 
 /** Visitor that visits nodes and check their types are correct */
-class TypeVisitor extends Object with 
-  BinaryExprTypeVisitor,
-  NaryExprTypeVisitor, 
-  NullaryExprTypeVisitor, 
-  SpecialExprTypeVisitor,
-  UnaryExprTypeVisitor implements ExprVisitor {
+class Analyzer extends Object with 
+  BinaryExprAnalyzer,
+  NaryExprAnalyzer, 
+  NullaryExprAnalyzer, 
+  SpecialExprAnalyzer,
+  UnaryExprAnalyzer implements ExprVisitor {
   
   ExprVisitor get visitor => this;
 }
-
-
-
-
-
-
-
-
-
-

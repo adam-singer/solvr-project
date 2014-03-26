@@ -11,8 +11,8 @@ import 'package:solvr_ast/solvr_ast.dart';
 import 'package:solvr_common/solvr_common.dart';
 import 'package:solvr_matchers/solvr_matchers.dart';
 
-import 'src/api_lib.dart';
-export 'src/api_lib.dart';
+import 'src/parser_api.dart';
+export 'src/parser_api.dart';
 
 part 'src/infix/assign_parselet.dart';
 part 'src/infix/binary_parselet.dart';

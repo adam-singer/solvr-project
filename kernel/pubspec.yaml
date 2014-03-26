@@ -3,6 +3,8 @@ version: 1.0.0
 author: Lars Tackmann <lars@solvr.io>
 description: Math kernel
 dependencies:
+  solvr_analyzer:
+    path: ../analyzer
   solvr_ast:
     path: ../ast
   solvr_common:
@@ -11,7 +13,5 @@ dependencies:
     path: ../matchers
   solvr_parser:
     path: ../parser
-  solvr_typechecker:
-    path: ../typechecker
 dev_dependencies:
   unittest: any

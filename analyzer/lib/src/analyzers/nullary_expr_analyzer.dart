@@ -2,9 +2,10 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
-part of solvr_type_checker;
+part of solvr_analyzer_internal;
 
-abstract class NullaryExprTypeVisitor implements NullaryExprVisitor {
+/** Analyze [NullaryExpr] expressions for type correctness */
+abstract class NullaryExprAnalyzer implements NullaryExprVisitor {
   @override
   visitBoolExpr(BoolExpr expr) => null;
   
