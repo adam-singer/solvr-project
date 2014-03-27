@@ -4,8 +4,8 @@
 
 part of solvr_analyzer_test;
 
-class UnaryAnalyzerTest extends AnalyzerTest {
-  UnaryAnalyzerTest() {
+class UnaryExprAnalyzerTest extends AnalyzerTest {
+  UnaryExprAnalyzerTest() {
     // TODO predefine
     // f(x) -> String
     // g(x) -> Number

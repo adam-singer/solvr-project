@@ -78,5 +78,16 @@ abstract class BinaryExprAnalyzer implements BinaryExprVisitor {
   @override
   visitUnionExpr(UnionExpr expr) => null;
   
+  bool _isOperandsAlgebraic(BinaryExpr expr) {
+    expr.operands.forEach((Expr operand) {
+      if(isAlgebraic(operand)) {
+          errorContext.error("algebraic operator ${expr.token} cannot be applied to operand ${operand}");
+        }
+    });
+    return null;
+  }
+  
+  ErrorContext get errorContext;
+  
   ExprVisitor get visitor;
 }

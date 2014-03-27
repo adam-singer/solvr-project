@@ -11,6 +11,7 @@ export 'package:dice/dice.dart';
 export 'package:log4dart/log4dart.dart';
 export 'package:meta/meta.dart';
 
+part 'src/error_context.dart';
 part 'src/errors.dart';
 part 'src/helpers.dart';
 part 'src/integer.dart';

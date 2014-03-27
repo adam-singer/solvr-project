@@ -5,12 +5,6 @@
 part of solvr_analyzer_test;
 
 abstract class AnalyzerTest {
-  AnalyzerTest() {
-    // TODO predefine
-    // f(x) -> String
-    // g(x) -> Number
-  }
-
   assertTypeMatch(String expresssion, {String description: null}) {
     Parser parser = new SolvrParser(expresssion);
     Expr expr = parser.parse();
