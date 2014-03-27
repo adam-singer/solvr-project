@@ -11,10 +11,11 @@ import 'package:solvr_analyzer/solvr_analyzer.dart';
 import 'package:unittest/unittest.dart'; 
 
 part 'src/analyzer_test.dart';
+part 'src/unary_analyzer_test.dart';
 
 main() {
   LoggerFactory.config['.*'].debugEnabled = false;
 
-  new AnalyzerTest();
+  new UnaryAnalyzerTest();
 }
 

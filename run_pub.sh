@@ -1,6 +1,6 @@
 #!/bin/bash
 
-declare -a projects=("common" "types" "ast" "parser" "analyzer" "kernel")
+declare -a projects=("common" "types" "ast" "parser" "analyzer" "kernel" "logic" "ui" "site" "webapp")
 
 for i in "${projects[@]}"
 do
