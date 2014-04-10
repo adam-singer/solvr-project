@@ -5,7 +5,6 @@
 
 library solvr_webapp_test;
 
-import 'package:dice/dice.dart';
 import 'package:solvr_common/solvr_common.dart';
 import 'package:unittest/unittest.dart';
 import 'package:solvr_webapp/solvr_webapp.dart';

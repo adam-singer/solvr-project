@@ -8,18 +8,13 @@ part of solvr_logic;
 /** A note in a [Notebook] */
 class Note extends AggregateRoot {
   factory Note(String noteName) { 
-    var note = new Note._internal();
-    note.applyChange(new NoteCreated(new Guid(), noteName, _currentUser.id, _currentUser.name, _utcTimeNow));
+    var id = new Guid();
+    var note = new Note.fromId(id);
+    note.applyChange(new NoteCreated(id, noteName, _currentUser.id, _currentUser.name, _utcTimeNow));
     return note;
   }
   
-  factory Note.fromId(Guid notebookId) { 
-    var note = new Note._internal();
-    note.id = notebookId;
-    return note;
-  }
-  
-  Note._internal() {
+  Note.fromId(Guid notebookId): super(notebookId) {
     if(_handlers.isEmpty) {
       _registerHandlers();  
     }

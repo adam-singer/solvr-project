@@ -10,19 +10,18 @@ class Notebook extends AggregateRoot {
   Set<Guid> _notebooks;
   String _name;
   
-  Notebook(String name)
-    : _folders = new Set<Guid>(),
-      _notebooks = new Set<Guid>() 
+  factory Notebook(String name)
   {
-    applyChange(new NotebookCreated(new Guid(), name));
+    var notebookId = new Guid();
+    var note = new Notebook.fromId(notebookId);
+    applyChange(new NotebookCreated(notebookId, name));
+    return note;
   }
   
-  Notebook.fromId(Guid folderId)
-   : _folders = new Set<Guid>(),
-     _notebooks = new Set<Guid>()
-  {
-    id = folderId;
-  }
+  Notebook.fromId(Guid notebookId): super(notebookId),
+     _folders = new Set<Guid>(),
+     _notebooks = new Set<Guid>();
+ 
   
   apply(var event) {
     

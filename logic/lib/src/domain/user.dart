@@ -9,13 +9,15 @@ part of solvr_logic;
  * A user in the system
  */
 class User extends AggregateRoot {
-  User(String name, String email) {
+  factory User(String name, String email) {
+    var userId = new Guid();
+    var user = new User.fromId(userId);
     applyChange(new UserCreated(new Guid(), name, email)); 
-    _settings = new Settings.defaults(this);
+    user._settings = new Settings.defaults(user);
+    return user;
   }
   
-  User.fromId(Guid userId) {
-    id = userId;
+  User.fromId(Guid userId): super(userId) {
     _settings = new Settings(this);
   }
   

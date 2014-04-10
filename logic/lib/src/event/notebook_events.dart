@@ -19,8 +19,8 @@ class NotebookDeleted extends DomainEvent {
   final Guid notebookId;
 }
 
-class NotebookRenamed extends NoteUpdated {
-  NotebookRenamed(this.notebookId, this.notebookName);
+class NotebookRenamed extends DomainEvent  {
+  NotebookRenamed(this.notebookId, this.notebookName, this.userId);
   
   final String notebookName;
   final Guid notebookId;

@@ -19,7 +19,7 @@ class MenuViewImpl extends AbstractView implements MenuView {
   
   set presenter(MenuPresenter p) => _presenter = p;
   
-  String get template => null'
+  String get template => null;
   
   addFolder(FolderItem folder) {
     throw "TODO add folder";

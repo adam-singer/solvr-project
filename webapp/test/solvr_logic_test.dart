@@ -4,7 +4,7 @@
 
 library solvr_logic_test;
 
-import 'package:dice:dice.dart';
+import 'package:dice/dice.dart';
 import 'package:solvr_webapp/src/solvr_logic.dart';
 import 'package:unittest/unittest.dart';
 
