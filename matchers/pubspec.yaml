@@ -1,8 +1,7 @@
 name: solvr_matchers
 version: 1.0.0
 author: Lars Tackmann <lars@solvr.io>
-description: Expression matchers 
+description: Matchers for detecting and acting on various expressions types
 dependencies:
   solvr_ast:
     path: ../ast
-  

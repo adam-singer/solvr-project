@@ -5,6 +5,7 @@
 part of solvr_ast;
 
 /** Represents a variable assignment like x = 2 or x = y + 3 */
+@LanguageType("Assign", AreaTypes.BUILT_IN)
 class AssignExpr extends SpecialExpr {
   AssignExpr(this.variable, this.value) {
     variable.parent = this;
@@ -28,9 +29,6 @@ class AssignExpr extends SpecialExpr {
   
   @override
   visit(ExprVisitor visitor) => visitor.visitAssignExpr(this);
-  
-  @override
-  final IType type = LanguageTypes.ASSIGN;
   
   SymbolExpr variable;
   Expr value;

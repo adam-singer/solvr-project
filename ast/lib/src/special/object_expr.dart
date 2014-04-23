@@ -6,9 +6,6 @@ part of solvr_ast;
 
 /** Represents a object declaration like class MyName {} */
 abstract class ObjectExpr extends SpecialExpr {
-  ObjectExpr(this.type);
 
-  @override
-  final IType type;
 }
 

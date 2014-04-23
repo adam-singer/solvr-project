@@ -4,9 +4,7 @@
 
 part of solvr_types;
 
-/** Base class for all invokable types such as [FunctionType] and [MethodType] */
-abstract class InvokableType extends IType {
-  const InvokableType(this.simpleName);
-
-  final String simpleName;
+/** Areas used for grouping */
+class AreaTypes {
+  static const AreaType BUILT_IN = const AreaType("Builtin");
 }

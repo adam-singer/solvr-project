@@ -5,6 +5,7 @@
 part of solvr_ast;
 
 /** Represents a interval fx. 1..10 or 1..0.1..10 */
+@LanguageType("Interval", AreaTypes.BUILT_IN)
 class IntervalExpr extends Expr {
   IntervalExpr(this.start, this.step, this.end);
 
@@ -22,9 +23,6 @@ class IntervalExpr extends Expr {
   
   @override
   visit(ExprVisitor visitor) => visitor.visitIntervalExpr(this);
-
-  @override
-  final IType type = LanguageTypes.INTERVAL;
   
   bool _isNothing(Expr expr) => expr is NothingExpr;
   Expr start, step, end;

@@ -5,6 +5,7 @@
 part of solvr_ast;
 
 /** Represents an anonymous function like (x) => x^2 */
+@LanguageType("Anonymous function", AreaTypes.BUILT_IN)
 class AnonymousFunctionExpr extends SpecialExpr {
   AnonymousFunctionExpr(this.args, this.body) {
     args.parent = this;
@@ -29,7 +30,6 @@ class AnonymousFunctionExpr extends SpecialExpr {
   @override
   visit(ExprVisitor visitor) => visitor.visitAnonymousFunctionExpr(this);
 
-  final IType type = LanguageTypes.ANONYMOUS_FUNCTION;
   Expr args;
   Expr body;
 }

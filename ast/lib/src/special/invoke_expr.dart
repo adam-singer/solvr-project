@@ -5,6 +5,7 @@
 part of solvr_ast;
 
 /** Represents a function call like f(x) */
+@LanguageType("Invoke", AreaTypes.BUILT_IN)
 class InvokeExpr extends SpecialExpr {
   InvokeExpr(this.name, this.args);
 
@@ -23,9 +24,6 @@ class InvokeExpr extends SpecialExpr {
   
   @override
   visit(ExprVisitor visitor) => visitor.visitInvokeExpr(this);
-
-  @override
-  final IType type = LanguageTypes.INVOKE;
   
   final String name;
   TupleExpr args;

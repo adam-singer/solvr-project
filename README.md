@@ -31,7 +31,7 @@ Solvr consist of the following modules
  * **iOS** *(non-working) Placeholder project for the Solvr PhoneGap iPad port*.
  * **kernel** The Mathematical algorithms for simplifying and computing Solvr expressions. 
  * **logic** Business logic shared between **webapp** and **iOS** app goes here.
- * **matchers** Matchers for detecting and acting on various types of expressions
+ * **matchers** Matchers for detecting and acting on various expressions types
  * **[parser](parser/README.md)** Parser for the Solvr language.
  * **site** The Solvr web site
  * **types** Types of operators and expressions supported by Solvr 

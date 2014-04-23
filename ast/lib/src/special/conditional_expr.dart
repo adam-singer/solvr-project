@@ -11,6 +11,7 @@ part of solvr_ast;
  *   :
  * }
  */
+@LanguageType("Conditional", AreaTypes.BUILT_IN)
 class ConditionalExpr extends SpecialExpr {
   ConditionalExpr(this.condition, this.ifBody, this.elsePart) {
     // TODO set parent
@@ -30,9 +31,6 @@ class ConditionalExpr extends SpecialExpr {
   
   @override
   visit(ExprVisitor visitor) => visitor.visitConditionalExpr(this);
-
-  @override
-  final IType type = LanguageTypes.CONDITIONAL;
   
   Expr condition, ifBody, elsePart;
 }

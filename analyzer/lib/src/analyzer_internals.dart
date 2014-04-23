@@ -15,13 +15,6 @@ part 'analyzers/nullary_expr_analyzer.dart';
 part 'analyzers/special_expr_analyzer.dart';
 part 'analyzers/unary_expr_analyzer.dart';
 
-part 'checkers/algebraic_checker.dart';
-part 'checkers/checker.dart';
-part 'checkers/logical_checker.dart';
-part 'checkers/object_checker.dart';
-part 'checkers/relational_checker.dart';
-part 'checkers/set_checker.dart';
-
 part 'analyzer.dart';
 
 

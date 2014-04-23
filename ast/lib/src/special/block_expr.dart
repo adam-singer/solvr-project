@@ -10,6 +10,7 @@ part of solvr_ast;
  *   :
  * }
  */
+@LanguageType("Block", AreaTypes.BUILT_IN)
 class BlockExpr extends SpecialExpr {
   BlockExpr(this.operands);
 
@@ -24,9 +25,6 @@ class BlockExpr extends SpecialExpr {
   
   @override
   visit(ExprVisitor visitor) => visitor.visitBlockExpr(this);
-  
-  @override
-  final IType type = LanguageTypes.BLOCK;
   
   @override
   List<Expr> operands;

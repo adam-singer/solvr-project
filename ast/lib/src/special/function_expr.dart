@@ -5,6 +5,7 @@
 part of solvr_ast;
 
 /** Represents a function declaration like "f(x) = x^2" or "Number g(x) => x+x" */
+@LanguageType("Function", AreaTypes.BUILT_IN)
 class FunctionExpr extends SpecialExpr {
   FunctionExpr(this.name, this.args, this.body, [this.returnType = null]) {
     args.parent = this;
@@ -37,9 +38,6 @@ class FunctionExpr extends SpecialExpr {
   
   @override
   visit(ExprVisitor visitor) => visitor.visitFunctionExpr(this);
-
-  @override
-  final IType type = LanguageTypes.FUNCTION;
   
   final String name;
   TupleExpr args;

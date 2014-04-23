@@ -1,7 +1,6 @@
-// Copyright (c) 2013 Solvr, Inc. All rights reserved.
-//
-// This is commercial software. Use or redistribution of this code in full
-// or in part without the express written consent of Solvr is prohibited.
+// Copyright (c) 2013, the Solvr project authors. Please see the AUTHORS 
+// file for details. All rights reserved. Use of this source code is 
+// governed by a Apache license that can be found in the LICENSE file.
 
 part of solvr_matchers;
 
@@ -15,8 +14,6 @@ bool isBlock(var expr) => expr is BlockExpr;
 bool isConditional(var expr) => expr is ConditionalExpr;
 
 bool isFunction(var expr) => expr is FunctionExpr;
-
-bool isGeneric(var expr) => expr is GenericExpr;
 
 bool isInvoke(var expr) => expr is InvokeExpr;
 

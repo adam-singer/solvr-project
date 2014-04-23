@@ -14,11 +14,18 @@ class BinaryExprAnalyzerTest extends AnalyzerTest {
         // case: x.y here x and y must resolve to vector/matrix
       });
       
-      test("product expression", () {
-           
+      test("algebraic collections expressions", () {
+        assertTypeMatch("[1,2]*[1,2]");
+        assertTypeError("[1,2,3]*[1,2]", description:"only equal length algebraic collections can be combined"); 
       });
       
-      // case: equal collection types can only be used in binary expressions if they have the same cardinality
+      test("relational expressions", () {
+        
+      });
+      
+      test("set expressions", () {
+        
+      });
     });
   }
 }

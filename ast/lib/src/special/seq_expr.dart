@@ -5,6 +5,7 @@
 part of solvr_ast;
 
 /** Represents a sequence expression such as {x in 1..10 | (x) => x^2} */
+@LanguageType("Sequence", AreaTypes.BUILT_IN)
 class SeqExpr extends SpecialExpr {
   SeqExpr(this.args, this.body) {
     args.map((Expr arg) => arg.parent = this);
@@ -25,9 +26,6 @@ class SeqExpr extends SpecialExpr {
   
   @override
   visit(ExprVisitor visitor) => visitor.visitSeqExpr(this);
-
-  @override
-  final IType type = LanguageTypes.SEQUENCE;
   
   List<Expr> args;
   Expr body;

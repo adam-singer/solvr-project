@@ -5,9 +5,8 @@
 part of solvr_ast;
 
 /** Helper expression used to simplify checking for null values */
+@LanguageType("Nothing", AreaTypes.BUILT_IN)
 class NothingExpr extends ObjectExpr {
-  NothingExpr(): super(LanguageTypes.NOTHING);
-
   @override
   Expr map(ExprConverter converter) => this;
 

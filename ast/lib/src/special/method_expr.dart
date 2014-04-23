@@ -5,6 +5,7 @@
 part of solvr_ast;
 
 /** Represents a method invocation like [1,2].length() */
+@LanguageType("Method", AreaTypes.BUILT_IN)
 class MethodExpr extends SpecialExpr {
   MethodExpr(this.target, this.name, this.args);
 
@@ -25,9 +26,6 @@ class MethodExpr extends SpecialExpr {
   
   @override
   visit(ExprVisitor visitor) => visitor.visitMethodExpr(this);
-
-  @override
-  final IType type = LanguageTypes.METHOD;
   
   final String name;
   ObjectExpr target;

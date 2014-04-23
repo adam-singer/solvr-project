@@ -63,9 +63,6 @@ abstract class Expr {
 
   /** Get a deep clone of this exprssion */
   Expr get clone;
-  
-  /** TODO remove when math kernel is rewritten to use reflection */
-  IType get type;
 
   /** Get the root node in the expression tree. */
   Expr get root {

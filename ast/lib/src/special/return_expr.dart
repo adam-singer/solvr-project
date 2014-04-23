@@ -5,6 +5,7 @@
 part of solvr_ast;
 
 /** A return statement */
+@LanguageType("Return", AreaTypes.BUILT_IN)
 class ReturnExpr extends SpecialExpr {
   ReturnExpr(this.value);
 
@@ -23,9 +24,6 @@ class ReturnExpr extends SpecialExpr {
   
   @override
   visit(ExprVisitor visitor) => visitor.visitReturnExpr(this);
-
-  @override
-  final IType type = LanguageTypes.RETURN;
   
   Expr value;
 }

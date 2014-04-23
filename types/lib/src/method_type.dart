@@ -6,8 +6,7 @@ part of solvr_types;
 
 /** Type for object methods */
 class MethodType extends InvokableType {
-  const MethodType(String simpleName, this.target, List<IType> argumentTypes, IType returnType)
-    : super(simpleName, argumentTypes, returnType);
+  const MethodType(String simpleName, this.target): super(simpleName);
 
   String get qualifiedName => "${target.qualifiedName}.${simpleName}";
 

@@ -4,7 +4,8 @@
 
 part of solvr_ast;
 
-/** Type/value pair fx: "String value" or "List<Symbol> symbols" */
+/** Type/value pair fx: "String value" or "List symbols" */
+@LanguageType("Typed", AreaTypes.BUILT_IN)
 class TypedExpr extends SpecialExpr {
   TypedExpr(this.key, this.value);
 
@@ -25,9 +26,6 @@ class TypedExpr extends SpecialExpr {
   
   @override
   visit(ExprVisitor visitor) => visitor.visitTypedExpr(this);
-
-  @override
-  final IType type = LanguageTypes.TYPED;
   
   Expr key, value;
 }

@@ -6,10 +6,8 @@ part of solvr_types;
 
 /** Type for functions */
 class FunctionType extends InvokableType {
-  const FunctionType(String simpleName, List<IType> argumentTypes, IType returnType, this.area)
-    : super(simpleName, argumentTypes, returnType);
+  const FunctionType(String simpleName, this.area): super(simpleName);
 
-  // TODO use argument types and area in name also
   String get qualifiedName => simpleName;
 
   final AreaType area;
