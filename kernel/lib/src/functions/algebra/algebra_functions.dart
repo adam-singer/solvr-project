@@ -2,22 +2,15 @@
 // file for details. All rights reserved. Use of this source code is 
 // governed by a Apache license that can be found in the LICENSE file.
 
+/** General purpose algebra functions */
 part of solvr_kernel_math_functions_algebra;
 
-/*
- * General purpose algebra functions
- */
-
-/**
- * Get the denominator of a algebraic expression
- */
+/** Get the denominator of a algebraic expression */
 Expr denominatorOf(var expr) {
   return _numeratorDenominator(expr)[1];
 }
 
-/**
- * Expand a algebraic expression
- */
+/** Expand a algebraic expression */
 Expr expand(var expr) {
   if(isSum(expr)) {
     var operands = _expandOperands(expr);
@@ -119,23 +112,17 @@ Expr _expandTuple(var expr) {
   return expr;
 }
 
-/**
- * Collect like terms in a algebraic expression
- */
+/** Collect like terms in a algebraic expression */
 Expr collect(var expr) {
   // TODO p. 250
 }
 
-/**
- * Put a expression on normal form (rational simplify)
- */
+/** Put a expression on normal form (rational simplify) */
 Expr normal(var expr) {
   return expr;
 }
 
-/**
- * Get the numerator of a algebraic expression
- */
+/** Get the numerator of a algebraic expression */
 Expr numeratorOf(var expr) => _numeratorDenominator(expr)[0];
 
 List<Expr> _numeratorDenominator(var expr) {
@@ -167,7 +154,3 @@ List<Expr> _numeratorDenominator(var expr) {
   return [expr, one];
 }
 
-/** Convert list of expressions into a single expression */
-Expr construct(List<Expr> list, Expr constructor(Expr e1, Expr e2)) {
-  return tail(list).fold(list[0], constructor);
-}

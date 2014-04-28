@@ -8,7 +8,6 @@ library solvr_types;
 import "package:solvr_common/solvr_common.dart";
 
 part "src/functions/algebra_functions.dart";
-part "src/functions/builtin_functions.dart";
 part "src/functions/calculus_functions.dart";
 part "src/functions/combinatorics_functions.dart";
 part "src/functions/graph_functions.dart";

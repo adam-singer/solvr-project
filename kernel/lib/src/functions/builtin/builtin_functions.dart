@@ -4,27 +4,16 @@
 
 part of solvr_kernel_math_functions_builtin;
 
-/** Evaluate a sequence expression */
-Expr evaluateSeq(SeqExpr seq) {
-  throw "TODO evaluate seq";
+/** Convert list of expressions into a single expression */
+@FunctionType("construct", AreaTypes.BUILT_IN)
+Expr construct(List<Expr> list, Expr constructor(Expr e1, Expr e2)) {
+  return tail(list).fold(list[0], constructor);
 }
 
-/** True when [target] is free of any occurences of [expr] */
-bool freeOf(Expr target, Expr expr) {
-  if(expr == target) {
-    return false;
-  } else if(isNullary(target)) {
-    return true;
-  } else {
-    bool free = true;
-    target.operands.forEach((Expr operand) {
-      if(!freeOf(operand, expr)) {
-        free = false;
-        return;
-      }
-    });
-    return free;
-  }
+/** Evaluate a sequence expression */
+@FunctionType("evaluate", AreaTypes.BUILT_IN)
+Expr evaluateSeq(SeqExpr seq) {
+  throw "TODO evaluate seq";
 }
 
 /**
@@ -32,6 +21,7 @@ bool freeOf(Expr target, Expr expr) {
  *
  * returns a list
  */
+@FunctionType("factors", AreaTypes.BUILT_IN)
 List<Expr> factors(Expr expr, Expr x) {
   if(isProduct(expr)) {
     var freeOfPart = one;
@@ -51,8 +41,29 @@ List<Expr> factors(Expr expr, Expr x) {
   }
 }
 
+/** True when [target] is free of any occurences of [expr] */
+@FunctionType("freeOf", AreaTypes.BUILT_IN)
+bool freeOf(Expr target, Expr expr) {
+  if(expr == target) {
+    return false;
+  } else if(isNullary(target)) {
+    return true;
+  } else {
+    bool free = true;
+    target.operands.forEach((Expr operand) {
+      if(!freeOf(operand, expr)) {
+        free = false;
+        return;
+      }
+    });
+    return free;
+  }
+  // TODO should be boxed as BoolExpr 
+}
+
 /** True when [target] is free of all [variables] */
-bool setFreeOf(Expr target, SetExpr variables) {
+@FunctionType("freeOfAll", AreaTypes.BUILT_IN)
+bool freeOfAll(Expr target, SetExpr variables) {
   bool res = true;
   variables.forEach((Expr variable) {
     if(!freeOf(target, variable)) {
@@ -63,39 +74,46 @@ bool setFreeOf(Expr target, SetExpr variables) {
   return res;
 }
 
-InvokeExpr hold(Expr expr) => asInvoke("hold", asTuple(expr));
+/** Excempt expression from automatic simplification */
+@FunctionType("hold", AreaTypes.BUILT_IN)
+Expr hold(Expr expr) {
+  // hold is a meta function, it's only purpose is to stop the reducer from
+  // reducing expressions so its execution is not handled here. It must however
+  // still be registered so it can take part in the help system and tab completion
+  return asInvoke("hold", asTuple(expr));
+}
 
 /** Get the length (number of operands) of [expr] */
-int lengthOf(Expr expr) => expr.operands.length;
-
-/** Get the n-th operand of [expr] counted from 1! */
-Expr operandOf(Expr expr, int index) => expr.operands[index - 1];
-
-/**
- * Return the symbolic type name of a expression
- *
- * Note this name is printer friendly but is not guarantied to be unique (unlike the fullname). For example
- * !true and 4! will have the same symbolic type(!) but not the same fullname (negation vs factorial)
- */
-SymbolExpr typeOf(var expr) {
-  String typename = expr.type.name;
-  if(isInvoke(expr)) {
-    typename = expr.name;
-  }
-  return asSymbol(typename);
+@FunctionType("lengthOf", AreaTypes.BUILT_IN)
+int lengthOf(Expr expr) {
+  // TODO should be boxed as NumberExpr 
+  return expr.operands.length;
 }
 
 /** The natural logarithm */
+@FunctionType("ln", AreaTypes.BUILT_IN)
 NumberExpr ln(NumberExpr number) {
   if(number.isReal) {
 
   }
+  return null;
   //var number = number.value;
 }
 
-/**
- * Sequentially replace free occurences of [origVar] with [newVar] in [expr]
- */
+/** Get the n-th operand of [expr] counted from 1 */
+@FunctionType("operandOf", AreaTypes.BUILT_IN)
+Expr operandOf(Expr expr, int index) {
+  return expr.operands[index - 1];
+}
+
+/** Get list of operands from [expr] */
+@FunctionType("operandsOf", AreaTypes.BUILT_IN)
+List<Expr> operandsOf(Expr expr) {
+  return expr.operands;
+}
+
+/** Sequentially replace free occurences of [origVar] with [newVar] in [expr] */
+@FunctionType("replace", AreaTypes.BUILT_IN)
 Expr replace(Expr expr, Expr origVar, Expr newVar) {
   var clone = expr.clone;
   clone.map((Expr part) {
@@ -113,6 +131,7 @@ Expr replace(Expr expr, Expr origVar, Expr newVar) {
 }
 
 /** Sequentially replace free occurences of [originals] with [substitutions] in [expr] */
+@FunctionType("replaceAll", AreaTypes.BUILT_IN)
 Expr replaceAll(Expr expr, List<Expr> originals, List<Expr> substitutions) {
   assert(originals.length == substitutions.length);
 
@@ -124,7 +143,17 @@ Expr replaceAll(Expr expr, List<Expr> originals, List<Expr> substitutions) {
   return clone;
 }
 
+/** Run automatic simplify dirrectly using the current scope */
+@FunctionType("simplify", AreaTypes.BUILT_IN)
+Expr simplify(var expr) {
+  //var kernel = new Kernel.keepScope();
+  //return kernel.simplify(expr);
+  // TODO figure out how to get access to kernel here
+  return null;
+}
+
 /** Concurrently replace free occurences of [originals] with [substitutions] in [expr] */
+@FunctionType("substitute", AreaTypes.BUILT_IN)
 Expr substitute(Expr expr, List<Expr> originals, List<Expr> substitutions) {
   assert(originals.length == substitutions.length);
 
@@ -148,8 +177,17 @@ Expr substitute(Expr expr, List<Expr> originals, List<Expr> substitutions) {
   return clone;
 }
 
-/** Run automatic simplify dirrectly using the current scope */
-Expr simplify(var expr) {
-  var kernel = new Kernel.keepScope();
-  return kernel.simplify(expr);
+/**
+ * Return the symbolic type name of a expression
+ *
+ * Note this name is printer friendly but is not guarantied to be unique (unlike the fullname). For example
+ * !true and 4! will have the same symbolic type(!) but not the same fullname (negation vs factorial)
+ */
+@FunctionType("typeOf", AreaTypes.BUILT_IN)
+SymbolExpr typeOf(var expr) {
+  String typename = expr.type.name;
+  if(isInvoke(expr)) {
+    typename = expr.name;
+  }
+  return asSymbol(typename);
 }
